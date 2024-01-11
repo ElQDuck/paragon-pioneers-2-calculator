@@ -1,0 +1,64 @@
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import { useRef } from 'react'
+import FurrieryIcon from '../../../../assets/icons/buildings/townsmen/Furriery.png'
+import {
+  BuildingGroup,
+  BuildingImageSize,
+  ConsumerPaperStyle,
+  ProviderBoxStyle,
+  ProviderPaperStyle,
+  SingleBuildingWithCount,
+} from '../../../../assets/styling/BuildingStyle'
+import { Arrow } from '../../../../common/Arrow'
+import { BuildingButton } from '../../../../common/BuildingButton'
+import { Building } from '../../../../types/Building'
+import { CATTLE_RANCH_INFO, CattleRanch } from './CattleRanch'
+
+const ITERATION_TIME_IN_SECONDS = 120
+const PRODUCE_PER_ITERATION = 1
+const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
+const CONSUME_PER_ITERATION = new Map<string, number>([['Cattle', 1]])
+export const FURRIERY_INFO: Building = {
+  IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
+  IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
+  ConsumePerIteration: CONSUME_PER_ITERATION,
+  ConsumePerMinute: new Map<string, number>([
+    ['Cattle', CONSUME_PER_ITERATION.get('Cattle')! / ITERATION_TIME_IN_DECIMAL],
+  ]),
+  ProducePerIteration: PRODUCE_PER_ITERATION,
+  ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
+}
+
+export const Furriery = (props: { count: number }) => {
+  const consumerRef = useRef(null)
+  const providerRef1 = useRef(null)
+  return (
+    <Box sx={BuildingGroup}>
+      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+        <Box sx={SingleBuildingWithCount}>
+          <img src={FurrieryIcon} alt={Furriery.name} style={BuildingImageSize} />
+          {Number(props.count.toFixed(2))}
+        </Box>
+      </Paper>
+      <Box sx={ProviderBoxStyle}>
+        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+          <CattleRanch
+            count={(props.count * FURRIERY_INFO.ConsumePerMinute.get('Cattle')!) / CATTLE_RANCH_INFO.ProducePerMinute}
+          ></CattleRanch>
+        </Paper>
+      </Box>
+      <Arrow start={providerRef1} end={consumerRef} />
+    </Box>
+  )
+}
+
+export const FurrieryButton = (props: { updateProductionChanFunction: Function }) => {
+  return (
+    <BuildingButton
+      buttonIcon={FurrieryIcon}
+      buildingElement={Furriery}
+      updateProductionChanFunction={props.updateProductionChanFunction}
+    ></BuildingButton>
+  )
+}

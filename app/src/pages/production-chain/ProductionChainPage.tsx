@@ -1,0 +1,551 @@
+import Box from '@mui/material/Box'
+import { useState } from 'react'
+import ColonistIcon from '../../assets/icons/population/colonist.png'
+import FarmerIcon from '../../assets/icons/population/farmer.png'
+import MerchantIcon from '../../assets/icons/population/merchant.png'
+import NorthernIslandIcon from '../../assets/icons/population/northernIsland.png'
+import ParagonIcon from '../../assets/icons/population/paragon.png'
+import PioneerIcon from '../../assets/icons/population/pioneer.png'
+import TownsmanIcon from '../../assets/icons/population/townsman.png'
+import WorkerIcon from '../../assets/icons/population/worker.png'
+import PapulationSelectionButton from '../../common/PapulationSelectionButtons'
+import { ArcheryRangeButton } from './buildings/colonists/ArcheryRange'
+import { AshHouseButton } from './buildings/colonists/AshHouse'
+import { BakeryButton } from './buildings/colonists/Bakery'
+import { BarracksButton } from './buildings/colonists/Barracks'
+import { BerserkerHallButton } from './buildings/colonists/BerserkerHall'
+import { BowyerButton } from './buildings/colonists/Bowyer'
+import { CopperArmoryButton } from './buildings/colonists/CopperArmory'
+import { CopperAxesmithButton } from './buildings/colonists/CopperAxesmith'
+import { CopperMineButton } from './buildings/colonists/CopperMine'
+import { CopperSmelterButton } from './buildings/colonists/CopperSmelter'
+import { FlourMillButton } from './buildings/colonists/FlourMill'
+import { FlourWindmillButton } from './buildings/colonists/FlourWindmill'
+import { GrainBinButton } from './buildings/colonists/GrainBin'
+import { LimeKilnButton } from './buildings/colonists/LimeKiln'
+import { LinseedFarmButton } from './buildings/colonists/LinseedFarm'
+import { MortarBatchWorksButton } from './buildings/colonists/MortarBatchWorks'
+import { RenderingWorksButton } from './buildings/colonists/RenderingWorks'
+import { RoperyButton } from './buildings/colonists/Ropery'
+import { SheepFarmButton } from './buildings/colonists/SheepFarm'
+import { SoapMakerButton } from './buildings/colonists/SoapMaker'
+import { StonecutterButton } from './buildings/colonists/Stonecutter'
+import { TextileFactoryButton } from './buildings/colonists/TextileFactory'
+import { WeaverButton } from './buildings/colonists/Weaver'
+import { WheatFarmButton } from './buildings/colonists/WheatFarm'
+import { ApothecaryButton } from './buildings/farmers/Apothecary'
+import { BallMakerButton } from './buildings/farmers/BallMaker'
+import { BeachFishermansHutButton } from './buildings/farmers/BeachFishermansHut'
+import { BrickyardButton } from './buildings/farmers/Brickyard'
+import { CigarManufactureButton } from './buildings/farmers/CigarManufacture'
+import { ClayPitButton } from './buildings/farmers/ClayPit'
+import { CoalMineTropicalButton } from './buildings/farmers/CoalMineTropical'
+import { CoffeeHouseButton } from './buildings/farmers/CoffeeHouse'
+import { CoffeePlantationButton } from './buildings/farmers/CoffeePlantation'
+import { CopperMineTropicalButton } from './buildings/farmers/CopperMineTropical'
+import { CopperSmelterTropicalButton } from './buildings/farmers/CopperSmelterTropical'
+import { CrocodileRanchButton } from './buildings/farmers/CrocodileRanch'
+import { DairyButton } from './buildings/farmers/Dairy'
+import { FarmersShackButton } from './buildings/farmers/FarmersShack'
+import { FiberMakerButton } from './buildings/farmers/FiberMaker'
+import { FieldSurgeonHouseButton } from './buildings/farmers/FieldSurgeonHouse'
+import { GoatFarmButton } from './buildings/farmers/GoatFarm'
+import { PikemenBarracksButton } from './buildings/farmers/PikemenBarracks'
+import { PoleturnersWorkshopButton } from './buildings/farmers/PoleturnersWorkshop'
+import { RoastHouseButton } from './buildings/farmers/RoastHouse'
+import { RoperyTropicalButton } from './buildings/farmers/RoperyTropical'
+import { RumDistilleryButton } from './buildings/farmers/RumDistillery'
+import { SalternTropicalButton } from './buildings/farmers/SalternTropical'
+import { SportsGroundButton } from './buildings/farmers/SportsGround'
+import { SugarCanePlantationButton } from './buildings/farmers/SugarCanePlantation'
+import { SugarMillButton } from './buildings/farmers/SugarMill'
+import { SugarWindmillButton } from './buildings/farmers/SugarWindmill'
+import { TeaPlantationButton } from './buildings/farmers/TeaPlantation'
+import { TobaccoFarmButton } from './buildings/farmers/TobaccoFarm'
+import { WaterBuffaloRanchButton } from './buildings/farmers/WaterBuffaloRanch'
+import { WhimHouseButton } from './buildings/farmers/WhimHouse'
+import { ApiaryButton } from './buildings/merchants/Apiary'
+import { ArcherAcademyButton } from './buildings/merchants/ArcherAcademy'
+import { BathhouseButton } from './buildings/merchants/Bathhouse'
+import { BrandyDistilleryButton } from './buildings/merchants/BrandyDistillery'
+import { ButcheryButton } from './buildings/merchants/Butchery'
+import { ChickenFarmButton } from './buildings/merchants/ChickenFarm'
+import { CoiningPressButton } from './buildings/merchants/CoiningPress'
+import { CompositeBowyerButton } from './buildings/merchants/CompositeBowyer'
+import { CrossbowMakerButton } from './buildings/merchants/CrossbowMaker'
+import { CrossbowShootingRangeButton } from './buildings/merchants/CrossbowShootingRange'
+import { CuringHouseButton } from './buildings/merchants/CuringHouse'
+import { DeepCopperMineButton } from './buildings/merchants/DeepCopperMine'
+import { EssenceDistilleryButton } from './buildings/merchants/EssenceDistillery'
+import { FeltmakingMillButton } from './buildings/merchants/FeltmakingMill'
+import { GoldSmelterButton } from './buildings/merchants/GoldSmelter'
+import { GoldsmithButton } from './buildings/merchants/Goldsmith'
+import { HattersShopButton } from './buildings/merchants/HattersShop'
+import { HospitalButton } from './buildings/merchants/Hospital'
+import { IronArmoryButton } from './buildings/merchants/IronArmory'
+import { IronMineButton } from './buildings/merchants/IronMine'
+import { IronSmelterButton } from './buildings/merchants/IronSmelter'
+import { KnightBarracksButton } from './buildings/merchants/KnightBarracks'
+import { MarbleQuarryButton } from './buildings/merchants/MarbleQuarry'
+import { PastryManufactureButton } from './buildings/merchants/PastryManufacture'
+import { PerfumeryButton } from './buildings/merchants/Perfumery'
+import { PipemakersShopButton } from './buildings/merchants/PipemakersShop'
+import { RoseCultivationButton } from './buildings/merchants/RoseCultivation'
+import { SugarBeetFarmButton } from './buildings/merchants/SugarBeetFarm'
+import { ToolmakerButton } from './buildings/merchants/Toolmaker'
+import { TownhallButton } from './buildings/merchants/Townhall'
+import { AmbergrisProductionButton } from './buildings/northern-islands/AmbergrisProduction'
+import { BrassSmelterButton } from './buildings/northern-islands/BrassSmelter'
+import { CaviarFactoryButton } from './buildings/northern-islands/CaviarFactory'
+import { CoalMineNorthButton } from './buildings/northern-islands/CoalMineNorth'
+import { ConiferLumberjackButton } from './buildings/northern-islands/ConiferLumberjack'
+import { CopperMineNorthButton } from './buildings/northern-islands/CopperMineNorth'
+import { CopperSmelterNorthButton } from './buildings/northern-islands/CopperSmelterNorth'
+import { FurTrapperButton } from './buildings/northern-islands/FurTrapper'
+import { GoldMineNorthButton } from './buildings/northern-islands/GoldMineNorth'
+import { GoldSmelterNorthButton } from './buildings/northern-islands/GoldSmelterNorth'
+import { HeatingPlantButton } from './buildings/northern-islands/HeatingPlant'
+import { IronMineNorthButton } from './buildings/northern-islands/IronMineNorth'
+import { IronSmelterNorthButton } from './buildings/northern-islands/IronSmelterNorth'
+import { LargeHeatingPlantButton } from './buildings/northern-islands/LargeHeatingPlant'
+import { LeadMineButton } from './buildings/northern-islands/LeadMine'
+import { LeadSmelterButton } from './buildings/northern-islands/LeadSmelter'
+import { MarbleQuarryNorthButton } from './buildings/northern-islands/MarbleQuarryNorth'
+import { RockSaltMineNorthButton } from './buildings/northern-islands/RockSaltMineNorth'
+import { SalmonFishermansHutButton } from './buildings/northern-islands/SalmonFishermansHut'
+import { SaltWorksNorthButton } from './buildings/northern-islands/SaltWorksNorth'
+import { SturgeonFarmButton } from './buildings/northern-islands/SturgeonFarm'
+import { WhalerButton } from './buildings/northern-islands/Whaler'
+import { ZincMineButton } from './buildings/northern-islands/ZincMine'
+import { ZincSmelterButton } from './buildings/northern-islands/ZincSmelter'
+import { ArmorsmithButton } from './buildings/paragons/Armorsmith'
+import { BookbinderButton } from './buildings/paragons/Bookbinder'
+import { BrocadeSpinningFactoryButton } from './buildings/paragons/BrocadeSpinningFactory'
+import { CannonFoundryButton } from './buildings/paragons/CannonFoundry'
+import { CannoneersSchoolButton } from './buildings/paragons/CannoneersSchool'
+import { ChandlerButton } from './buildings/paragons/Chandler'
+import { CobblersShopButton } from './buildings/paragons/CobblersShop'
+import { CokeryButton } from './buildings/paragons/Cokery'
+import { ConfectioneryButton } from './buildings/paragons/Confectionery'
+import { CooperButton } from './buildings/paragons/Cooper'
+import { CuirassierAcademyButton } from './buildings/paragons/CuirassierAcademy'
+import { FireworksMakerButton } from './buildings/paragons/FireworksMaker'
+import { GalziersWorkshopButton } from './buildings/paragons/GalziersWorkshop'
+import { GlassworksButton } from './buildings/paragons/Glassworks'
+import { HoneyDistilleryButton } from './buildings/paragons/HoneyDistillery'
+import { LanceMakerButton } from './buildings/paragons/LanceMaker'
+import { LensGrinderButton } from './buildings/paragons/LensGrinder'
+import { MusketMakerButton } from './buildings/paragons/MusketMaker'
+import { MusketeerSchoolButton } from './buildings/paragons/MusketeerSchool'
+import { OrnateTailorButton } from './buildings/paragons/OrnateTailor'
+import { PaperMillButton } from './buildings/paragons/PaperMill'
+import { PlaningMillButton } from './buildings/paragons/PlaningMill'
+import { PowderMillButton } from './buildings/paragons/PowderMill'
+import { QuartzQuarryButton } from './buildings/paragons/QuartzQuarry'
+import { SalternButton } from './buildings/paragons/Saltern'
+import { SenateButton } from './buildings/paragons/Senate'
+import { SteelFurnaceButton } from './buildings/paragons/SteelFurnace'
+import { TiltyardButton } from './buildings/paragons/Tiltyard'
+import { TreasureSeekerButton } from './buildings/paragons/TreasureSeeker'
+import { TrumpetMakerButton } from './buildings/paragons/TrumpetMaker'
+import { UniversityButton } from './buildings/paragons/University'
+import { WinepressButton } from './buildings/paragons/Winepress'
+import { WineryButton } from './buildings/paragons/Winery'
+import { BootCampButton } from './buildings/pioneers/BootCamp'
+import { CiderMakerButton } from './buildings/pioneers/CiderMaker'
+import { FishermansHutButton } from './buildings/pioneers/FishermansHut'
+import { LumberjackButton } from './buildings/pioneers/Lumberjack'
+import { PigRanchButton } from './buildings/pioneers/PigRanch'
+import { PiggeryButton } from './buildings/pioneers/Piggery'
+import { PioneersHutButton } from './buildings/pioneers/PioneersHut'
+import { SausageMakerButton } from './buildings/pioneers/SausageMaker'
+import { SawWorksButton } from './buildings/pioneers/SawWorks'
+import { SawmillButton } from './buildings/pioneers/Sawmill'
+import { BoilerMakerButton } from './buildings/townsmen/BoilerMaker'
+import { BoilingHouseButton } from './buildings/townsmen/BoilingHouse'
+import { BoulderGathererButton } from './buildings/townsmen/BoulderGatherer'
+import { BreweryButton } from './buildings/townsmen/Brewery'
+import { CattleRanchButton } from './buildings/townsmen/CattleRanch'
+import { ChalkMakerButton } from './buildings/townsmen/ChalkMaker'
+import { CharcoalKilnButton } from './buildings/townsmen/CharcoalKiln'
+import { CoalMineButton } from './buildings/townsmen/CoalMine'
+import { DrumMakerButton } from './buildings/townsmen/DrumMaker'
+import { DrummersSchoolButton } from './buildings/townsmen/DrummersSchool'
+import { FurrieryButton } from './buildings/townsmen/Furriery'
+import { HopFarmButton } from './buildings/townsmen/HopFarm'
+import { HorseBreederButton } from './buildings/townsmen/HorseBreeder'
+import { JamMakerButton } from './buildings/townsmen/JamMaker'
+import { LongbowArcheryRangeButton } from './buildings/townsmen/LongbowArcheryRange'
+import { LongbowyerButton } from './buildings/townsmen/Longbowyer'
+import { MalthouseButton } from './buildings/townsmen/Malthouse'
+import { MedicusButton } from './buildings/townsmen/Medicus'
+import { PaddockButton } from './buildings/townsmen/Paddock'
+import { RidingArenaButton } from './buildings/townsmen/RidingArena'
+import { RockSaltMineButton } from './buildings/townsmen/RockSaltMine'
+import { SailmakerButton } from './buildings/townsmen/Sailmaker'
+import { SaltWorksButton } from './buildings/townsmen/SaltWorks'
+import { StrawberryFarmButton } from './buildings/townsmen/StrawberryFarm'
+import { TanneryButton } from './buildings/townsmen/Tannery'
+import { TownSchoolButton } from './buildings/townsmen/TownSchool'
+import { ArtisticBlacksmithButton } from './buildings/workers/ArtisticBlacksmith'
+import { BuffaloButcheryButton } from './buildings/workers/BuffaloButchery'
+import { BuffaloPastureButton } from './buildings/workers/BuffaloPasture'
+import { CacaoPlantationButton } from './buildings/workers/CacaoPlantation'
+import { CemeteryButton } from './buildings/workers/Cemetery'
+import { ChocolaterieButton } from './buildings/workers/Chocolaterie'
+import { CoconutPlantationButton } from './buildings/workers/CoconutPlantation'
+import { CostumierButton } from './buildings/workers/Costumier'
+import { CottonPlantationButton } from './buildings/workers/CottonPlantation'
+import { DancingSchoolButton } from './buildings/workers/DancingSchool'
+import { FineWoodLoggerButton } from './buildings/workers/FineWoodLogger'
+import { FlowerHouseButton } from './buildings/workers/FlowerHouse'
+import { GemstoneMineButton } from './buildings/workers/GemstoneMine'
+import { GlaiveSmithButton } from './buildings/workers/GlaiveSmith'
+import { GlaiveTempleButton } from './buildings/workers/GlaiveTemple'
+import { GoldMineTropicalButton } from './buildings/workers/GoldMineTropical'
+import { GoldPannerButton } from './buildings/workers/GoldPanner'
+import { GoldSmelterTropicalButton } from './buildings/workers/GoldSmelterTropical'
+import { GrainBinTropicalButton } from './buildings/workers/GrainBinTropical'
+import { HeraldicArmourerButton } from './buildings/workers/HeraldicArmourer'
+import { IndigoPlantationButton } from './buildings/workers/IndigoPlantation'
+import { LuthierButton } from './buildings/workers/Luthier'
+import { NitrateMakerButton } from './buildings/workers/NitrateMaker'
+import { NobleTailorButton } from './buildings/workers/NobleTailor'
+import { ShieldGuardianTempleButton } from './buildings/workers/ShieldGuardianTemple'
+import { SilkPlantationButton } from './buildings/workers/SilkPlantation'
+import { SilkTwineMillButton } from './buildings/workers/SilkTwineMill'
+import { SoupKitchenButton } from './buildings/workers/SoupKitchen'
+import { SpinningMillButton } from './buildings/workers/SpinningMill'
+
+export const ProductionChainPage = () => {
+  const [pioneersVisible, setPioneersVisible] = useState(true)
+  const [colonistsVisible, setColonistsVisible] = useState(false)
+  const [townsmenVisible, setTownsmenVisible] = useState(false)
+  const [merchantsVisible, setMerchantsVisible] = useState(false)
+  const [paragonsVisible, setParagonsVisible] = useState(false)
+  const [farmersVisible, setFarmersVisible] = useState(false)
+  const [workersVisible, setWorkersVisible] = useState(false)
+  const [northernIslandsVisible, setNorthernIslandsVisible] = useState(false)
+
+  const [productionChaninMap, setProductionChaninMap] = useState<Map<string, JSX.Element>>(
+    new Map<string, JSX.Element>()
+  )
+  const [_, seProductionChains] = useState([<></>])
+
+  const updateProductionChaninMap = (name: string, prodChain: JSX.Element) => {
+    setProductionChaninMap(productionChaninMap.set(name, prodChain))
+    // This is necessary to update the dom. Can be optimized
+    seProductionChains(Array.from(productionChaninMap.values()))
+  }
+
+  // TODO:
+  // - Add "Expert view" Button (Toggle all possible combinations or just the obvious ones)
+  // - Add a button to reset all inputs to 0
+  // - Save selections in local storage -> https://felixgerschau.com/react-localstorage/
+  return (
+    <>
+      <PapulationSelectionButton
+        iconPath={PioneerIcon}
+        onClick={() => setPioneersVisible(!pioneersVisible)}
+        enabled={pioneersVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={ColonistIcon}
+        onClick={() => setColonistsVisible(!colonistsVisible)}
+        enabled={colonistsVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={TownsmanIcon}
+        onClick={() => setTownsmenVisible(!townsmenVisible)}
+        enabled={townsmenVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={MerchantIcon}
+        onClick={() => setMerchantsVisible(!merchantsVisible)}
+        enabled={merchantsVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={ParagonIcon}
+        onClick={() => setParagonsVisible(!paragonsVisible)}
+        enabled={paragonsVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={FarmerIcon}
+        onClick={() => setFarmersVisible(!farmersVisible)}
+        enabled={farmersVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={WorkerIcon}
+        onClick={() => setWorkersVisible(!workersVisible)}
+        enabled={workersVisible}
+      ></PapulationSelectionButton>
+      <PapulationSelectionButton
+        iconPath={NorthernIslandIcon}
+        onClick={() => setNorthernIslandsVisible(!northernIslandsVisible)}
+        enabled={northernIslandsVisible}
+      ></PapulationSelectionButton>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        {/* Pioneers */}
+        {pioneersVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <LumberjackButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PioneersHutButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FishermansHutButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PiggeryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SausageMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SawWorksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CiderMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SawmillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BootCampButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PigRanchButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Colonists */}
+        {colonistsVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <RenderingWorksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <AshHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SoapMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SheepFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WeaverButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LinseedFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BowyerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ArcheryRangeButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RoperyButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WheatFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FlourMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BakeryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <StonecutterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperSmelterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperArmoryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BarracksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LimeKilnButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MortarBatchWorksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TextileFactoryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FlourWindmillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GrainBinButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperAxesmithButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BerserkerHallButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Townsmen */}
+        {townsmenVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <BoilerMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SailmakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <HopFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MalthouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BreweryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <HorseBreederButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RidingArenaButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LongbowyerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LongbowArcheryRangeButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoalMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BoilingHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MedicusButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CattleRanchButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FurrieryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RockSaltMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SaltWorksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TanneryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <StrawberryFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <JamMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BoulderGathererButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CharcoalKilnButton updateProductionChanFunction={updateProductionChaninMap} />
+            <DrumMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <DrummersSchoolButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ChalkMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TownSchoolButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PaddockButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Merchants */}
+        {merchantsVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <FeltmakingMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <HattersShopButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ApiaryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TownhallButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CuringHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PipemakersShopButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ChickenFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ButcheryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PastryManufactureButton updateProductionChanFunction={updateProductionChaninMap} />
+            <IronMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <IronSmelterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ToolmakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <IronArmoryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <KnightBarracksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CrossbowMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CrossbowShootingRangeButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldSmelterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldsmithButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BathhouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RoseCultivationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BrandyDistilleryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <EssenceDistilleryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PerfumeryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MarbleQuarryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CompositeBowyerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ArcherAcademyButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoiningPressButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SugarBeetFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <HospitalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <DeepCopperMineButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Paragons */}
+        {paragonsVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <CobblersShopButton updateProductionChanFunction={updateProductionChaninMap} />
+            <QuartzQuarryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GlassworksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LensGrinderButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GalziersWorkshopButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LanceMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TiltyardButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CokeryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SteelFurnaceButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ArmorsmithButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CuirassierAcademyButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PaperMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BookbinderButton updateProductionChanFunction={updateProductionChaninMap} />
+            <HoneyDistilleryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ConfectioneryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PowderMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CannonFoundryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CannoneersSchoolButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BrocadeSpinningFactoryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <OrnateTailorButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ChandlerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <UniversityButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WineryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CooperButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WinepressButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PlaningMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FireworksMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MusketMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MusketeerSchoolButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TrumpetMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SenateButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SalternButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TreasureSeekerButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Farmers */}
+        {farmersVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <FiberMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FarmersShackButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BeachFishermansHutButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TeaPlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SugarCanePlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RumDistilleryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SugarMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoffeePlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RoastHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoffeeHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RoperyTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoatFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <DairyButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperMineTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoalMineTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperSmelterTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PoleturnersWorkshopButton updateProductionChanFunction={updateProductionChaninMap} />
+            <PikemenBarracksButton updateProductionChanFunction={updateProductionChaninMap} />
+            <TobaccoFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CigarManufactureButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BallMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SportsGroundButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ClayPitButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BrickyardButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SugarWindmillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CrocodileRanchButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SalternTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ApothecaryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FieldSurgeonHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WaterBuffaloRanchButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WhimHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Workers */}
+        {workersVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <CacaoPlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ChocolaterieButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FineWoodLoggerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoconutPlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SoupKitchenButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GemstoneMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldMineTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldSmelterTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ArtisticBlacksmithButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GlaiveSmithButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GlaiveTempleButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FlowerHouseButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CemeteryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SilkPlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SilkTwineMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <NobleTailorButton updateProductionChanFunction={updateProductionChaninMap} />
+            <IndigoPlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CostumierButton updateProductionChanFunction={updateProductionChaninMap} />
+            <DancingSchoolButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LuthierButton updateProductionChanFunction={updateProductionChaninMap} />
+            <NitrateMakerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CottonPlantationButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SpinningMillButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GrainBinTropicalButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BuffaloPastureButton updateProductionChanFunction={updateProductionChaninMap} />
+            <HeraldicArmourerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ShieldGuardianTempleButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BuffaloButcheryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldPannerButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+
+        {/* Northern Islands */}
+        {northernIslandsVisible ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <HeatingPlantButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ConiferLumberjackButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SalmonFishermansHutButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CoalMineNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LargeHeatingPlantButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperMineNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CopperSmelterNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SturgeonFarmButton updateProductionChanFunction={updateProductionChaninMap} />
+            <RockSaltMineNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <SaltWorksNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <CaviarFactoryButton updateProductionChanFunction={updateProductionChaninMap} />
+            <IronMineNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <IronSmelterNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldMineNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <GoldSmelterNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <WhalerButton updateProductionChanFunction={updateProductionChaninMap} />
+            <AmbergrisProductionButton updateProductionChanFunction={updateProductionChaninMap} />
+            <MarbleQuarryNorthButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ZincMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <ZincSmelterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <BrassSmelterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LeadMineButton updateProductionChanFunction={updateProductionChaninMap} />
+            <LeadSmelterButton updateProductionChanFunction={updateProductionChaninMap} />
+            <FurTrapperButton updateProductionChanFunction={updateProductionChaninMap} />
+          </Box>
+        ) : null}
+      </Box>
+      <Box>
+        {productionChaninMap.map((value) => {
+          return value
+        })}
+      </Box>
+    </>
+  )
+}
