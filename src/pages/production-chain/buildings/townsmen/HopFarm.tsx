@@ -1,0 +1,60 @@
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import { useRef } from 'react'
+import HopFarmIcon from '../../../../assets/icons/buildings/townsmen/HopFarm.png'
+import {
+  BuildingGroup,
+  BuildingImageSize,
+  ConsumerPaperStyle,
+  ProviderBoxStyle,
+  ProviderPaperStyle,
+  SingleBuildingWithCount,
+} from '../../../../assets/styling/BuildingStyle'
+import { Arrow } from '../../../../common/Arrow'
+import { BuildingButton } from '../../../../common/BuildingButton'
+import { Building } from '../../../../types/Building'
+import { HopField } from '../../tiles/HopField'
+
+const ITERATION_TIME_IN_SECONDS = 120
+const PRODUCE_PER_ITERATION = 1
+const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
+const CONSUME_PER_ITERATION = new Map<string, number>([['Hop', 8]])
+export const HOP_FARM_INFO: Building = {
+  IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
+  IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
+  ConsumePerIteration: CONSUME_PER_ITERATION,
+  ConsumePerMinute: new Map<string, number>([['Hop', CONSUME_PER_ITERATION.get('Hop')! / ITERATION_TIME_IN_DECIMAL]]),
+  ProducePerIteration: PRODUCE_PER_ITERATION,
+  ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
+}
+
+export const HopFarm = (props: { count: number }) => {
+  const consumerRef = useRef(null)
+  const providerRef1 = useRef(null)
+  return (
+    <Box sx={BuildingGroup}>
+      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+        <Box sx={SingleBuildingWithCount}>
+          <img src={HopFarmIcon} alt={HopFarm.name} style={BuildingImageSize} />
+          {Number(props.count.toFixed(2))}
+        </Box>
+      </Paper>
+      <Box sx={ProviderBoxStyle}>
+        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+          <HopField count={props.count * HOP_FARM_INFO.ConsumePerIteration.get('Hop')!}></HopField>
+        </Paper>
+      </Box>
+      <Arrow start={providerRef1} end={consumerRef} />
+    </Box>
+  )
+}
+
+export const HopFarmButton = (props: { updateProductionChanFunction: Function }) => {
+  return (
+    <BuildingButton
+      buttonIcon={HopFarmIcon}
+      buildingElement={HopFarm}
+      updateProductionChanFunction={props.updateProductionChanFunction}
+    ></BuildingButton>
+  )
+}
