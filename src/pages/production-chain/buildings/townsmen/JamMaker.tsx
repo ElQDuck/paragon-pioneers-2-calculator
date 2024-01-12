@@ -13,6 +13,9 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
+import { SUGAR_MILL_INFO, SugarMill } from '../farmers/SugarMill'
+import { SUGAR_WINDMILL_INFO, SugarWindmill } from '../farmers/SugarWindmill'
+import { SUGAR_BEET_FARM_INFO, SugarBeetFarm } from '../merchants/SugarBeetFarm'
 import { STRAWBERRY_FARM_INFO, StrawberryFarm } from './StrawberryFarm'
 
 const ITERATION_TIME_IN_SECONDS = 720
@@ -48,7 +51,19 @@ export const JamMaker = (props: { count: number }) => {
       </Paper>
       <Box sx={ProviderBoxStyle}>
         <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
-          <>{/* TODO */}TODO: Sugar from other island</>
+          <SugarMill
+            count={props.count * (JAM_MAKER_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_MILL_INFO.ProducePerMinute)}
+          />
+          OR
+          <SugarWindmill
+            count={props.count * (JAM_MAKER_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_WINDMILL_INFO.ProducePerMinute)}
+          />
+          OR
+          <SugarBeetFarm
+            count={
+              props.count * (JAM_MAKER_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_BEET_FARM_INFO.ProducePerMinute)
+            }
+          />
         </Paper>
         AND
         <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
@@ -56,7 +71,7 @@ export const JamMaker = (props: { count: number }) => {
             count={
               props.count * (JAM_MAKER_INFO.ConsumePerMinute.get('Strawberry')! / STRAWBERRY_FARM_INFO.ProducePerMinute)
             }
-          ></StrawberryFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />

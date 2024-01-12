@@ -237,7 +237,7 @@ export const ProductionChainPage = () => {
     // This is necessary to update the dom. Can be optimized
     seProductionChains(Array.from(productionChaninMap.values()))
   }
-  
+
   return (
     <>
       <PapulationSelectionButton

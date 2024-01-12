@@ -15,6 +15,7 @@ import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
 import { SALTERN_TROPICAL_INFO, SalternTropical } from '../farmers/SalternTropical'
 import { SALT_WORKS_NORTH_INFO, SaltWorksNorth } from '../northern-islands/SaltWorksNorth'
+import { SALTERN_INFO, Saltern } from '../paragons/Saltern'
 import { CATTLE_RANCH_INFO, CattleRanch } from '../townsmen/CattleRanch'
 import { SALT_WORKS_INFO, SaltWorks } from '../townsmen/SaltWorks'
 
@@ -55,7 +56,9 @@ export const Butchery = (props: { count: number }) => {
             count={props.count * (BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_INFO.ProducePerMinute)}
           />
           OR
-          <>{/* TODO */} TODO: Add Paragons Saltern</>
+          <Saltern
+            count={props.count * (BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_INFO.ProducePerMinute)}
+          />
           OR
           <SalternTropical
             count={props.count * (BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)}
