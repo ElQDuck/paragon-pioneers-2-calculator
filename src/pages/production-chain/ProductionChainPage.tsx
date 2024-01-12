@@ -237,11 +237,7 @@ export const ProductionChainPage = () => {
     // This is necessary to update the dom. Can be optimized
     seProductionChains(Array.from(productionChaninMap.values()))
   }
-
-  // TODO:
-  // - Add "Expert view" Button (Toggle all possible combinations or just the obvious ones)
-  // - Add a button to reset all inputs to 0
-  // - Save selections in local storage -> https://felixgerschau.com/react-localstorage/
+  
   return (
     <>
       <PapulationSelectionButton

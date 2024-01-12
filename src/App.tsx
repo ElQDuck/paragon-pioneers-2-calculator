@@ -9,7 +9,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
       <ProductionChainPage />
-      {/* TODO: Add sidebar with summed numbers of needed objects*/}
     </ThemeProvider>
   )
 }
