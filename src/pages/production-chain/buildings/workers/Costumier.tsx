@@ -13,6 +13,8 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
+import { TEXTILE_FACTORY_INFO, TextileFactory } from '../colonists/TextileFactory'
+import { WEAVER_INFO, Weaver } from '../colonists/Weaver'
 import { INDIGO_PLANTATION_INFO, IndigoPlantation } from './IndigoPlantation'
 import { SPINNING_MILL_INFO, SpinningMill } from './SpinningMill'
 
@@ -61,7 +63,15 @@ export const Costumier = (props: { count: number }) => {
             count={props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / SPINNING_MILL_INFO.ProducePerMinute)}
           />
           OR
-          <>{/* TODO */} TODO: Add Fabric from other region</>
+          <Weaver
+            count={props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
+          />
+          OR
+          <TextileFactory
+            count={
+              props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
+            }
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />

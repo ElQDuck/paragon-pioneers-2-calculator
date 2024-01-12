@@ -13,6 +13,7 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
+import { IRON_SMELTER_INFO, IronSmelter } from '../merchants/IronSmelter'
 import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/IronSmelterNorth'
 import { GEMSTONE_MINE_INFO, GemstoneMine } from './GemstoneMine'
 
@@ -49,7 +50,11 @@ export const GlaiveSmith = (props: { count: number }) => {
       </Paper>
       <Box sx={ProviderBoxStyle}>
         <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
-          <>{/* TODO */} TODO: Add iron Smelter (normal) </>
+          <IronSmelter
+            count={
+              props.count * (GLAIVE_SMITH_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
+            }
+          />
           OR
           <IronSmelterNorth
             count={

@@ -13,6 +13,8 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
+import { SALTERN_TROPICAL_INFO, SalternTropical } from '../farmers/SalternTropical'
+import { SALTERN_INFO, Saltern } from '../paragons/Saltern'
 import { FURRIERY_INFO, Furriery } from './Furriery'
 import { SALT_WORKS_INFO, SaltWorks } from './SaltWorks'
 
@@ -51,9 +53,13 @@ export const Tannery = (props: { count: number }) => {
         <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
           <SaltWorks
             count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_INFO.ProducePerMinute)}
-          ></SaltWorks>
+          />
           OR
-          <>{/* TODO */}TODO: Salt building from other island</>
+          <SalternTropical
+            count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)}
+          />
+          OR
+          <Saltern count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_INFO.ProducePerMinute)} />
         </Paper>
         AND
         <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
