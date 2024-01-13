@@ -1,4 +1,8 @@
+import MenuIcon from '@mui/icons-material/Menu'
+import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
 import { useState } from 'react'
 import ColonistIcon from '../../assets/icons/population/colonist.png'
 import FarmerIcon from '../../assets/icons/population/farmer.png'
@@ -8,7 +12,9 @@ import ParagonIcon from '../../assets/icons/population/paragon.png'
 import PioneerIcon from '../../assets/icons/population/pioneer.png'
 import TownsmanIcon from '../../assets/icons/population/townsman.png'
 import WorkerIcon from '../../assets/icons/population/worker.png'
+import { ToolbarStyle } from '../../assets/styling/Theme'
 import PapulationSelectionButton from '../../common/PapulationSelectionButtons'
+import { SettingsMenu } from './SettingsMenu'
 import { ArcheryRangeButton } from './buildings/colonists/ArcheryRange'
 import { AshHouseButton } from './buildings/colonists/AshHouse'
 import { BakeryButton } from './buildings/colonists/Bakery'
@@ -218,6 +224,7 @@ import { SoupKitchenButton } from './buildings/workers/SoupKitchen'
 import { SpinningMillButton } from './buildings/workers/SpinningMill'
 
 export const ProductionChainPage = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
   const [pioneersVisible, setPioneersVisible] = useState(true)
   const [colonistsVisible, setColonistsVisible] = useState(false)
   const [townsmenVisible, setTownsmenVisible] = useState(false)
@@ -240,46 +247,63 @@ export const ProductionChainPage = () => {
 
   return (
     <>
-      <PapulationSelectionButton
-        iconPath={PioneerIcon}
-        onClick={() => setPioneersVisible(!pioneersVisible)}
-        enabled={pioneersVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={ColonistIcon}
-        onClick={() => setColonistsVisible(!colonistsVisible)}
-        enabled={colonistsVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={TownsmanIcon}
-        onClick={() => setTownsmenVisible(!townsmenVisible)}
-        enabled={townsmenVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={MerchantIcon}
-        onClick={() => setMerchantsVisible(!merchantsVisible)}
-        enabled={merchantsVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={ParagonIcon}
-        onClick={() => setParagonsVisible(!paragonsVisible)}
-        enabled={paragonsVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={FarmerIcon}
-        onClick={() => setFarmersVisible(!farmersVisible)}
-        enabled={farmersVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={WorkerIcon}
-        onClick={() => setWorkersVisible(!workersVisible)}
-        enabled={workersVisible}
-      ></PapulationSelectionButton>
-      <PapulationSelectionButton
-        iconPath={NorthernIslandIcon}
-        onClick={() => setNorthernIslandsVisible(!northernIslandsVisible)}
-        enabled={northernIslandsVisible}
-      ></PapulationSelectionButton>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            onClick={() => setMenuOpen(true)}
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Box sx={ToolbarStyle}>
+            <PapulationSelectionButton
+              iconPath={PioneerIcon}
+              onClick={() => setPioneersVisible(!pioneersVisible)}
+              enabled={pioneersVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={ColonistIcon}
+              onClick={() => setColonistsVisible(!colonistsVisible)}
+              enabled={colonistsVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={TownsmanIcon}
+              onClick={() => setTownsmenVisible(!townsmenVisible)}
+              enabled={townsmenVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={MerchantIcon}
+              onClick={() => setMerchantsVisible(!merchantsVisible)}
+              enabled={merchantsVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={ParagonIcon}
+              onClick={() => setParagonsVisible(!paragonsVisible)}
+              enabled={paragonsVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={FarmerIcon}
+              onClick={() => setFarmersVisible(!farmersVisible)}
+              enabled={farmersVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={WorkerIcon}
+              onClick={() => setWorkersVisible(!workersVisible)}
+              enabled={workersVisible}
+            ></PapulationSelectionButton>
+            <PapulationSelectionButton
+              iconPath={NorthernIslandIcon}
+              onClick={() => setNorthernIslandsVisible(!northernIslandsVisible)}
+              enabled={northernIslandsVisible}
+            ></PapulationSelectionButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <SettingsMenu drawerOpen={menuOpen} setDrawerOpen={setMenuOpen}/>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         {/* Pioneers */}

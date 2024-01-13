@@ -12,7 +12,7 @@ export default function PapulationSelectionButton(props: { iconPath: string; onC
         border: 1,
         borderColor: 'primary.main',
         borderRadius: '8px',
-        background: props.enabled ? theme.palette.primary.main : theme.palette.primary.light,
+        background: props.enabled ? theme.palette.primary.light : theme.palette.primary.main,
       }}
       onClick={() => props.onClick()}
     >

@@ -41,6 +41,8 @@ export const BuildingButton = (props: {
       />
       <BaseNumberInput
         min={0}
+        // Probably the solution to disable a keyboard popup on phones. Perhaps making it configurable in menu does the trick
+        //readOnly
         onChange={(_event, value) => {
           count.value = value!
           props.updateProductionChanFunction(

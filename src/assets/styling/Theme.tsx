@@ -1,4 +1,4 @@
-import { createTheme, styled } from '@mui/material/styles'
+import { SxProps, Theme, createTheme, styled } from '@mui/material/styles'
 
 export const theme = createTheme({
   palette: {
@@ -88,3 +88,8 @@ export const StyledButton = styled('button')(
   }
 `
 )
+
+export const ToolbarStyle: SxProps<Theme> = {
+  display: 'flex',
+  flexWrap: 'wrap',
+}
