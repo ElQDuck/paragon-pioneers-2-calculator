@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import { theme } from '../assets/styling/Theme'
 
-export default function PapulationSelectionButton(props: { iconPath: string; onClick: Function; enabled: Boolean }) {
+export default function PopulationSelectionButton(props: { iconPath: string; onClick: Function; enabled: Boolean }) {
   return (
     <IconButton
       aria-label="delete"

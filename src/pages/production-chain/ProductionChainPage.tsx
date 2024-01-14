@@ -13,7 +13,7 @@ import PioneerIcon from '../../assets/icons/population/pioneer.png'
 import TownsmanIcon from '../../assets/icons/population/townsman.png'
 import WorkerIcon from '../../assets/icons/population/worker.png'
 import { ToolbarStyle } from '../../assets/styling/Theme'
-import PapulationSelectionButton from '../../common/PapulationSelectionButtons'
+import PopulationSelectionButton from '../../common/PopulationSelectionButtons'
 import { SettingsMenu } from './SettingsMenu'
 import { ArcheryRangeButton } from './buildings/colonists/ArcheryRange'
 import { AshHouseButton } from './buildings/colonists/AshHouse'
@@ -260,46 +260,46 @@ export const ProductionChainPage = () => {
             <MenuIcon />
           </IconButton>
           <Box sx={ToolbarStyle}>
-            <PapulationSelectionButton
+            <PopulationSelectionButton
               iconPath={PioneerIcon}
               onClick={() => setPioneersVisible(!pioneersVisible)}
               enabled={pioneersVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={ColonistIcon}
               onClick={() => setColonistsVisible(!colonistsVisible)}
               enabled={colonistsVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={TownsmanIcon}
               onClick={() => setTownsmenVisible(!townsmenVisible)}
               enabled={townsmenVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={MerchantIcon}
               onClick={() => setMerchantsVisible(!merchantsVisible)}
               enabled={merchantsVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={ParagonIcon}
               onClick={() => setParagonsVisible(!paragonsVisible)}
               enabled={paragonsVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={FarmerIcon}
               onClick={() => setFarmersVisible(!farmersVisible)}
               enabled={farmersVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={WorkerIcon}
               onClick={() => setWorkersVisible(!workersVisible)}
               enabled={workersVisible}
-            ></PapulationSelectionButton>
-            <PapulationSelectionButton
+            ></PopulationSelectionButton>
+            <PopulationSelectionButton
               iconPath={NorthernIslandIcon}
               onClick={() => setNorthernIslandsVisible(!northernIslandsVisible)}
               enabled={northernIslandsVisible}
-            ></PapulationSelectionButton>
+            ></PopulationSelectionButton>
           </Box>
         </Toolbar>
       </AppBar>
