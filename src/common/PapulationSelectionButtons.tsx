@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import { theme } from '../assets/styling/Theme'
 
@@ -7,16 +8,16 @@ export default function PapulationSelectionButton(props: { iconPath: string; onC
       aria-label="delete"
       sx={{
         display: 'inline-block',
-        padding: 1,
-        margin: 0.5,
-        border: 1,
-        borderColor: 'primary.main',
-        borderRadius: '8px',
+        padding: { xs: 0, md: 1 },
+        margin: { xs: 0, md: 0.25 },
+        border: { xs: 0, md: 1 },
+        borderColor: { xs: 'primary.main', md: 'primary.main' },
+        borderRadius: { xs: '4px', md: '8px' },
         background: props.enabled ? theme.palette.primary.light : theme.palette.primary.main,
       }}
       onClick={() => props.onClick()}
     >
-      <img src={props.iconPath} style={{ width: '4rem' }} />
+      <Box component="img" src={props.iconPath} sx={{ height: { xs: '2rem', md: '4rem' } }} />
     </IconButton>
   )
 }

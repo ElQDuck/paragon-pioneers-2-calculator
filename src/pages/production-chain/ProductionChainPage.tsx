@@ -303,7 +303,7 @@ export const ProductionChainPage = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <SettingsMenu drawerOpen={menuOpen} setDrawerOpen={setMenuOpen}/>
+      <SettingsMenu drawerOpen={menuOpen} setDrawerOpen={setMenuOpen} />
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         {/* Pioneers */}
