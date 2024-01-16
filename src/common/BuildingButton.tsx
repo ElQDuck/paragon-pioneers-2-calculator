@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
 import { signal } from '@preact/signals'
 import { useState } from 'react'
+import { globalNumberInputReadOnly } from '../App'
 import { BuildingButtonsRootStyle } from '../assets/styling/BuildingStyle'
 import { StyledButton, StyledInput, StyledInputRoot } from '../assets/styling/Theme'
 
@@ -41,8 +42,9 @@ export const BuildingButton = (props: {
       />
       <BaseNumberInput
         min={0}
+        readOnly={globalNumberInputReadOnly.value}
         onChange={(_event, value) => {
-          count.value = value!
+          count.value = value ? value : 0
           props.updateProductionChanFunction(
             props.buildingElement.name,
             count.value === 0 ? undefined : (
