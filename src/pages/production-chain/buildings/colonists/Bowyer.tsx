@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { LINSEED_FARM_INFO, LinseedFarm } from './LinseedFarm'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -40,21 +42,37 @@ export const Bowyer = (props: { count: number }) => {
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={BowyerIcon} alt={Bowyer.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <Lumberjack
             count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
           ></Lumberjack>
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <LinseedFarm
             count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
           ></LinseedFarm>

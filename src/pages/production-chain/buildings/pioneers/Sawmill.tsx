@@ -15,6 +15,8 @@ import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
 import { LUMBERJACK_INFO, Lumberjack } from './Lumberjack'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 30
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Wood', 2]])
@@ -32,15 +34,27 @@ export const Sawmill = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={SawmillIcon} alt={Sawmill.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <Lumberjack
             count={props.count * (SAWMILL_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
           ></Lumberjack>

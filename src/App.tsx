@@ -6,6 +6,7 @@ import { theme } from './assets/styling/Theme'
 import { ProductionChainPage } from './pages/production-chain/ProductionChainPage'
 
 export const globalNumberInputReadOnly = signal(true)
+export const globalInvertBuildingChainOrder = signal(false)
 
 function App() {
   return (

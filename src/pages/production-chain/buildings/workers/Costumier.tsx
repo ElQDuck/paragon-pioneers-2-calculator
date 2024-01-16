@@ -18,6 +18,8 @@ import { WEAVER_INFO, Weaver } from '../colonists/Weaver'
 import { INDIGO_PLANTATION_INFO, IndigoPlantation } from './IndigoPlantation'
 import { SPINNING_MILL_INFO, SpinningMill } from './SpinningMill'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -42,15 +44,27 @@ export const Costumier = (props: { count: number }) => {
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={CostumierIcon} alt={Costumier.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <IndigoPlantation
             count={
               props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Dye')! / INDIGO_PLANTATION_INFO.ProducePerMinute)
@@ -58,7 +72,11 @@ export const Costumier = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <SpinningMill
             count={props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / SPINNING_MILL_INFO.ProducePerMinute)}
           />

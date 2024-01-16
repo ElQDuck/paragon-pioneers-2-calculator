@@ -20,6 +20,8 @@ import { GOLD_PANNER_INFO, GoldPanner } from '../workers/GoldPanner'
 import { GOLD_SMELTER_TROPICAL_INFO, GoldSmelterTropical } from '../workers/GoldSmelterTropical'
 import { GOLD_SMELTER_INFO, GoldSmelter } from './GoldSmelter'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 960
 const PRODUCE_PER_ITERATION = 8
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -44,15 +46,27 @@ export const Goldsmith = (props: { count: number }) => {
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={GoldsmithIcon} alt={Goldsmith.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <CoalMine
             count={props.count * (GOLDSMITH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
           />
@@ -62,7 +76,11 @@ export const Goldsmith = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <GoldSmelter
             count={
               props.count * (GOLDSMITH_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_INFO.ProducePerMinute)

@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { useRef } from 'react'
+import { globalInvertBuildingChainOrder } from '../../../../App'
 import BootCampIcon from '../../../../assets/icons/buildings/pioneers/BootCamp.png'
 import {
   BuildingGroup,
@@ -41,21 +42,37 @@ export const BootCamp = (props: { count: number }) => {
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={BootCampIcon} alt={BootCamp.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <PioneersHut
             count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)}
           ></PioneersHut>
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <Paper variant="outlined">
             <Sawmill
               count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAWMILL_INFO.ProducePerMinute)}

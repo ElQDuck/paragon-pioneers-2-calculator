@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { HORSE_BREEDER_INFO, HorseBreeder } from '../townsmen/HorseBreeder'
 import { LANCE_MAKER_INFO, LanceMaker } from './LanceMaker'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 80 // => Amount of buildings within range
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -40,21 +42,37 @@ export const Tiltyard = (props: { count: number }) => {
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={TiltyardIcon} alt={Tiltyard.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <LanceMaker
             count={props.count * (TILTYARD_INFO.ConsumePerMinute.get('Lance')! / LANCE_MAKER_INFO.ProducePerMinute)}
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <HorseBreeder
             count={props.count * (TILTYARD_INFO.ConsumePerMinute.get('Horse')! / HORSE_BREEDER_INFO.ProducePerMinute)}
           />

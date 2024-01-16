@@ -18,6 +18,8 @@ import { GOLD_SMELTER_INFO, GoldSmelter } from '../merchants/GoldSmelter'
 import { GOLD_PANNER_INFO, GoldPanner } from '../workers/GoldPanner'
 import { SILK_TWINE_MILL_INFO, SilkTwineMill } from '../workers/SilkTwineMill'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -45,15 +47,27 @@ export const BrocadeSpinningFactory = (props: { count: number }) => {
   const providerRef2 = useRef(null)
   const providerRef3 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={BrocadeSpinningFactoryIcon} alt={BrocadeSpinningFactory.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <GoldSmelter
             count={
               props.count *
@@ -69,7 +83,11 @@ export const BrocadeSpinningFactory = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <SilkTwineMill
             count={
               props.count *
@@ -80,7 +98,11 @@ export const BrocadeSpinningFactory = (props: { count: number }) => {
         </Paper>
         AND
         {/* TODO: Add river field to all buildings which need to be build on top of*/}
-        <Paper ref={providerRef3} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef3}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <RiverField count={props.count * BROCADE_SPINNING_FACTORY_INFO.ConsumePerIteration.get('RiverField')!} />
         </Paper>
       </Box>

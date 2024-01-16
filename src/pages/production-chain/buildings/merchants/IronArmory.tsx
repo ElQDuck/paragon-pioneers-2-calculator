@@ -18,6 +18,8 @@ import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
 import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 import { IRON_SMELTER_INFO, IronSmelter } from './IronSmelter'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 960
 const PRODUCE_PER_ITERATION = 2
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -45,15 +47,27 @@ export const IronArmory = (props: { count: number }) => {
   const providerRef2 = useRef(null)
   const providerRef3 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={IronArmoryIcon} alt={IronArmory.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <CoalMine
             count={props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
           />
@@ -63,7 +77,11 @@ export const IronArmory = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <IronSmelter
             count={
               props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
@@ -72,7 +90,11 @@ export const IronArmory = (props: { count: number }) => {
         </Paper>
         AND
         {/* TODO: Add river field to all buildings which need to be build on top of*/}
-        <Paper ref={providerRef3} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef3}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <RiverField count={props.count * IRON_ARMORY_INFO.ConsumePerIteration.get('RiverField')!} />
         </Paper>
       </Box>

@@ -31,13 +31,4 @@ export const ConsumerPaperStyle: SxProps<Theme> = {
   marginRight: 10,
 }
 
-// BuildingButtons root style
-export const BuildingButtonsRootStyle: SxProps<Theme> = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minWidth: 'min-content',
-}
-
 export const BuildingImageSize = { width: '4rem' }

@@ -17,6 +17,8 @@ import { SOAP_MAKER_INFO, SoapMaker } from '../colonists/SoapMaker'
 import { TEXTILE_FACTORY_INFO, TextileFactory } from '../colonists/TextileFactory'
 import { WEAVER_INFO, Weaver } from '../colonists/Weaver'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 48 // => Amount of buildings within range
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -41,15 +43,27 @@ export const Bathhouse = (props: { count: number }) => {
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={BathhouseIcon} alt={Bathhouse.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <Weaver
             count={props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
           />
@@ -61,7 +75,11 @@ export const Bathhouse = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <SoapMaker
             count={props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Soap')! / SOAP_MAKER_INFO.ProducePerMinute)}
           />

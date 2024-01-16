@@ -17,7 +17,7 @@ export default function PopulationSelectionButton(props: { iconPath: string; onC
       }}
       onClick={() => props.onClick()}
     >
-      <Box component="img" src={props.iconPath} sx={{ height: { xs: '2rem', md: '4rem' } }} />
+      <Box component="img" src={props.iconPath} sx={{ height: { xs: '2rem', md: '3rem' } }} />
     </IconButton>
   )
 }
