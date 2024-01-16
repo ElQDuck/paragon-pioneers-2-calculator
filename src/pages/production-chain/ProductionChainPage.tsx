@@ -235,12 +235,9 @@ export const ProductionChainPage = () => {
   const [northernIslandsVisible, setNorthernIslandsVisible] = useState(false)
 
   const [productionChainMap, setProductionChainMap] = useState<Map<string, JSX.Element>>(new Map<string, JSX.Element>())
-  const [_, setProductionChains] = useState([<></>])
 
   const updateProductionChainMap = (name: string, prodChain: JSX.Element) => {
-    setProductionChainMap(productionChainMap.set(name, prodChain))
-    // This is necessary to update the dom. Can be optimized
-    setProductionChains(Array.from(productionChainMap.values()))
+    setProductionChainMap(new Map(productionChainMap.set(name, prodChain)))
   }
 
   return (
