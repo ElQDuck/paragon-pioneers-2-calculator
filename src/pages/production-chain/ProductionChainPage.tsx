@@ -234,9 +234,7 @@ export const ProductionChainPage = () => {
   const [workersVisible, setWorkersVisible] = useState(false)
   const [northernIslandsVisible, setNorthernIslandsVisible] = useState(false)
 
-  const [productionChainMap, setProductionChainMap] = useState<Map<string, JSX.Element>>(
-    new Map<string, JSX.Element>()
-  )
+  const [productionChainMap, setProductionChainMap] = useState<Map<string, JSX.Element>>(new Map<string, JSX.Element>())
   const [_, setProductionChains] = useState([<></>])
 
   const updateProductionChainMap = (name: string, prodChain: JSX.Element) => {
