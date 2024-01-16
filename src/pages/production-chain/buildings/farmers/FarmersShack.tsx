@@ -4,6 +4,8 @@ import { BuildingGroup, BuildingImageSize, SingleBuildingWithCount } from '../..
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 60
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([])
@@ -19,7 +21,7 @@ export const FARMERS_SHACK_INFO: Building = {
 
 export const FarmersShack = (props: { count: number }) => {
   return (
-    <Box sx={BuildingGroup}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Box sx={SingleBuildingWithCount}>
         <img src={FarmersShackIcon} alt={FarmersShack.name} style={BuildingImageSize} />
         <Box>{Number(props.count.toFixed(2))}</Box>

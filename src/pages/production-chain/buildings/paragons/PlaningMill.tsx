@@ -18,6 +18,8 @@ import { COPPER_SMELTER_INFO, CopperSmelter } from '../colonists/CopperSmelter'
 import { IRON_SMELTER_INFO, IronSmelter } from '../merchants/IronSmelter'
 import { ZINC_SMELTER_INFO, ZincSmelter } from '../northern-islands/ZincSmelter'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 2
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -48,15 +50,27 @@ export const PlaningMill = (props: { count: number }) => {
   const providerRef3 = useRef(null)
   const providerRef4 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={PlaningMillIcon} alt={PlaningMill.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <ZincSmelter
             count={
               props.count * (PLANING_MILL_INFO.ConsumePerMinute.get('ZincIngot')! / ZINC_SMELTER_INFO.ProducePerMinute)
@@ -64,7 +78,11 @@ export const PlaningMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <IronSmelter
             count={
               props.count * (PLANING_MILL_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
@@ -72,7 +90,11 @@ export const PlaningMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef3} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef3}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <CopperSmelter
             count={
               props.count *
@@ -82,7 +104,11 @@ export const PlaningMill = (props: { count: number }) => {
         </Paper>
         AND
         {/* TODO: Add river field to all buildings which need to be build on top of*/}
-        <Paper ref={providerRef4} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef4}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <RiverField count={props.count * PLANING_MILL_INFO.ConsumePerIteration.get('RiverField')!} />
         </Paper>
       </Box>

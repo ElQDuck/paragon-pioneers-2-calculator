@@ -17,6 +17,8 @@ import { RiverField } from '../../tiles/RiverField'
 import { COOPER_INFO, Cooper } from './Cooper'
 import { WINERY_INFO, Winery } from './Winery'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 3
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -44,28 +46,48 @@ export const Winepress = (props: { count: number }) => {
   const providerRef2 = useRef(null)
   const providerRef3 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={WinepressIcon} alt={Winepress.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <Cooper
             count={props.count * (WINEPRESS_INFO.ConsumePerMinute.get('Barrel')! / COOPER_INFO.ProducePerMinute)}
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <Winery
             count={props.count * (WINEPRESS_INFO.ConsumePerMinute.get('Grape')! / WINERY_INFO.ProducePerMinute)}
           />
         </Paper>
         AND
         {/* TODO: Add river field to all buildings which need to be build on top of*/}
-        <Paper ref={providerRef3} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef3}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <RiverField count={props.count * WINEPRESS_INFO.ConsumePerIteration.get('RiverField')!} />
         </Paper>
       </Box>

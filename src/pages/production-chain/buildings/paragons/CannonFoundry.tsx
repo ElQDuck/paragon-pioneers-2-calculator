@@ -17,6 +17,8 @@ import { RiverField } from '../../tiles/RiverField'
 import { POWDER_MILL_INFO, PowderMill } from './PowderMill'
 import { STEEL_FURNACE_INFO, SteelFurnace } from './SteelFurnace'
 
+import { globalInvertBuildingChainOrder } from '../../../../App'
+
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -44,15 +46,27 @@ export const CannonFoundry = (props: { count: number }) => {
   const providerRef2 = useRef(null)
   const providerRef3 = useRef(null)
   return (
-    <Box sx={BuildingGroup}>
-      <Paper ref={consumerRef} elevation={2} sx={ConsumerPaperStyle}>
+    <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
+      <Paper
+        ref={consumerRef}
+        elevation={2}
+        sx={{
+          ...ConsumerPaperStyle,
+          marginRight: globalInvertBuildingChainOrder.value ? 0 : '4rem',
+          marginLeft: globalInvertBuildingChainOrder.value ? '4rem' : 0,
+        }}
+      >
         <Box sx={SingleBuildingWithCount}>
           <img src={CannonFoundryIcon} alt={CannonFoundry.name} style={BuildingImageSize} />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
-      <Box sx={ProviderBoxStyle}>
-        <Paper ref={providerRef1} elevation={2} sx={ProviderPaperStyle}>
+      <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Paper
+          ref={providerRef1}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <PowderMill
             count={
               props.count * (CANNON_FOUNDRY_INFO.ConsumePerMinute.get('Gunpowder')! / POWDER_MILL_INFO.ProducePerMinute)
@@ -60,7 +74,11 @@ export const CannonFoundry = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper ref={providerRef2} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <SteelFurnace
             count={
               props.count * (CANNON_FOUNDRY_INFO.ConsumePerMinute.get('Steel')! / STEEL_FURNACE_INFO.ProducePerMinute)
@@ -69,7 +87,11 @@ export const CannonFoundry = (props: { count: number }) => {
         </Paper>
         AND
         {/* TODO: Add river field to all buildings which need to be build on top of*/}
-        <Paper ref={providerRef3} elevation={2} sx={ProviderPaperStyle}>
+        <Paper
+          ref={providerRef3}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
           <RiverField count={props.count * CANNON_FOUNDRY_INFO.ConsumePerIteration.get('RiverField')!} />
         </Paper>
       </Box>

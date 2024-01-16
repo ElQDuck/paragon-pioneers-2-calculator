@@ -5,12 +5,15 @@ import Tooltip from '@mui/material/Tooltip'
 import { SxProps, Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useState } from 'react'
-import { globalNumberInputReadOnly } from '../../App'
+import { globalInvertBuildingChainOrder, globalNumberInputReadOnly } from '../../App'
 import { theme } from '../../assets/styling/Theme'
 
 export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Function }) => {
   const [numberInputReadOnlySwitchState, setNumberInputReadOnlySwitchState] = useState<boolean>(
     globalNumberInputReadOnly.value
+  )
+  const [invertBuildingChainOrderSwitchState, setInvertBuildingChainOrderSwitchState] = useState<boolean>(
+    globalInvertBuildingChainOrder.value
   )
 
   const formControlStyling: SxProps<Theme> = { marginRight: '0.3rem' }
@@ -55,7 +58,16 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
         <FormControlLabel
           label="Invert building order"
           labelPlacement={labelPlacement}
-          control={<Switch color={switchColor} disabled />}
+          control={
+            <Switch
+              color={switchColor}
+              checked={invertBuildingChainOrderSwitchState}
+              onChange={() => {
+                globalInvertBuildingChainOrder.value = !globalInvertBuildingChainOrder.value
+                setInvertBuildingChainOrderSwitchState(!invertBuildingChainOrderSwitchState)
+              }}
+            />
+          }
           sx={formControlStyling}
         />
       </Tooltip>
