@@ -6,7 +6,6 @@ import Skeleton from '@mui/material/Skeleton'
 import { signal } from '@preact/signals'
 import { useState } from 'react'
 import { globalNumberInputReadOnly } from '../App'
-import { BuildingButtonsRootStyle } from '../assets/styling/BuildingStyle'
 import { StyledButton, StyledInput, StyledInputRoot } from '../assets/styling/Theme'
 
 export const BuildingButton = (props: {
@@ -20,7 +19,15 @@ export const BuildingButton = (props: {
   const imgWidth = 64
   const imgHeight = 85
   return (
-    <Box sx={BuildingButtonsRootStyle}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minWidth: 'min-content',
+      }}
+    >
       {imgIsLoaded ? null : (
         // The skeleton size should match the rendered image size to prevent the layout from "jumping during loading"
         <Skeleton
