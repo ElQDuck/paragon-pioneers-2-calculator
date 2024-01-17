@@ -20,7 +20,7 @@ import { globalInvertBuildingChainOrder } from '../../../../App'
 const ITERATION_TIME_IN_SECONDS = 60
 const PRODUCE_PER_ITERATION = 120 // => Amount of buildings within range
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
-const CONSUME_PER_ITERATION = new Map<string, number>([['FishOil', 1]])
+const CONSUME_PER_ITERATION = new Map<string, number>([['FishOil', 2]])
 export const HOSPITAL_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
