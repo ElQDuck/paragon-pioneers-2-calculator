@@ -225,14 +225,26 @@ import { SpinningMillButton } from './buildings/workers/SpinningMill'
 
 export const ProductionChainPage = () => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [pioneersVisible, setPioneersVisible] = useState(true)
-  const [colonistsVisible, setColonistsVisible] = useState(false)
-  const [townsmenVisible, setTownsmenVisible] = useState(false)
-  const [merchantsVisible, setMerchantsVisible] = useState(false)
-  const [paragonsVisible, setParagonsVisible] = useState(false)
-  const [farmersVisible, setFarmersVisible] = useState(false)
-  const [workersVisible, setWorkersVisible] = useState(false)
-  const [northernIslandsVisible, setNorthernIslandsVisible] = useState(false)
+  const [pioneersVisible, setPioneersVisible] = useState(
+    localStorage.getItem('pioneersVisible') === 'false' ? false : true
+  )
+  const [colonistsVisible, setColonistsVisible] = useState(
+    localStorage.getItem('colonistsVisible') === 'true' ? true : false
+  )
+  const [townsmenVisible, setTownsmenVisible] = useState(
+    localStorage.getItem('townsmenVisible') === 'true' ? true : false
+  )
+  const [merchantsVisible, setMerchantsVisible] = useState(
+    localStorage.getItem('merchantsVisible') === 'true' ? true : false
+  )
+  const [paragonsVisible, setParagonsVisible] = useState(
+    localStorage.getItem('paragonsVisible') === 'true' ? true : false
+  )
+  const [farmersVisible, setFarmersVisible] = useState(localStorage.getItem('farmersVisible') === 'true' ? true : false)
+  const [workersVisible, setWorkersVisible] = useState(localStorage.getItem('workersVisible') === 'true' ? true : false)
+  const [northernIslandsVisible, setNorthernIslandsVisible] = useState(
+    localStorage.getItem('northernIslandsVisible') === 'true' ? true : false
+  )
 
   const [productionChainMap, setProductionChainMap] = useState<Map<string, JSX.Element>>(new Map<string, JSX.Element>())
 
@@ -257,42 +269,66 @@ export const ProductionChainPage = () => {
           <Box sx={ToolbarStyle}>
             <PopulationSelectionButton
               iconPath={PioneerIcon}
-              onClick={() => setPioneersVisible(!pioneersVisible)}
+              onClick={() => {
+                setPioneersVisible(!pioneersVisible)
+                localStorage.setItem('pioneersVisible', String(!pioneersVisible))
+              }}
               enabled={pioneersVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={ColonistIcon}
-              onClick={() => setColonistsVisible(!colonistsVisible)}
+              onClick={() => {
+                setColonistsVisible(!colonistsVisible)
+                localStorage.setItem('colonistsVisible', String(!colonistsVisible))
+              }}
               enabled={colonistsVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={TownsmanIcon}
-              onClick={() => setTownsmenVisible(!townsmenVisible)}
+              onClick={() => {
+                setTownsmenVisible(!townsmenVisible)
+                localStorage.setItem('townsmenVisible', String(!townsmenVisible))
+              }}
               enabled={townsmenVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={MerchantIcon}
-              onClick={() => setMerchantsVisible(!merchantsVisible)}
+              onClick={() => {
+                setMerchantsVisible(!merchantsVisible)
+                localStorage.setItem('merchantsVisible', String(!merchantsVisible))
+              }}
               enabled={merchantsVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={ParagonIcon}
-              onClick={() => setParagonsVisible(!paragonsVisible)}
+              onClick={() => {
+                setParagonsVisible(!paragonsVisible)
+                localStorage.setItem('paragonsVisible', String(!paragonsVisible))
+              }}
               enabled={paragonsVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={FarmerIcon}
-              onClick={() => setFarmersVisible(!farmersVisible)}
+              onClick={() => {
+                setFarmersVisible(!farmersVisible)
+                localStorage.setItem('farmersVisible', String(!farmersVisible))
+              }}
               enabled={farmersVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={WorkerIcon}
-              onClick={() => setWorkersVisible(!workersVisible)}
+              onClick={() => {
+                setWorkersVisible(!workersVisible)
+                localStorage.setItem('workersVisible', String(!workersVisible))
+              }}
               enabled={workersVisible}
             ></PopulationSelectionButton>
             <PopulationSelectionButton
               iconPath={NorthernIslandIcon}
-              onClick={() => setNorthernIslandsVisible(!northernIslandsVisible)}
+              onClick={() => {
+                setNorthernIslandsVisible(!northernIslandsVisible)
+                localStorage.setItem('northernIslandsVisible', String(!northernIslandsVisible))
+              }}
               enabled={northernIslandsVisible}
             ></PopulationSelectionButton>
           </Box>
