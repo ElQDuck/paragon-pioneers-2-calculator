@@ -47,6 +47,8 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
               checked={numberInputReadOnlySwitchState}
               onChange={() => {
                 globalNumberInputReadOnly.value = !globalNumberInputReadOnly.value
+                // Saving the state in web storage
+                localStorage.setItem('globalNumberInputReadOnly', String(globalNumberInputReadOnly.value))
                 setNumberInputReadOnlySwitchState(!numberInputReadOnlySwitchState)
               }}
             />
@@ -64,6 +66,8 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
               checked={invertBuildingChainOrderSwitchState}
               onChange={() => {
                 globalInvertBuildingChainOrder.value = !globalInvertBuildingChainOrder.value
+                // Saving the state in web storage
+                localStorage.setItem('globalInvertBuildingChainOrder', String(globalInvertBuildingChainOrder.value))
                 setInvertBuildingChainOrderSwitchState(!invertBuildingChainOrderSwitchState)
               }}
             />

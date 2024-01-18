@@ -5,8 +5,12 @@ import './App.css'
 import { theme } from './assets/styling/Theme'
 import { ProductionChainPage } from './pages/production-chain/ProductionChainPage'
 
-export const globalNumberInputReadOnly = signal(true)
-export const globalInvertBuildingChainOrder = signal(false)
+export const globalNumberInputReadOnly = signal<boolean>(
+  localStorage.getItem('globalNumberInputReadOnly') === 'false' ? false : true
+)
+export const globalInvertBuildingChainOrder = signal<boolean>(
+  localStorage.getItem('globalInvertBuildingChainOrder') === 'true' ? true : false
+)
 
 function App() {
   return (

@@ -6,7 +6,7 @@ A production chain calculator for the game [Paragon Pioneers 2](https://store.st
 >:black_square_button: Add "Expert view" Button (Toggle all possible combinations or just the obvious ones)  
 >:ballot_box_with_check: Add a button to change the displayed building order (left -> right / right -> left)  
 >:black_square_button: Make the app installable (PWA)  
->:black_square_button: Save the state of the selected population in local storage  
+>:ballot_box_with_check: Save the state of the selected population and settings in local storage  
 >:black_square_button: Add a sidebar with a summary of the selected buildings  
 >:black_square_button: Add mobile friendly layout (make it responsive)  
 >>:ballot_box_with_check: Disable keyboard popup at +/- Button
