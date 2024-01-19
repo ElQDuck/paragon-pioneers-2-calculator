@@ -5,10 +5,11 @@ import Tooltip from '@mui/material/Tooltip'
 import { SxProps, Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useState } from 'react'
-import { globalInvertBuildingChainOrder, globalNumberInputReadOnly } from '../../App'
+import { globalExpertMode, globalInvertBuildingChainOrder, globalNumberInputReadOnly } from '../../App'
 import { theme } from '../../assets/styling/Theme'
 
 export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Function }) => {
+  const [expertModeSwitchState, setExpertModeSwitchState] = useState<boolean>(globalExpertMode.value)
   const [numberInputReadOnlySwitchState, setNumberInputReadOnlySwitchState] = useState<boolean>(
     globalNumberInputReadOnly.value
   )
@@ -33,7 +34,18 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
         <FormControlLabel
           label="Expert Mode"
           labelPlacement={labelPlacement}
-          control={<Switch color={switchColor} disabled />}
+          control={
+            <Switch
+              color={switchColor}
+              checked={expertModeSwitchState}
+              onChange={() => {
+                globalExpertMode.value = !globalExpertMode.value
+                // Saving the state in web storage
+                localStorage.setItem('globalExpertMode', String(globalExpertMode.value))
+                setExpertModeSwitchState(!expertModeSwitchState)
+              }}
+            />
+          }
           sx={formControlStyling}
         />
       </Tooltip>

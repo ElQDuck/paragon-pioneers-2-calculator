@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { useRef } from 'react'
+import { globalInvertBuildingChainOrder } from '../../../../App'
 import SausageMakerIcon from '../../../../assets/icons/buildings/pioneers/SausageMaker.png'
 import {
   BuildingGroup,
@@ -10,13 +11,12 @@ import {
   ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
 import { PIG_RANCH_INFO, PigRanch } from './PigRanch'
 import { PIGGERY_INFO, Piggery } from './Piggery'
-
-import { globalInvertBuildingChainOrder } from '../../../../App'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -56,17 +56,18 @@ export const SausageMaker = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Paper variant="outlined">
-            <Piggery
-              count={props.count * (SAUSAGE_MAKER_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)}
-            ></Piggery>
-          </Paper>
-          OR
-          <Paper variant="outlined">
-            <PigRanch
-              count={props.count * (SAUSAGE_MAKER_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)}
-            ></PigRanch>
-          </Paper>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Piggery
+                count={props.count * (SAUSAGE_MAKER_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)}
+              />,
+              <PigRanch
+                count={
+                  props.count * (SAUSAGE_MAKER_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />

@@ -18,6 +18,7 @@ export const BuildingButton = (props: {
   // The resource image size is 128 x 170
   const imgWidth = 64
   const imgHeight = 85
+
   return (
     <Box
       sx={{
