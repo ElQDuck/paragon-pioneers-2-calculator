@@ -17,6 +17,7 @@ import { Water } from '../../tiles/Water'
 import { Weir } from '../../tiles/Weir'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 90
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -58,9 +59,12 @@ export const FishermansHut = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Water count={props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!}></Water>
-          OR
-          <Weir count={(props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!) / 2}></Weir>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Water count={props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!} />,
+              <Weir count={(props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!) / 2} />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />

@@ -11,6 +11,7 @@ import {
   ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
@@ -73,17 +74,16 @@ export const BootCamp = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Paper variant="outlined">
-            <Sawmill
-              count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAWMILL_INFO.ProducePerMinute)}
-            ></Sawmill>
-          </Paper>
-          OR
-          <Paper variant="outlined">
-            <SawWorks
-              count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAW_WORKS_INFO.ProducePerMinute)}
-            ></SawWorks>
-          </Paper>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SawWorks
+                count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAW_WORKS_INFO.ProducePerMinute)}
+              />,
+              <Sawmill
+                count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAWMILL_INFO.ProducePerMinute)}
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
