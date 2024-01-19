@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -55,9 +57,13 @@ export const AshHouse = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
+        <AlternativeCombinationProvider combinationList={[
           <Lumberjack
             count={props.count * (ASH_HOUSE_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+            />,
+            <ConiferLumberjack count={props.count * (ASH_HOUSE_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)}
+            />
+            ]}/>
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />

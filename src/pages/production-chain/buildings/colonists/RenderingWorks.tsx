@@ -17,6 +17,7 @@ import { PIG_RANCH_INFO, PigRanch } from '../pioneers/PigRanch'
 import { PIGGERY_INFO, Piggery } from '../pioneers/Piggery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -56,19 +57,15 @@ export const RenderingWorks = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Paper variant="outlined">
+        <AlternativeCombinationProvider combinationList={[
             <Piggery
               count={props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)}
-            ></Piggery>
-          </Paper>
-          OR
-          <Paper variant="outlined">
+              />,
             <PigRanch
               count={
                 props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)
               }
-            ></PigRanch>
-          </Paper>
+            />]}/>
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
