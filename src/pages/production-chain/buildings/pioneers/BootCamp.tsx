@@ -69,10 +69,8 @@ export const BootCamp = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
+        <Box
           ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <AlternativeCombinationProvider
             combinationList={[
@@ -84,7 +82,7 @@ export const BootCamp = (props: { count: number }) => {
               />,
             ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />

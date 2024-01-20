@@ -51,10 +51,8 @@ export const SausageMaker = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
+        <Box
           ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <AlternativeCombinationProvider
             combinationList={[
@@ -68,7 +66,7 @@ export const SausageMaker = (props: { count: number }) => {
               />,
             ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>

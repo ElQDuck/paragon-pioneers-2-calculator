@@ -55,10 +55,8 @@ export const FishermansHut = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
+        <Box
           ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <AlternativeCombinationProvider
             combinationList={[
@@ -67,7 +65,7 @@ export const FishermansHut = (props: { count: number }) => {
               <Weir count={(props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!) / 2} />,
             ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
