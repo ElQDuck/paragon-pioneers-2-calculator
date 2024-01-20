@@ -2,16 +2,17 @@
 A production chain calculator for the game [Paragon Pioneers 2](https://store.steampowered.com/app/2454420/Paragon_Pioneers_2/)
 
 # Planned features
->:black_square_button: Button to reset all values  
->:black_square_button: Add a possibility to select the amount of trees  
->:ballot_box_with_check: Add "Expert view" Button (Toggle all possible combinations or just the obvious ones)  
->:ballot_box_with_check: Add a button to change the displayed building order (left -> right / right -> left)  
->:black_square_button: Make the app installable (PWA)  
->:ballot_box_with_check: Save the state of the selected population and settings in local storage  
->:black_square_button: Add a sidebar with a summary of the selected buildings  
->:black_square_button: Add population to display all needed buildings to satisfy needs of selected count  
->:black_square_button: Add mobile friendly layout (make it responsive)  
->>:ballot_box_with_check: Disable keyboard popup at +/- Button
+* :black_square_button: Button to reset all values  
+* :black_square_button: Add a possibility to select the amount of trees  
+* :ballot_box_with_check: Add "Expert view" Button (Toggle all possible combinations or just the obvious ones)  
+  * :black_square_button: Update DOM instead of reloading whole page on settings changes  
+* :ballot_box_with_check: Add a button to change the displayed building order (left -> right / right -> left)  
+* :black_square_button: Make the app installable (PWA)  
+* :ballot_box_with_check: Save the state of the selected population and settings in local storage  
+* :black_square_button: Add a sidebar with a summary of the selected buildings  
+* :black_square_button: Add population to display all needed buildings to satisfy needs of selected count  
+* :black_square_button: Add mobile friendly layout (make it responsive)  
+  * :ballot_box_with_check: Disable keyboard popup at +/- Button
 
 # Contribute
 Everyone is welcome to contribute.  

@@ -43,6 +43,9 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
                 // Saving the state in web storage
                 localStorage.setItem('globalExpertMode', String(globalExpertMode.value))
                 setExpertModeSwitchState(!expertModeSwitchState)
+                // Reloading the page so the user is aware of changes
+                // TODO: Optimize this
+                window.location.reload()
               }}
             />
           }
@@ -81,6 +84,9 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
                 // Saving the state in web storage
                 localStorage.setItem('globalInvertBuildingChainOrder', String(globalInvertBuildingChainOrder.value))
                 setInvertBuildingChainOrderSwitchState(!invertBuildingChainOrderSwitchState)
+                // Reloading the page so the user is aware of changes
+                // TODO: Optimize this
+                window.location.reload()
               }}
             />
           }
