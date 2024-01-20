@@ -65,7 +65,7 @@ export const Barracks = (props: { count: number }) => {
         >
           <PioneersHut
             count={props.count * (BARRACKS_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)}
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -77,7 +77,7 @@ export const Barracks = (props: { count: number }) => {
             count={
               props.count * (BARRACKS_INFO.ConsumePerMinute.get('CopperSword')! / COPPER_ARMORY_INFO.ProducePerMinute)
             }
-          ></CopperArmory>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -92,6 +92,6 @@ export const BarracksButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={BarracksIcon}
       buildingElement={Barracks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

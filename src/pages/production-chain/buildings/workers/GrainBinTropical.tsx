@@ -75,6 +75,6 @@ export const GrainBinTropicalButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={GrainBinTropicalIcon}
       buildingElement={GrainBinTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

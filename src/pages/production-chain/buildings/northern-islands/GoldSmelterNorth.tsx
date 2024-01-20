@@ -96,6 +96,6 @@ export const GoldSmelterNorthButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={GoldSmelterNorthIcon}
       buildingElement={GoldSmelterNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

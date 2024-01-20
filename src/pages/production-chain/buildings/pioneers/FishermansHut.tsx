@@ -18,6 +18,7 @@ import { Weir } from '../../tiles/Weir'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { RiverField } from '../../tiles/RiverField'
 
 const ITERATION_TIME_IN_SECONDS = 90
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -62,6 +63,7 @@ export const FishermansHut = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Water count={props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!} />,
+              <RiverField count={props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!} />,
               <Weir count={(props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!) / 2} />,
             ]}
           />
@@ -78,6 +80,6 @@ export const FishermansHutButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={FishermansHutIcon}
       buildingElement={FishermansHut}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

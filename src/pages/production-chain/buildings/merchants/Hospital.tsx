@@ -73,6 +73,6 @@ export const HospitalButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={HospitalIcon}
       buildingElement={Hospital}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

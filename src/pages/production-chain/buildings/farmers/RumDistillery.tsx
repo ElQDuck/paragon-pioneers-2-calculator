@@ -76,6 +76,6 @@ export const RumDistilleryButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={RumDistilleryIcon}
       buildingElement={RumDistillery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

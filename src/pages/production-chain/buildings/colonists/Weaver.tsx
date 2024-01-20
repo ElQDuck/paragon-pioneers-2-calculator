@@ -57,7 +57,7 @@ export const Weaver = (props: { count: number }) => {
         >
           <SheepFarm
             count={props.count * (WEAVER_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)}
-          ></SheepFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +71,6 @@ export const WeaverButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={WeaverIcon}
       buildingElement={Weaver}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

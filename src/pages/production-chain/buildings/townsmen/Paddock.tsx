@@ -59,7 +59,7 @@ export const Paddock = (props: { count: number }) => {
         >
           <HorseBreeder
             count={props.count * (PADDOCK_INFO.ConsumePerMinute.get('Horse')! / HORSE_BREEDER_INFO.ProducePerMinute)}
-          ></HorseBreeder>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const PaddockButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={PaddockIcon}
       buildingElement={Paddock}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

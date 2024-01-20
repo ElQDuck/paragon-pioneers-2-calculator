@@ -126,6 +126,6 @@ export const PlaningMillButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={PlaningMillIcon}
       buildingElement={PlaningMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

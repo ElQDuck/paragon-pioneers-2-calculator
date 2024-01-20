@@ -71,6 +71,6 @@ export const WaterBuffaloRanchButton = (props: { updateProductionChanFunction: F
       buttonIcon={WaterBuffaloRanchIcon}
       buildingElement={WaterBuffaloRanch}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

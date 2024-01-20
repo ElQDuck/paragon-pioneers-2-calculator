@@ -73,6 +73,6 @@ export const UniversityButton = (props: { updateProductionChanFunction: Function
       buttonIcon={UniversityIcon}
       buildingElement={University}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

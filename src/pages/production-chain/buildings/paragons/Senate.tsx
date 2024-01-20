@@ -73,6 +73,6 @@ export const SenateButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={SenateIcon}
       buildingElement={Senate}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

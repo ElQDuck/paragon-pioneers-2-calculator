@@ -83,7 +83,7 @@ export const Tannery = (props: { count: number }) => {
         >
           <Furriery
             count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Leather')! / FURRIERY_INFO.ProducePerMinute)}
-          ></Furriery>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -98,6 +98,6 @@ export const TanneryButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={TanneryIcon}
       buildingElement={Tannery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

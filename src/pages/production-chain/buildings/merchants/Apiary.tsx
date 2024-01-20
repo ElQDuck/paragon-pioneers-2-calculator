@@ -69,6 +69,6 @@ export const ApiaryButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={ApiaryIcon}
       buildingElement={Apiary}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

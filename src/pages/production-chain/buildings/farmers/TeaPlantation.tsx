@@ -71,6 +71,6 @@ export const TeaPlantationButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={TeaPlantationIcon}
       buildingElement={TeaPlantation}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

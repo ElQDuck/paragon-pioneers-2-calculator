@@ -65,7 +65,7 @@ export const BoilerMaker = (props: { count: number }) => {
         >
           <Lumberjack
             count={props.count * (BOILER_MAKER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+          />
         </Paper>
         AND
         <Paper
@@ -78,7 +78,7 @@ export const BoilerMaker = (props: { count: number }) => {
               props.count *
               (BOILER_MAKER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
             }
-          ></CopperSmelter>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -93,6 +93,6 @@ export const BoilerMakerButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={BoilerMakerIcon}
       buildingElement={BoilerMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

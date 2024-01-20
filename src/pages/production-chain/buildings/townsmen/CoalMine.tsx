@@ -57,7 +57,7 @@ export const CoalMine = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <CoalDeposit count={props.count * COAL_MINE_INFO.ConsumePerIteration.get('CoalDeposit')!}></CoalDeposit>
+          <CoalDeposit count={props.count * COAL_MINE_INFO.ConsumePerIteration.get('CoalDeposit')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +71,6 @@ export const CoalMineButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={CoalMineIcon}
       buildingElement={CoalMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -71,6 +71,6 @@ export const CrocodileRanchButton = (props: { updateProductionChanFunction: Func
       buttonIcon={CrocodileRanchIcon}
       buildingElement={CrocodileRanch}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -94,6 +94,6 @@ export const GlaiveTempleButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={GlaiveTempleIcon}
       buildingElement={GlaiveTemple}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

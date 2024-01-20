@@ -92,6 +92,6 @@ export const BookbinderButton = (props: { updateProductionChanFunction: Function
       buttonIcon={BookbinderIcon}
       buildingElement={Bookbinder}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

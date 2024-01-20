@@ -57,9 +57,7 @@ export const CopperMine = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <CopperDeposit
-            count={props.count * COPPER_MINE_INFO.ConsumePerIteration.get('CopperDeposit')!}
-          ></CopperDeposit>
+          <CopperDeposit count={props.count * COPPER_MINE_INFO.ConsumePerIteration.get('CopperDeposit')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +71,6 @@ export const CopperMineButton = (props: { updateProductionChanFunction: Function
       buttonIcon={CopperMineIcon}
       buildingElement={CopperMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

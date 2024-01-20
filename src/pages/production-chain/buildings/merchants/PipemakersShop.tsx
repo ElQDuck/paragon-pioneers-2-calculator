@@ -96,6 +96,6 @@ export const PipemakersShopButton = (props: { updateProductionChanFunction: Func
       buttonIcon={PipemakersShopIcon}
       buildingElement={PipemakersShop}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

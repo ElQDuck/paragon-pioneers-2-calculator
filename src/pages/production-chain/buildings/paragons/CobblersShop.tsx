@@ -100,6 +100,6 @@ export const CobblersShopButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={CobblersShopIcon}
       buildingElement={CobblersShop}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

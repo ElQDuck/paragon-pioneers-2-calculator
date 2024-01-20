@@ -71,6 +71,6 @@ export const SportsGroundButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SportsGroundIcon}
       buildingElement={SportsGround}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

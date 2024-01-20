@@ -69,6 +69,6 @@ export const GoldMineNorthButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={GoldMineNorthIcon}
       buildingElement={GoldMineNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

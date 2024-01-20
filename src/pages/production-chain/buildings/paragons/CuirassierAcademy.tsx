@@ -68,7 +68,7 @@ export const CuirassierAcademy = (props: { count: number }) => {
               props.count *
               (CUIRASSIER_ACADEMY_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -96,6 +96,6 @@ export const CuirassierAcademyButton = (props: { updateProductionChanFunction: F
       buttonIcon={CuirassierAcademyIcon}
       buildingElement={CuirassierAcademy}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

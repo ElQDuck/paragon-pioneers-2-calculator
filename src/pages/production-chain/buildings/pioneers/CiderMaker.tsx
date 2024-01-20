@@ -59,7 +59,7 @@ export const CiderMaker = (props: { count: number }) => {
         >
           <AppleTrees
             count={props.count * (CIDER_MAKER_INFO.ConsumePerMinute.get('Apple')! / APPLE_TREES_INFO.ProducePerMinute)}
-          ></AppleTrees>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const CiderMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={CiderMakerIcon}
       buildingElement={CiderMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

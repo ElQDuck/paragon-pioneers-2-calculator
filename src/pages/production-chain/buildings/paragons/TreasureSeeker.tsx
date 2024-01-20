@@ -71,6 +71,6 @@ export const TreasureSeekerButton = (props: { updateProductionChanFunction: Func
       buttonIcon={TreasureSeekerIcon}
       buildingElement={TreasureSeeker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

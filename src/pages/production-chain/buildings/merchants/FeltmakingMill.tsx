@@ -108,6 +108,6 @@ export const FeltmakingMillButton = (props: { updateProductionChanFunction: Func
       buttonIcon={FeltmakingMillIcon}
       buildingElement={FeltmakingMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

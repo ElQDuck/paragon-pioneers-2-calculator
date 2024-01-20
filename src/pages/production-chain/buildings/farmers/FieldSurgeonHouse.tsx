@@ -96,6 +96,6 @@ export const FieldSurgeonHouseButton = (props: { updateProductionChanFunction: F
       buttonIcon={FieldSurgeonHouseIcon}
       buildingElement={FieldSurgeonHouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -65,7 +65,7 @@ export const SoapMaker = (props: { count: number }) => {
         >
           <AshHouse
             count={props.count * (SOAP_MAKER_INFO.ConsumePerMinute.get('Potash')! / ASH_HOUSE_INFO.ProducePerMinute)}
-          ></AshHouse>
+          />
         </Paper>
         AND
         <Paper
@@ -77,7 +77,7 @@ export const SoapMaker = (props: { count: number }) => {
             count={
               props.count * (SOAP_MAKER_INFO.ConsumePerMinute.get('Tallow')! / RENDERING_WORKS_INFO.ProducePerMinute)
             }
-          ></RenderingWorks>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -92,6 +92,6 @@ export const SoapMakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SoapMakerIcon}
       buildingElement={SoapMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

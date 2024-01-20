@@ -69,6 +69,6 @@ export const LeadMineButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={LeadMineIcon}
       buildingElement={LeadMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

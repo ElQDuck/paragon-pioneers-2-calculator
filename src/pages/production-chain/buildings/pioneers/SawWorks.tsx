@@ -83,6 +83,6 @@ export const SawWorksButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={SawWorksIcon}
       buildingElement={SawWorks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -67,7 +67,7 @@ export const ArcheryRange = (props: { count: number }) => {
             count={
               props.count * (ARCHERY_RANGE_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -77,7 +77,7 @@ export const ArcheryRange = (props: { count: number }) => {
         >
           <Bowyer
             count={props.count * (ARCHERY_RANGE_INFO.ConsumePerMinute.get('Bow')! / BOWYER_INFO.ProducePerMinute)}
-          ></Bowyer>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -92,6 +92,6 @@ export const ArcheryRangeButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={ArcheryRangeIcon}
       buildingElement={ArcheryRange}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

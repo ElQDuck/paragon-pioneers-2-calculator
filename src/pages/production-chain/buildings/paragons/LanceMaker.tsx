@@ -92,6 +92,6 @@ export const LanceMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={LanceMakerIcon}
       buildingElement={LanceMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -75,6 +75,6 @@ export const RoperyTropicalButton = (props: { updateProductionChanFunction: Func
       buttonIcon={RoperyTropicalIcon}
       buildingElement={RoperyTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

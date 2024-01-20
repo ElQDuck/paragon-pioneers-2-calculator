@@ -69,6 +69,6 @@ export const ClayPitButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={ClayPitIcon}
       buildingElement={ClayPit}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

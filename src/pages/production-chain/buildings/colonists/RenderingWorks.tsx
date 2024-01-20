@@ -57,15 +57,20 @@ export const RenderingWorks = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-        <AlternativeCombinationProvider combinationList={[
-            <Piggery
-              count={props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)}
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Piggery
+                count={
+                  props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)
+                }
               />,
-            <PigRanch
-              count={
-                props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)
-              }
-            />]}/>
+              <PigRanch
+                count={
+                  props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -79,6 +84,6 @@ export const RenderingWorksButton = (props: { updateProductionChanFunction: Func
       buttonIcon={RenderingWorksIcon}
       buildingElement={RenderingWorks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

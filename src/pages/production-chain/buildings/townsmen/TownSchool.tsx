@@ -59,7 +59,7 @@ export const TownSchool = (props: { count: number }) => {
         >
           <ChalkMaker
             count={(props.count * TOWN_SCHOOL_INFO.ConsumePerMinute.get('Chalk')!) / CHALK_MAKER_INFO.ProducePerMinute}
-          ></ChalkMaker>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const TownSchoolButton = (props: { updateProductionChanFunction: Function
       buttonIcon={TownSchoolIcon}
       buildingElement={TownSchool}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

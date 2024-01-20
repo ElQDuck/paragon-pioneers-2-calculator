@@ -55,7 +55,7 @@ export const BoulderGatherer = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Grass count={props.count * BOULDER_GATHERER_INFO.ConsumePerIteration.get('Gras')!}></Grass>
+          <Grass count={props.count * BOULDER_GATHERER_INFO.ConsumePerIteration.get('Gras')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -69,6 +69,6 @@ export const BoulderGathererButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={BoulderGathererIcon}
       buildingElement={BoulderGatherer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

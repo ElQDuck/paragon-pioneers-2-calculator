@@ -104,6 +104,6 @@ export const JamMakerButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={JamMakerIcon}
       buildingElement={JamMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

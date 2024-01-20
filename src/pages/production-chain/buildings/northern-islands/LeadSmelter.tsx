@@ -92,6 +92,6 @@ export const LeadSmelterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={LeadSmelterIcon}
       buildingElement={LeadSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

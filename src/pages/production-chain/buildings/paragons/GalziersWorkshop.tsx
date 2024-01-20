@@ -95,6 +95,6 @@ export const GalziersWorkshopButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={GalziersWorkshopIcon}
       buildingElement={GalziersWorkshop}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

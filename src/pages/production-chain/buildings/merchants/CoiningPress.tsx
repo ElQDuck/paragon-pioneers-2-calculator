@@ -98,6 +98,6 @@ export const CoiningPressButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={CoiningPressIcon}
       buildingElement={CoiningPress}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -97,6 +97,6 @@ export const IronSmelterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={IronSmelterIcon}
       buildingElement={IronSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

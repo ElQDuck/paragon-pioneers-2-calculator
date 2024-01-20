@@ -104,6 +104,6 @@ export const ArmorsmithButton = (props: { updateProductionChanFunction: Function
       buttonIcon={ArmorsmithIcon}
       buildingElement={Armorsmith}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -104,6 +104,6 @@ export const PaperMillButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={PaperMillIcon}
       buildingElement={PaperMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

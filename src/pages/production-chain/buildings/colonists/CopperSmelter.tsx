@@ -66,7 +66,7 @@ export const CopperSmelter = (props: { count: number }) => {
         >
           <Lumberjack
             count={props.count * (COPPER_SMELTER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+          />
         </Paper>
         AND
         <Paper
@@ -100,6 +100,6 @@ export const CopperSmelterButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={CopperSmelterIcon}
       buildingElement={CopperSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

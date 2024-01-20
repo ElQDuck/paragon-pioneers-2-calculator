@@ -59,7 +59,7 @@ export const TextileFactory = (props: { count: number }) => {
             count={
               props.count * (TEXTILE_FACTORY_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)
             }
-          ></SheepFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const TextileFactoryButton = (props: { updateProductionChanFunction: Func
       buttonIcon={TextileFactoryIcon}
       buildingElement={TextileFactory}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

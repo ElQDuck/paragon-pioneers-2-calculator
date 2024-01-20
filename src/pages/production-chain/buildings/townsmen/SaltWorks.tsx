@@ -66,11 +66,11 @@ export const SaltWorks = (props: { count: number }) => {
         >
           <CoalMine
             count={props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
-          ></CoalMine>
+          />
           OR
           <CharcoalKiln
             count={props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)}
-          ></CharcoalKiln>
+          />
         </Paper>
         AND
         <Paper
@@ -82,7 +82,7 @@ export const SaltWorks = (props: { count: number }) => {
             count={
               props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('RockSalt')! / ROCK_SALT_MINE_INFO.ProducePerMinute)
             }
-          ></RockSaltMine>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -97,6 +97,6 @@ export const SaltWorksButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SaltWorksIcon}
       buildingElement={SaltWorks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

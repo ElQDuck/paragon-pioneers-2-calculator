@@ -102,6 +102,6 @@ export const GlaiveSmithButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={GlaiveSmithIcon}
       buildingElement={GlaiveSmith}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -57,13 +57,19 @@ export const AshHouse = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-        <AlternativeCombinationProvider combinationList={[
-          <Lumberjack
-            count={props.count * (ASH_HOUSE_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-            />,
-            <ConiferLumberjack count={props.count * (ASH_HOUSE_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)}
-            />
-            ]}/>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={props.count * (ASH_HOUSE_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count *
+                  (ASH_HOUSE_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -77,6 +83,6 @@ export const AshHouseButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={AshHouseIcon}
       buildingElement={AshHouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

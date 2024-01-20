@@ -69,6 +69,6 @@ export const CoalMineTropicalButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={CoalMineTropicalIcon}
       buildingElement={CoalMineTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

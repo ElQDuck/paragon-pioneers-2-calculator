@@ -55,7 +55,7 @@ export const HorseBreeder = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Grass count={props.count * HORSE_BREEDER_INFO.ConsumePerIteration.get('Gras')!}></Grass>
+          <Grass count={props.count * HORSE_BREEDER_INFO.ConsumePerIteration.get('Gras')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -69,6 +69,6 @@ export const HorseBreederButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={HorseBreederIcon}
       buildingElement={HorseBreeder}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

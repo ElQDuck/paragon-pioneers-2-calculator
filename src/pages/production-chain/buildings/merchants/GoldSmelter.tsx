@@ -106,6 +106,6 @@ export const GoldSmelterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={GoldSmelterIcon}
       buildingElement={GoldSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

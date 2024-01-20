@@ -76,6 +76,6 @@ export const CokeryButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={CokeryIcon}
       buildingElement={Cokery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

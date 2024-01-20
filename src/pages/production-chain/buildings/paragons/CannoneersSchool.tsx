@@ -68,7 +68,7 @@ export const CannoneersSchool = (props: { count: number }) => {
               props.count *
               (CANNONEERS_SCHOOL_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -96,6 +96,6 @@ export const CannoneersSchoolButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={CannoneersSchoolIcon}
       buildingElement={CannoneersSchool}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

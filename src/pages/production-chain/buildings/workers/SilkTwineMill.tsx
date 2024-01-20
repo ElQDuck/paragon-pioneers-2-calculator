@@ -91,6 +91,6 @@ export const SilkTwineMillButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={SilkTwineMillIcon}
       buildingElement={SilkTwineMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

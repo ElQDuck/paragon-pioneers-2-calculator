@@ -59,7 +59,7 @@ export const Furriery = (props: { count: number }) => {
         >
           <CattleRanch
             count={(props.count * FURRIERY_INFO.ConsumePerMinute.get('Cattle')!) / CATTLE_RANCH_INFO.ProducePerMinute}
-          ></CattleRanch>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const FurrieryButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={FurrieryIcon}
       buildingElement={Furriery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

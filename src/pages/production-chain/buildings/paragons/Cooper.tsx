@@ -93,6 +93,6 @@ export const CooperButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={CooperIcon}
       buildingElement={Cooper}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

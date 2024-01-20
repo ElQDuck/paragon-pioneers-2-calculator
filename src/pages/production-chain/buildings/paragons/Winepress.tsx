@@ -104,6 +104,6 @@ export const WinepressButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={WinepressIcon}
       buildingElement={Winepress}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

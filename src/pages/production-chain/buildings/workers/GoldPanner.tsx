@@ -71,6 +71,6 @@ export const GoldPannerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={GoldPannerIcon}
       buildingElement={GoldPanner}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

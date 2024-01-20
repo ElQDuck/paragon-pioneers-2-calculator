@@ -94,6 +94,6 @@ export const NobleTailorButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={NobleTailorIcon}
       buildingElement={NobleTailor}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

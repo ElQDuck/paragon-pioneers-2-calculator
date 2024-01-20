@@ -59,7 +59,7 @@ export const GrainBin = (props: { count: number }) => {
         >
           <WheatFarm
             count={props.count * (GRAIN_BIN_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)}
-          ></WheatFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const GrainBinButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={GrainBinIcon}
       buildingElement={GrainBin}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

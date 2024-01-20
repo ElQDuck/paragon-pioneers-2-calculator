@@ -67,7 +67,7 @@ export const KnightBarracks = (props: { count: number }) => {
             count={
               props.count * (KNIGHT_BARRACKS_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -94,6 +94,6 @@ export const KnightBarracksButton = (props: { updateProductionChanFunction: Func
       buttonIcon={KnightBarracksIcon}
       buildingElement={KnightBarracks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

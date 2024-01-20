@@ -111,6 +111,6 @@ export const IronArmoryButton = (props: { updateProductionChanFunction: Function
       buttonIcon={IronArmoryIcon}
       buildingElement={IronArmory}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

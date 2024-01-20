@@ -81,6 +81,6 @@ export const SausageMakerButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SausageMakerIcon}
       buildingElement={SausageMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

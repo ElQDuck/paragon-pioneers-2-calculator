@@ -92,6 +92,6 @@ export const LensGrinderButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={LensGrinderIcon}
       buildingElement={LensGrinder}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

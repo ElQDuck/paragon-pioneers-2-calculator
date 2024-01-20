@@ -96,6 +96,6 @@ export const ShieldGuardianTempleButton = (props: { updateProductionChanFunction
       buttonIcon={ShieldGuardianTempleIcon}
       buildingElement={ShieldGuardianTemple}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -92,6 +92,6 @@ export const LuthierButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={LuthierIcon}
       buildingElement={Luthier}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

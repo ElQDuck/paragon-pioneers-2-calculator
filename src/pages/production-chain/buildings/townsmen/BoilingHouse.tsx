@@ -66,13 +66,13 @@ export const BoilingHouse = (props: { count: number }) => {
         >
           <CoalMine
             count={props.count * (BOILING_HOUSE_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
-          ></CoalMine>
+          />
           OR
           <CharcoalKiln
             count={
               props.count * (BOILING_HOUSE_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
             }
-          ></CharcoalKiln>
+          />
         </Paper>
         AND
         <Paper
@@ -84,7 +84,7 @@ export const BoilingHouse = (props: { count: number }) => {
             count={
               props.count * (BOILING_HOUSE_INFO.ConsumePerMinute.get('Fish')! / FISHERMANS_HUT_INFO.ProducePerMinute)
             }
-          ></FishermansHut>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -99,6 +99,6 @@ export const BoilingHouseButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={BoilingHouseIcon}
       buildingElement={BoilingHouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

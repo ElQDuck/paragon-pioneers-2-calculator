@@ -73,6 +73,6 @@ export const SpinningMillButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SpinningMillIcon}
       buildingElement={SpinningMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

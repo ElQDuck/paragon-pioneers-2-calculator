@@ -102,6 +102,6 @@ export const BrandyDistilleryButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={BrandyDistilleryIcon}
       buildingElement={BrandyDistillery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -67,7 +67,7 @@ export const DrummersSchool = (props: { count: number }) => {
             count={
               props.count * (DRUMMERS_SCHOOL_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -79,7 +79,7 @@ export const DrummersSchool = (props: { count: number }) => {
             count={
               props.count * (DRUMMERS_SCHOOL_INFO.ConsumePerMinute.get('Drum')! / DRUM_MAKER_INFO.ProducePerMinute)
             }
-          ></DrumMaker>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -94,6 +94,6 @@ export const DrummersSchoolButton = (props: { updateProductionChanFunction: Func
       buttonIcon={DrummersSchoolIcon}
       buildingElement={DrummersSchool}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

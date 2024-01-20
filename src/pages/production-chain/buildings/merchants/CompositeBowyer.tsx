@@ -92,6 +92,6 @@ export const CompositeBowyerButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={CompositeBowyerIcon}
       buildingElement={CompositeBowyer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

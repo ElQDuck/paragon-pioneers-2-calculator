@@ -71,6 +71,6 @@ export const SalternButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={SalternIcon}
       buildingElement={Saltern}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -66,7 +66,7 @@ export const BootCamp = (props: { count: number }) => {
         >
           <PioneersHut
             count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)}
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -98,6 +98,6 @@ export const BootCampButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={BootCampIcon}
       buildingElement={BootCamp}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

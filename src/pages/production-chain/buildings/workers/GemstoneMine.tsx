@@ -71,6 +71,6 @@ export const GemstoneMineButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={GemstoneMineIcon}
       buildingElement={GemstoneMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

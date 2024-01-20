@@ -74,6 +74,6 @@ export const LargeHeatingPlantButton = (props: { updateProductionChanFunction: F
       buttonIcon={LargeHeatingPlantIcon}
       buildingElement={LargeHeatingPlant}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

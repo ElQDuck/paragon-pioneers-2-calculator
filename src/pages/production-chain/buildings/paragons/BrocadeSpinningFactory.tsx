@@ -119,6 +119,6 @@ export const BrocadeSpinningFactoryButton = (props: { updateProductionChanFuncti
       buttonIcon={BrocadeSpinningFactoryIcon}
       buildingElement={BrocadeSpinningFactory}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

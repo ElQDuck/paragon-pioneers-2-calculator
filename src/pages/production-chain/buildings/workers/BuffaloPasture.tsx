@@ -76,6 +76,6 @@ export const BuffaloPastureButton = (props: { updateProductionChanFunction: Func
       buttonIcon={BuffaloPastureIcon}
       buildingElement={BuffaloPasture}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

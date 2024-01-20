@@ -61,7 +61,7 @@ export const LinseedFarm = (props: { count: number }) => {
             count={
               props.count * (LINSEED_FARM_INFO.ConsumePerMinute.get('Linseed')! / LINSEED_FIELD_INFO.ProducePerMinute)
             }
-          ></LinseedField>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -75,6 +75,6 @@ export const LinseedFarmButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={LinseedFarmIcon}
       buildingElement={LinseedFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

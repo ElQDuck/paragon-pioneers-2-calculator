@@ -57,7 +57,7 @@ export const Stonecutter = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Cliff count={props.count * STONECUTTER_INFO.ConsumePerIteration.get('Cliff')!}></Cliff>
+          <Cliff count={props.count * STONECUTTER_INFO.ConsumePerIteration.get('Cliff')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +71,6 @@ export const StonecutterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={StonecutterIcon}
       buildingElement={Stonecutter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

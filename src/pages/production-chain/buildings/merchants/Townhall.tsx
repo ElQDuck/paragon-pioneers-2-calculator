@@ -73,6 +73,6 @@ export const TownhallButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={TownhallIcon}
       buildingElement={Townhall}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

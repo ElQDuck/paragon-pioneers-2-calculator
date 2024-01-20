@@ -97,6 +97,6 @@ export const PoleturnersWorkshopButton = (props: { updateProductionChanFunction:
       buttonIcon={PoleturnersWorkshopIcon}
       buildingElement={PoleturnersWorkshop}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

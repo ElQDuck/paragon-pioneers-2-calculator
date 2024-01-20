@@ -138,6 +138,6 @@ export const PastryManufactureButton = (props: { updateProductionChanFunction: F
       buttonIcon={PastryManufactureIcon}
       buildingElement={PastryManufacture}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -96,6 +96,6 @@ export const BuffaloButcheryButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={BuffaloButcheryIcon}
       buildingElement={BuffaloButchery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

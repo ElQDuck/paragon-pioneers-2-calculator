@@ -73,6 +73,6 @@ export const CemeteryButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={CemeteryIcon}
       buildingElement={Cemetery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

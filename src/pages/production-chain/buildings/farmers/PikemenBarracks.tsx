@@ -96,6 +96,6 @@ export const PikemenBarracksButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={PikemenBarracksIcon}
       buildingElement={PikemenBarracks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

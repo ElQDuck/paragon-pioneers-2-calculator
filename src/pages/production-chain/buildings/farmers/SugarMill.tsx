@@ -76,6 +76,6 @@ export const SugarMillButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SugarMillIcon}
       buildingElement={SugarMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

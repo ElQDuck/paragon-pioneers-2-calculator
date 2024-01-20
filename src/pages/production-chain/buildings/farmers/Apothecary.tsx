@@ -92,6 +92,6 @@ export const ApothecaryButton = (props: { updateProductionChanFunction: Function
       buttonIcon={ApothecaryIcon}
       buildingElement={Apothecary}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

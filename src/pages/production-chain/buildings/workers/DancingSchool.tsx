@@ -75,6 +75,6 @@ export const DancingSchoolButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={DancingSchoolIcon}
       buildingElement={DancingSchool}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

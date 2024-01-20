@@ -65,7 +65,7 @@ export const Longbowyer = (props: { count: number }) => {
         >
           <Lumberjack
             count={props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+          />
         </Paper>
         AND
         <Paper
@@ -75,7 +75,7 @@ export const Longbowyer = (props: { count: number }) => {
         >
           <LinseedFarm
             count={props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
-          ></LinseedFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -90,6 +90,6 @@ export const LongbowyerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={LongbowyerIcon}
       buildingElement={Longbowyer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -92,6 +92,6 @@ export const BrickyardButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={BrickyardIcon}
       buildingElement={Brickyard}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

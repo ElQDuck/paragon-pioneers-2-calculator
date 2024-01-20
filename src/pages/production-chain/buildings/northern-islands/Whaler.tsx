@@ -71,6 +71,6 @@ export const WhalerButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={WhalerIcon}
       buildingElement={Whaler}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

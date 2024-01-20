@@ -94,6 +94,6 @@ export const OrnateTailorButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={OrnateTailorIcon}
       buildingElement={OrnateTailor}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -90,6 +90,6 @@ export const TiltyardButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={TiltyardIcon}
       buildingElement={Tiltyard}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

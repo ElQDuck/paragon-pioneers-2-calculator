@@ -66,7 +66,7 @@ export const LimeKiln = (props: { count: number }) => {
         >
           <Lumberjack
             count={props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+          />
         </Paper>
         AND
         <Paper
@@ -78,13 +78,13 @@ export const LimeKiln = (props: { count: number }) => {
             count={
               props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Limestone')! / STONECUTTER_INFO.ProducePerMinute)
             }
-          ></Stonecutter>
+          />
           OR
           <BoulderGatherer
             count={
               props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Limestone')! / BOULDER_GATHERER_INFO.ProducePerMinute)
             }
-          ></BoulderGatherer>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -99,6 +99,6 @@ export const LimeKilnButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={LimeKilnIcon}
       buildingElement={LimeKiln}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

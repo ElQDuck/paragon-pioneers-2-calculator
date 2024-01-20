@@ -61,7 +61,7 @@ export const FlourWindmill = (props: { count: number }) => {
             count={
               props.count * (FLOUR_WINDMILL_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)
             }
-          ></WheatFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -75,6 +75,6 @@ export const FlourWindmillButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={FlourWindmillIcon}
       buildingElement={FlourWindmill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

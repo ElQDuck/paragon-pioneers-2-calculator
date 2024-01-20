@@ -62,7 +62,7 @@ export const ConiferLumberjack = (props: { count: number }) => {
               props.count *
               (CONIFER_LUMBERJACK_INFO.ConsumePerMinute.get('ConiferForest')! / CONIFER_FOREST_INFO.ProducePerMinute)
             }
-          ></ConiferForest>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -76,6 +76,6 @@ export const ConiferLumberjackButton = (props: { updateProductionChanFunction: F
       buttonIcon={ConiferLumberjackIcon}
       buildingElement={ConiferLumberjack}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

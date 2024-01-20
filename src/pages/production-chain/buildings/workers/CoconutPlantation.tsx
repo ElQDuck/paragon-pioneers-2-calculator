@@ -76,6 +76,6 @@ export const CoconutPlantationButton = (props: { updateProductionChanFunction: F
       buttonIcon={CoconutPlantationIcon}
       buildingElement={CoconutPlantation}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

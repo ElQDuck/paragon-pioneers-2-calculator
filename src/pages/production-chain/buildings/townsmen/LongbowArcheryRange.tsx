@@ -68,7 +68,7 @@ export const LongbowArcheryRange = (props: { count: number }) => {
               props.count *
               (LONGBOW_ARCHERY_RANGE_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -81,7 +81,7 @@ export const LongbowArcheryRange = (props: { count: number }) => {
               props.count *
               (LONGBOW_ARCHERY_RANGE_INFO.ConsumePerMinute.get('Longbow')! / LONGBOWYER_INFO.ProducePerMinute)
             }
-          ></Longbowyer>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -96,6 +96,6 @@ export const LongbowArcheryRangeButton = (props: { updateProductionChanFunction:
       buttonIcon={LongbowArcheryRangeIcon}
       buildingElement={LongbowArcheryRange}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

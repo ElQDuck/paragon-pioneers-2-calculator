@@ -59,7 +59,7 @@ export const DrumMaker = (props: { count: number }) => {
         >
           <Tannery
             count={(props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
-          ></Tannery>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const DrumMakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={DrumMakerIcon}
       buildingElement={DrumMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

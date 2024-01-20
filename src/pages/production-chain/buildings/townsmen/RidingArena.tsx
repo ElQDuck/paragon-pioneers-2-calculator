@@ -67,7 +67,7 @@ export const RidingArena = (props: { count: number }) => {
             count={
               props.count * (RIDING_ARENA_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -79,7 +79,7 @@ export const RidingArena = (props: { count: number }) => {
             count={
               props.count * (RIDING_ARENA_INFO.ConsumePerMinute.get('Horse')! / HORSE_BREEDER_INFO.ProducePerMinute)
             }
-          ></HorseBreeder>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -94,6 +94,6 @@ export const RidingArenaButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={RidingArenaIcon}
       buildingElement={RidingArena}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

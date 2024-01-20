@@ -62,14 +62,14 @@ export const ChalkMaker = (props: { count: number }) => {
             count={
               (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) / STONECUTTER_INFO.ProducePerMinute
             }
-          ></Stonecutter>
+          />
           OR
           <BoulderGatherer
             count={
               (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
               BOULDER_GATHERER_INFO.ProducePerMinute
             }
-          ></BoulderGatherer>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -83,6 +83,6 @@ export const ChalkMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={ChalkMakerIcon}
       buildingElement={ChalkMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -97,6 +97,6 @@ export const BathhouseButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={BathhouseIcon}
       buildingElement={Bathhouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

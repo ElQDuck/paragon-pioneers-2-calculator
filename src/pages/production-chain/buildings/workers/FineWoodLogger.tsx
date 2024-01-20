@@ -76,6 +76,6 @@ export const FineWoodLoggerButton = (props: { updateProductionChanFunction: Func
       buttonIcon={FineWoodLoggerIcon}
       buildingElement={FineWoodLogger}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

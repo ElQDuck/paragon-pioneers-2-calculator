@@ -71,6 +71,6 @@ export const MarbleQuarryButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={MarbleQuarryIcon}
       buildingElement={MarbleQuarry}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

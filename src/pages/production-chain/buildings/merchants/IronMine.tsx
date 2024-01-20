@@ -71,6 +71,6 @@ export const IronMineButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={IronMineIcon}
       buildingElement={IronMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

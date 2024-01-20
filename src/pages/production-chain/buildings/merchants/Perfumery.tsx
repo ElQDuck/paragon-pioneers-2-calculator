@@ -113,6 +113,6 @@ export const PerfumeryButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={PerfumeryIcon}
       buildingElement={Perfumery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

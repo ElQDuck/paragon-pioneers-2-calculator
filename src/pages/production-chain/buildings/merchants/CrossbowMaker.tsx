@@ -116,6 +116,6 @@ export const CrossbowMakerButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={CrossbowMakerIcon}
       buildingElement={CrossbowMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

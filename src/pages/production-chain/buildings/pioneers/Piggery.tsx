@@ -57,7 +57,7 @@ export const Piggery = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Grass count={props.count * PIGGERY_INFO.ConsumePerIteration.get('Grass')!}></Grass>
+          <Grass count={props.count * PIGGERY_INFO.ConsumePerIteration.get('Grass')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +71,6 @@ export const PiggeryButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={PiggeryIcon}
       buildingElement={Piggery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

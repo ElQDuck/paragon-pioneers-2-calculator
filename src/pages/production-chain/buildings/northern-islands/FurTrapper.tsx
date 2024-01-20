@@ -71,6 +71,6 @@ export const FurTrapperButton = (props: { updateProductionChanFunction: Function
       buttonIcon={FurTrapperIcon}
       buildingElement={FurTrapper}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

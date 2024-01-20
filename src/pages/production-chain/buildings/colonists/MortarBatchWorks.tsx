@@ -62,7 +62,7 @@ export const MortarBatchWorks = (props: { count: number }) => {
               props.count *
               (MORTAR_BATCH_WORKS_INFO.ConsumePerMinute.get('Quicklime')! / LIME_KILN_INFO.ProducePerMinute)
             }
-          ></LimeKiln>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -76,6 +76,6 @@ export const MortarBatchWorksButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={MortarBatchWorksIcon}
       buildingElement={MortarBatchWorks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

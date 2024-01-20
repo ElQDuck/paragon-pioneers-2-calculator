@@ -71,6 +71,6 @@ export const RockSaltMineNorthButton = (props: { updateProductionChanFunction: F
       buttonIcon={RockSaltMineNorthIcon}
       buildingElement={RockSaltMineNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

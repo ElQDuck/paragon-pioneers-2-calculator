@@ -76,6 +76,6 @@ export const TrumpetMakerButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={TrumpetMakerIcon}
       buildingElement={TrumpetMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

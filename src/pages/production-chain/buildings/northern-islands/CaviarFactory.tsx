@@ -95,6 +95,6 @@ export const CaviarFactoryButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={CaviarFactoryIcon}
       buildingElement={CaviarFactory}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

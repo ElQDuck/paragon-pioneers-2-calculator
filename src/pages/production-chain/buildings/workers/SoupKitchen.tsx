@@ -95,6 +95,6 @@ export const SoupKitchenButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={SoupKitchenIcon}
       buildingElement={SoupKitchen}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

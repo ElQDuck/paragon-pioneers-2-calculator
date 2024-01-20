@@ -274,7 +274,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('pioneersVisible', String(!pioneersVisible))
               }}
               enabled={pioneersVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={ColonistIcon}
               onClick={() => {
@@ -282,7 +282,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('colonistsVisible', String(!colonistsVisible))
               }}
               enabled={colonistsVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={TownsmanIcon}
               onClick={() => {
@@ -290,7 +290,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('townsmenVisible', String(!townsmenVisible))
               }}
               enabled={townsmenVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={MerchantIcon}
               onClick={() => {
@@ -298,7 +298,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('merchantsVisible', String(!merchantsVisible))
               }}
               enabled={merchantsVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={ParagonIcon}
               onClick={() => {
@@ -306,7 +306,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('paragonsVisible', String(!paragonsVisible))
               }}
               enabled={paragonsVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={FarmerIcon}
               onClick={() => {
@@ -314,7 +314,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('farmersVisible', String(!farmersVisible))
               }}
               enabled={farmersVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={WorkerIcon}
               onClick={() => {
@@ -322,7 +322,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('workersVisible', String(!workersVisible))
               }}
               enabled={workersVisible}
-            ></PopulationSelectionButton>
+            />
             <PopulationSelectionButton
               iconPath={NorthernIslandIcon}
               onClick={() => {
@@ -330,7 +330,7 @@ export const ProductionChainPage = () => {
                 localStorage.setItem('northernIslandsVisible', String(!northernIslandsVisible))
               }}
               enabled={northernIslandsVisible}
-            ></PopulationSelectionButton>
+            />
           </Box>
         </Toolbar>
       </AppBar>

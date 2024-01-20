@@ -59,7 +59,7 @@ export const Malthouse = (props: { count: number }) => {
         >
           <WheatFarm
             count={(props.count * MALTHOUSE_INFO.ConsumePerMinute.get('Wheat')!) / WHEAT_FARM_INFO.ProducePerMinute}
-          ></WheatFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const MalthouseButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={MalthouseIcon}
       buildingElement={Malthouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

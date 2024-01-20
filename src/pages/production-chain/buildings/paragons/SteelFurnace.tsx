@@ -123,6 +123,6 @@ export const SteelFurnaceButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SteelFurnaceIcon}
       buildingElement={SteelFurnace}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

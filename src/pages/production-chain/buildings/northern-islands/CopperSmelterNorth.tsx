@@ -104,6 +104,6 @@ export const CopperSmelterNorthButton = (props: { updateProductionChanFunction: 
       buttonIcon={CopperSmelterNorthIcon}
       buildingElement={CopperSmelterNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -113,6 +113,6 @@ export const ArtisticBlacksmithButton = (props: { updateProductionChanFunction: 
       buttonIcon={ArtisticBlacksmithIcon}
       buildingElement={ArtisticBlacksmith}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

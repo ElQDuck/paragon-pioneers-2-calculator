@@ -57,9 +57,7 @@ export const StrawberryFarm = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <StrawberryField
-            count={props.count * STRAWBERRY_FARM_INFO.ConsumePerIteration.get('Strawberry')!}
-          ></StrawberryField>
+          <StrawberryField count={props.count * STRAWBERRY_FARM_INFO.ConsumePerIteration.get('Strawberry')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +71,6 @@ export const StrawberryFarmButton = (props: { updateProductionChanFunction: Func
       buttonIcon={StrawberryFarmIcon}
       buildingElement={StrawberryFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

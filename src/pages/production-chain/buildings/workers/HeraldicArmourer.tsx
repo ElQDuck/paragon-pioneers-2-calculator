@@ -112,6 +112,6 @@ export const HeraldicArmourerButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={HeraldicArmourerIcon}
       buildingElement={HeraldicArmourer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

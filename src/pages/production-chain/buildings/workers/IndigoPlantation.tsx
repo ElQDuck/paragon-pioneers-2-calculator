@@ -76,6 +76,6 @@ export const IndigoPlantationButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={IndigoPlantationIcon}
       buildingElement={IndigoPlantation}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

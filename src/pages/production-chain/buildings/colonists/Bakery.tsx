@@ -17,6 +17,7 @@ import { FLOUR_MILL_INFO, FlourMill } from './FlourMill'
 import { FLOUR_WINDMILL_INFO, FlourWindmill } from './FlourWindmill'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -58,13 +59,18 @@ export const Bakery = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <FlourMill
-            count={props.count * (BAKERY_INFO.ConsumePerMinute.get('Flour')! / FLOUR_MILL_INFO.ProducePerMinute)}
-          ></FlourMill>
-          OR
-          <FlourWindmill
-            count={props.count * (BAKERY_INFO.ConsumePerMinute.get('Flour')! / FLOUR_WINDMILL_INFO.ProducePerMinute)}
-          ></FlourWindmill>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <FlourMill
+                count={props.count * (BAKERY_INFO.ConsumePerMinute.get('Flour')! / FLOUR_MILL_INFO.ProducePerMinute)}
+              />,
+              <FlourWindmill
+                count={
+                  props.count * (BAKERY_INFO.ConsumePerMinute.get('Flour')! / FLOUR_WINDMILL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -78,6 +84,6 @@ export const BakeryButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={BakeryIcon}
       buildingElement={Bakery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

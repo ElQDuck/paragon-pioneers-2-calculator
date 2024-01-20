@@ -71,6 +71,6 @@ export const NitrateMakerButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={NitrateMakerIcon}
       buildingElement={NitrateMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

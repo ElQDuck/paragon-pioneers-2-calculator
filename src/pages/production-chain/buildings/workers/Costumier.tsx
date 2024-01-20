@@ -104,6 +104,6 @@ export const CostumierButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={CostumierIcon}
       buildingElement={Costumier}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

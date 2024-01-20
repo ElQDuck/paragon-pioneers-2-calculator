@@ -57,7 +57,7 @@ export const SheepFarm = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Grass count={props.count * SHEEP_FARM_INFO.ConsumePerIteration.get('Grass')!}></Grass>
+          <Grass count={props.count * SHEEP_FARM_INFO.ConsumePerIteration.get('Grass')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +71,6 @@ export const SheepFarmButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SheepFarmIcon}
       buildingElement={SheepFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

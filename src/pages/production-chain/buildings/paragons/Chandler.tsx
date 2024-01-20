@@ -93,6 +93,6 @@ export const ChandlerButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={ChandlerIcon}
       buildingElement={Chandler}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

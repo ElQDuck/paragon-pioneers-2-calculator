@@ -57,9 +57,7 @@ export const RockSaltMine = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <RockSaltDeposit
-            count={props.count * ROCK_SALT_MINE_INFO.ConsumePerIteration.get('RockSaltDeposit')!}
-          ></RockSaltDeposit>
+          <RockSaltDeposit count={props.count * ROCK_SALT_MINE_INFO.ConsumePerIteration.get('RockSaltDeposit')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +71,6 @@ export const RockSaltMineButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={RockSaltMineIcon}
       buildingElement={RockSaltMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

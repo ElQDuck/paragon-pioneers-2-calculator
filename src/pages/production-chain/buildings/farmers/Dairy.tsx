@@ -71,6 +71,6 @@ export const DairyButton = (props: { updateProductionChanFunction: Function }) =
       buttonIcon={DairyIcon}
       buildingElement={Dairy}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

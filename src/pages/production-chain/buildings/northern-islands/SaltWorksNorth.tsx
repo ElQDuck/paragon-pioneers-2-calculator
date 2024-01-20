@@ -96,6 +96,6 @@ export const SaltWorksNorthButton = (props: { updateProductionChanFunction: Func
       buttonIcon={SaltWorksNorthIcon}
       buildingElement={SaltWorksNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

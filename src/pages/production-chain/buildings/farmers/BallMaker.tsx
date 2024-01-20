@@ -75,6 +75,6 @@ export const BallMakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={BallMakerIcon}
       buildingElement={BallMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

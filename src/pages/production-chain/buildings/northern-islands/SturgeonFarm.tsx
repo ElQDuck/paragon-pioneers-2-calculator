@@ -71,6 +71,6 @@ export const SturgeonFarmButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SturgeonFarmIcon}
       buildingElement={SturgeonFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

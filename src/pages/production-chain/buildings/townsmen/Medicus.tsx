@@ -59,7 +59,7 @@ export const Medicus = (props: { count: number }) => {
         >
           <BoilingHouse
             count={(props.count * MEDICUS_INFO.ConsumePerMinute.get('FishOil')!) / BOILING_HOUSE_INFO.ProducePerMinute}
-          ></BoilingHouse>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const MedicusButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={MedicusIcon}
       buildingElement={Medicus}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

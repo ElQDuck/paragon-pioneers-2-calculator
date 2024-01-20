@@ -117,6 +117,6 @@ export const GlassworksButton = (props: { updateProductionChanFunction: Function
       buttonIcon={GlassworksIcon}
       buildingElement={Glassworks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

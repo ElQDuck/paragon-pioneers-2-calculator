@@ -111,6 +111,6 @@ export const PowderMillButton = (props: { updateProductionChanFunction: Function
       buttonIcon={PowderMillIcon}
       buildingElement={PowderMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

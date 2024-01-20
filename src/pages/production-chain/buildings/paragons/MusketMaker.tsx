@@ -126,6 +126,6 @@ export const MusketMakerButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={MusketMakerIcon}
       buildingElement={MusketMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

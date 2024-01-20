@@ -68,7 +68,7 @@ export const CrossbowShootingRange = (props: { count: number }) => {
               props.count *
               (CROSSBOW_SHOOTING_RANGE_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -96,6 +96,6 @@ export const CrossbowShootingRangeButton = (props: { updateProductionChanFunctio
       buttonIcon={CrossbowShootingRangeIcon}
       buildingElement={CrossbowShootingRange}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

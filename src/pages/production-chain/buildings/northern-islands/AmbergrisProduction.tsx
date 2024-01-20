@@ -76,6 +76,6 @@ export const AmbergrisProductionButton = (props: { updateProductionChanFunction:
       buttonIcon={AmbergrisProductionIcon}
       buildingElement={AmbergrisProduction}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

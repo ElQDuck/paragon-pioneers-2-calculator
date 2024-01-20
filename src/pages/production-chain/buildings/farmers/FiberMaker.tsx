@@ -75,6 +75,6 @@ export const FiberMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={FiberMakerIcon}
       buildingElement={FiberMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

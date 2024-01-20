@@ -59,7 +59,7 @@ export const WheatFarm = (props: { count: number }) => {
         >
           <WheatField
             count={props.count * (WHEAT_FARM_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FIELD_INFO.ProducePerMinute)}
-          ></WheatField>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +73,6 @@ export const WheatFarmButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={WheatFarmIcon}
       buildingElement={WheatFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -67,7 +67,7 @@ export const CopperAxesmith = (props: { count: number }) => {
             count={
               props.count * (COPPER_AXESMITH_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
             }
-          ></Lumberjack>
+          />
         </Paper>
         AND
         <Paper
@@ -80,7 +80,7 @@ export const CopperAxesmith = (props: { count: number }) => {
               props.count *
               (COPPER_AXESMITH_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
             }
-          ></CopperSmelter>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -95,6 +95,6 @@ export const CopperAxesmithButton = (props: { updateProductionChanFunction: Func
       buttonIcon={CopperAxesmithIcon}
       buildingElement={CopperAxesmith}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

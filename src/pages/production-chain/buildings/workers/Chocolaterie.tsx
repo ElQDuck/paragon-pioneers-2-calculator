@@ -99,6 +99,6 @@ export const ChocolaterieButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={ChocolaterieIcon}
       buildingElement={Chocolaterie}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

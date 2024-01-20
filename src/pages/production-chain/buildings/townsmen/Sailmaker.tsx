@@ -63,9 +63,7 @@ export const Sailmaker = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Ropery
-            count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Rope')! / ROPERY_INFO.ProducePerMinute)}
-          ></Ropery>
+          <Ropery count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Rope')! / ROPERY_INFO.ProducePerMinute)} />
         </Paper>
         AND
         <Paper
@@ -75,7 +73,7 @@ export const Sailmaker = (props: { count: number }) => {
         >
           <SheepFarm
             count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)}
-          ></SheepFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -90,6 +88,6 @@ export const SailmakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SailmakerIcon}
       buildingElement={Sailmaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

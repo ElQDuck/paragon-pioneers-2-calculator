@@ -55,7 +55,7 @@ export const HopFarm = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <HopField count={props.count * HOP_FARM_INFO.ConsumePerIteration.get('Hop')!}></HopField>
+          <HopField count={props.count * HOP_FARM_INFO.ConsumePerIteration.get('Hop')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -69,6 +69,6 @@ export const HopFarmButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={HopFarmIcon}
       buildingElement={HopFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

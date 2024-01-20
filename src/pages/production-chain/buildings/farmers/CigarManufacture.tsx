@@ -76,6 +76,6 @@ export const CigarManufactureButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={CigarManufactureIcon}
       buildingElement={CigarManufacture}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

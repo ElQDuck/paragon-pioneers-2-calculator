@@ -76,6 +76,6 @@ export const WhimHouseButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={WhimHouseIcon}
       buildingElement={WhimHouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

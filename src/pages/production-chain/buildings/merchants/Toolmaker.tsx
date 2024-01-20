@@ -97,6 +97,6 @@ export const ToolmakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={ToolmakerIcon}
       buildingElement={Toolmaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

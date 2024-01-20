@@ -76,6 +76,6 @@ export const RoastHouseButton = (props: { updateProductionChanFunction: Function
       buttonIcon={RoastHouseIcon}
       buildingElement={RoastHouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

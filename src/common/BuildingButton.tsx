@@ -67,7 +67,7 @@ export const BuildingButton = (props: {
                   background: '#956a3c',
                 }}
               >
-                <props.buildingElement count={count.value}></props.buildingElement>
+                <props.buildingElement count={count.value} />
               </Box>
             )
           )

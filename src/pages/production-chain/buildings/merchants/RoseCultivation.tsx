@@ -69,6 +69,6 @@ export const RoseCultivationButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={RoseCultivationIcon}
       buildingElement={RoseCultivation}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

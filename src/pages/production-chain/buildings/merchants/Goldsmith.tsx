@@ -120,6 +120,6 @@ export const GoldsmithButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={GoldsmithIcon}
       buildingElement={Goldsmith}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

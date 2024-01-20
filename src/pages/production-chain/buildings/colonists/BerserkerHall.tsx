@@ -67,7 +67,7 @@ export const BerserkerHall = (props: { count: number }) => {
             count={
               props.count * (BERSERKER_HALL_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -80,7 +80,7 @@ export const BerserkerHall = (props: { count: number }) => {
               props.count *
               (BERSERKER_HALL_INFO.ConsumePerMinute.get('CopperAxe')! / COPPER_AXESMITH_INFO.ProducePerMinute)
             }
-          ></CopperAxesmith>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -95,6 +95,6 @@ export const BerserkerHallButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={BerserkerHallIcon}
       buildingElement={BerserkerHall}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

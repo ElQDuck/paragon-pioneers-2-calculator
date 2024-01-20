@@ -96,6 +96,6 @@ export const FireworksMakerButton = (props: { updateProductionChanFunction: Func
       buttonIcon={FireworksMakerIcon}
       buildingElement={FireworksMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

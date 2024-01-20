@@ -108,6 +108,6 @@ export const CannonFoundryButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={CannonFoundryIcon}
       buildingElement={CannonFoundry}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

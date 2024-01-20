@@ -93,6 +93,6 @@ export const HoneyDistilleryButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={HoneyDistilleryIcon}
       buildingElement={HoneyDistillery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { LINSEED_FARM_INFO, LinseedFarm } from './LinseedFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -57,9 +59,16 @@ export const Ropery = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <LinseedFarm
-            count={props.count * (ROPERY_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
-          ></LinseedFarm>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <LinseedFarm
+                count={props.count * (ROPERY_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
+              />,
+              <FiberMaker
+                count={props.count * (ROPERY_INFO.ConsumePerMinute.get('Fiber')! / FIBER_MAKER_INFO.ProducePerMinute)}
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +82,6 @@ export const RoperyButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={RoperyIcon}
       buildingElement={Ropery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

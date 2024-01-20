@@ -17,6 +17,9 @@ import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { LINSEED_FARM_INFO, LinseedFarm } from './LinseedFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -63,9 +66,18 @@ export const Bowyer = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Lumberjack
-            count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count * (BOWYER_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
         </Paper>
         AND
         <Paper
@@ -73,9 +85,16 @@ export const Bowyer = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <LinseedFarm
-            count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
-          ></LinseedFarm>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <LinseedFarm
+                count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
+              />,
+              <FiberMaker
+                count={props.count * (BOWYER_INFO.ConsumePerMinute.get('Fiber')! / FIBER_MAKER_INFO.ProducePerMinute)}
+              />,
+            ]}
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -90,6 +109,6 @@ export const BowyerButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={BowyerIcon}
       buildingElement={Bowyer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }
