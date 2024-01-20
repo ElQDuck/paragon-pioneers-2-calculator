@@ -16,17 +16,22 @@ import { Building } from '../../../../types/Building'
 import { LIME_KILN_INFO, LimeKiln } from './LimeKiln'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { RiverField } from '../../tiles/RiverField'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
-const CONSUME_PER_ITERATION = new Map<string, number>([['Quicklime', 1]])
+const CONSUME_PER_ITERATION = new Map<string, number>([
+  ['Quicklime', 1],
+  ['RiverField', 1],
+])
 export const MORTAR_BATCH_WORKS_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
   ConsumePerMinute: new Map<string, number>([
     ['Quicklime', CONSUME_PER_ITERATION.get('Quicklime')! / ITERATION_TIME_IN_DECIMAL],
+    ['RiverField', CONSUME_PER_ITERATION.get('RiverField')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
@@ -35,6 +40,7 @@ export const MORTAR_BATCH_WORKS_INFO: Building = {
 export const MortarBatchWorks = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
+  const providerRef2 = useRef(null)
   return (
     <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Paper
@@ -64,8 +70,17 @@ export const MortarBatchWorks = (props: { count: number }) => {
             }
           />
         </Paper>
+        AND
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
+          <RiverField count={props.count * MORTAR_BATCH_WORKS_INFO.ConsumePerIteration.get('RiverField')!} />
+        </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
+      <Arrow start={providerRef2} end={consumerRef} />
     </Box>
   )
 }
