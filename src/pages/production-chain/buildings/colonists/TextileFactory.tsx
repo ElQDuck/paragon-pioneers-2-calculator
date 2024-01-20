@@ -16,16 +16,23 @@ import { Building } from '../../../../types/Building'
 import { SHEEP_FARM_INFO, SheepFarm } from './SheepFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { RiverField } from '../../tiles/RiverField'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 3
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
-const CONSUME_PER_ITERATION = new Map<string, number>([['Yarn', 4]])
+const CONSUME_PER_ITERATION = new Map<string, number>([
+  ['Yarn', 4],
+  ['RiverField', 1],
+])
 export const TEXTILE_FACTORY_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
-  ConsumePerMinute: new Map<string, number>([['Yarn', CONSUME_PER_ITERATION.get('Yarn')! / ITERATION_TIME_IN_DECIMAL]]),
+  ConsumePerMinute: new Map<string, number>([
+    ['Yarn', CONSUME_PER_ITERATION.get('Yarn')! / ITERATION_TIME_IN_DECIMAL],
+    ['RiverField', CONSUME_PER_ITERATION.get('RiverField')! / ITERATION_TIME_IN_DECIMAL],
+  ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
 }
@@ -33,6 +40,7 @@ export const TEXTILE_FACTORY_INFO: Building = {
 export const TextileFactory = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
+  const providerRef2 = useRef(null)
   return (
     <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Paper
@@ -61,8 +69,17 @@ export const TextileFactory = (props: { count: number }) => {
             }
           />
         </Paper>
+        AND
+        <Paper
+          ref={providerRef2}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
+          <RiverField count={props.count * TEXTILE_FACTORY_INFO.ConsumePerIteration.get('RiverField')!} />
+        </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
+      <Arrow start={providerRef2} end={consumerRef} />
     </Box>
   )
 }
