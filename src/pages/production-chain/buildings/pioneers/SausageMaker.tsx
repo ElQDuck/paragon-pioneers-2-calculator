@@ -8,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
@@ -51,9 +50,7 @@ export const SausageMaker = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Box
-          ref={providerRef1}
-        >
+        <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
               <Piggery

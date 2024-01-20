@@ -7,7 +7,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -55,9 +54,7 @@ export const FishermansHut = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Box
-          ref={providerRef1}
-        >
+        <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
               <Water count={props.count * FISHERMANS_HUT_INFO.ConsumePerIteration.get('Water')!} />,

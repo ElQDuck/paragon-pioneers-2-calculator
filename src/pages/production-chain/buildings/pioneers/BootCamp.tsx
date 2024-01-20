@@ -69,9 +69,7 @@ export const BootCamp = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Box
-          ref={providerRef2}
-        >
+        <Box ref={providerRef2}>
           <AlternativeCombinationProvider
             combinationList={[
               <SawWorks

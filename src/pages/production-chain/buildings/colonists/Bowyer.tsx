@@ -7,7 +7,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -61,9 +60,7 @@ export const Bowyer = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Box
-          ref={providerRef1}
-        >
+        <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
               <Lumberjack
@@ -78,9 +75,7 @@ export const Bowyer = (props: { count: number }) => {
           />
         </Box>
         AND
-        <Box
-          ref={providerRef2}
-        >
+        <Box ref={providerRef2}>
           <AlternativeCombinationProvider
             combinationList={[
               <LinseedFarm

@@ -60,9 +60,7 @@ export const Sawmill = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Box
-          ref={providerRef1}
-        >
+        <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
               <Lumberjack
