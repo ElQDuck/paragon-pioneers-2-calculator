@@ -11,7 +11,11 @@ export const AlternativeCombinationProvider = (props: { combinationList: JSX.Ele
       <Accordion defaultExpanded={globalExpertMode.value}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>{props.combinationList[0]}</AccordionSummary>
         <AccordionDetails
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+          sx={{
+            ...ProviderPaperStyle,
+            alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start',
+            marginLeft: '1rem',
+          }}
         >
           {props.combinationList.map((building, index) => {
             if (index !== 0) {

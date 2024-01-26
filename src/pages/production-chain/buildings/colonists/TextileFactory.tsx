@@ -16,7 +16,9 @@ import { Building } from '../../../../types/Building'
 import { SHEEP_FARM_INFO, SheepFarm } from './SheepFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { RiverField } from '../../tiles/RiverField'
+import { COTTON_PLANTATION_INFO, CottonPlantation } from '../workers/CottonPlantation'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 3
@@ -58,17 +60,23 @@ export const TextileFactory = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SheepFarm
-            count={
-              props.count * (TEXTILE_FACTORY_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SheepFarm
+                count={
+                  props.count * (TEXTILE_FACTORY_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)
+                }
+              />,
+              <CottonPlantation
+                count={
+                  props.count *
+                  (TEXTILE_FACTORY_INFO.ConsumePerMinute.get('Yarn')! / COTTON_PLANTATION_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
