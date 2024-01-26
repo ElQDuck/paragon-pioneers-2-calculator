@@ -19,6 +19,8 @@ import { FURRIERY_INFO, Furriery } from './Furriery'
 import { SALT_WORKS_INFO, SaltWorks } from './SaltWorks'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { SALT_WORKS_NORTH_INFO, SaltWorksNorth } from '../northern-islands/SaltWorksNorth'
 
 const ITERATION_TIME_IN_SECONDS = 1080
 const PRODUCE_PER_ITERATION = 3
@@ -60,21 +62,28 @@ export const Tannery = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SaltWorks
-            count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_INFO.ProducePerMinute)}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SaltWorks
+                count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_INFO.ProducePerMinute)}
+              />,
+              <SalternTropical
+                count={
+                  props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <SaltWorksNorth
+                count={
+                  props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <Saltern
+                count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_INFO.ProducePerMinute)}
+              />,
+            ]}
           />
-          OR
-          <SalternTropical
-            count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)}
-          />
-          OR
-          <Saltern count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_INFO.ProducePerMinute)} />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
