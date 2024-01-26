@@ -7,7 +7,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -17,6 +16,7 @@ import { STONECUTTER_INFO, Stonecutter } from '../colonists/Stonecutter'
 import { BOULDER_GATHERER_INFO, BoulderGatherer } from './BoulderGatherer'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -53,24 +53,24 @@ export const ChalkMaker = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Stonecutter
-            count={
-              (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) / STONECUTTER_INFO.ProducePerMinute
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Stonecutter
+                count={
+                  (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
+                  STONECUTTER_INFO.ProducePerMinute
+                }
+              />,
+              <BoulderGatherer
+                count={
+                  (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
+                  BOULDER_GATHERER_INFO.ProducePerMinute
+                }
+              />,
+            ]}
           />
-          OR
-          <BoulderGatherer
-            count={
-              (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
-              BOULDER_GATHERER_INFO.ProducePerMinute
-            }
-          />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>

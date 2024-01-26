@@ -7,7 +7,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -16,6 +15,8 @@ import { Building } from '../../../../types/Building'
 import { TANNERY_INFO, Tannery } from './Tannery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { CROCODILE_RANCH_INFO, CrocodileRanch } from '../farmers/CrocodileRanch'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -52,15 +53,21 @@ export const DrumMaker = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Tannery
-            count={(props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Tannery
+                count={(props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
+              />,
+              <CrocodileRanch
+                count={
+                  (props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) /
+                  CROCODILE_RANCH_INFO.ProducePerMinute
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
