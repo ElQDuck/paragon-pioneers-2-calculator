@@ -20,6 +20,7 @@ import { SALT_WORKS_INFO, SaltWorks } from './SaltWorks'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { RiverField } from '../../tiles/RiverField'
 import { SALT_WORKS_NORTH_INFO, SaltWorksNorth } from '../northern-islands/SaltWorksNorth'
 
 const ITERATION_TIME_IN_SECONDS = 1080
@@ -28,6 +29,7 @@ const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Salt', 1],
   ['Leather', 3],
+  ['RiverField', 1],
 ])
 export const TANNERY_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
@@ -36,6 +38,7 @@ export const TANNERY_INFO: Building = {
   ConsumePerMinute: new Map<string, number>([
     ['Salt', CONSUME_PER_ITERATION.get('Salt')! / ITERATION_TIME_IN_DECIMAL],
     ['Leather', CONSUME_PER_ITERATION.get('Leather')! / ITERATION_TIME_IN_DECIMAL],
+    ['RiverField', CONSUME_PER_ITERATION.get('RiverField')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
@@ -45,6 +48,7 @@ export const Tannery = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
+  const providerRef3 = useRef(null)
   return (
     <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Paper
@@ -94,9 +98,18 @@ export const Tannery = (props: { count: number }) => {
             count={props.count * (TANNERY_INFO.ConsumePerMinute.get('Leather')! / FURRIERY_INFO.ProducePerMinute)}
           />
         </Paper>
+        AND
+        <Paper
+          ref={providerRef3}
+          elevation={2}
+          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
+        >
+          <RiverField count={props.count * TANNERY_INFO.ConsumePerIteration.get('RiverField')!} />
+        </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
+      <Arrow start={providerRef3} end={consumerRef} />
     </Box>
   )
 }
