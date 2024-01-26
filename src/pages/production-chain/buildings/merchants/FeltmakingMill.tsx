@@ -19,6 +19,8 @@ import { SOAP_MAKER_INFO, SoapMaker } from '../colonists/SoapMaker'
 import { IRON_ARMORY_INFO } from './IronArmory'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COTTON_PLANTATION_INFO, CottonPlantation } from '../workers/CottonPlantation'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -75,17 +77,23 @@ export const FeltmakingMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SheepFarm
-            count={
-              props.count * (FELTMAKING_MILL_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SheepFarm
+                count={
+                  props.count * (FELTMAKING_MILL_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)
+                }
+              />,
+              <CottonPlantation
+                count={
+                  props.count *
+                  (FELTMAKING_MILL_INFO.ConsumePerMinute.get('Yarn')! / COTTON_PLANTATION_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef3}
