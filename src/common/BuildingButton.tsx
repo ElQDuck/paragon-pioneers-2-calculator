@@ -3,11 +3,11 @@ import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
-import { SxProps, Theme } from '@mui/material/styles'
 import { signal } from '@preact/signals'
 import { capitalCase } from 'change-case'
 import { useState } from 'react'
 import { globalNumberInputReadOnly } from '../App'
+import { BuildingImageSize } from '../assets/styling/BuildingStyle'
 import { StyledButton, StyledInput, StyledInputRoot } from '../assets/styling/Theme'
 
 export const BuildingButton = (props: {
@@ -17,8 +17,6 @@ export const BuildingButton = (props: {
 }) => {
   const count = signal<number>(0)
   const [imgIsLoaded, setImgIsLoaded] = useState<Boolean>(false)
-  // The resource image size is 128 x 170 ^= 8rem x 10.625rem
-  const imgStyle: SxProps<Theme> = { width: { xs: '3rem', md: '4rem' }, height: { xs: '4rem', md: '5.313rem' } }
 
   return (
     <Box
@@ -32,13 +30,13 @@ export const BuildingButton = (props: {
     >
       {imgIsLoaded ? null : (
         // The skeleton size should match the rendered image size to prevent the layout from "jumping during loading"
-        <Skeleton variant="rectangular" animation="pulse" sx={{ ...imgStyle, bgcolor: 'grey.900' }} />
+        <Skeleton variant="rectangular" animation="pulse" sx={{ ...BuildingImageSize, bgcolor: 'grey.900' }} />
       )}
       <Box
         component="img"
         src={props.buttonIcon}
         title={capitalCase(props.buildingElement.name)}
-        sx={{ ...imgStyle, display: imgIsLoaded ? {} : 'none' }}
+        sx={{ ...BuildingImageSize, display: imgIsLoaded ? {} : 'none' }}
         onLoad={() => {
           setImgIsLoaded(true)
         }}
