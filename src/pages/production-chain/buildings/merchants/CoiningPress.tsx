@@ -7,7 +7,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -19,6 +18,7 @@ import { GOLD_SMELTER_TROPICAL_INFO, GoldSmelterTropical } from '../workers/Gold
 import { GOLD_SMELTER_INFO, GoldSmelter } from './GoldSmelter'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 15
@@ -55,37 +55,36 @@ export const CoiningPress = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <GoldSmelter
-            count={
-              props.count * (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <GoldSmelter
+                count={
+                  props.count *
+                  (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldSmelterTropical
+                count={
+                  props.count *
+                  (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldPanner
+                count={
+                  props.count *
+                  (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_PANNER_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldSmelterNorth
+                count={
+                  props.count *
+                  (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <GoldSmelterNorth
-            count={
-              props.count *
-              (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_NORTH_INFO.ProducePerMinute)
-            }
-          />
-          OR
-          <GoldSmelterTropical
-            count={
-              props.count *
-              (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_TROPICAL_INFO.ProducePerMinute)
-            }
-          />
-          OR
-          <GoldPanner
-            count={
-              props.count * (COINING_PRESS_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_PANNER_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>

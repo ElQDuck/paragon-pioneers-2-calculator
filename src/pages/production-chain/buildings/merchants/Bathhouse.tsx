@@ -18,6 +18,8 @@ import { TEXTILE_FACTORY_INFO, TextileFactory } from '../colonists/TextileFactor
 import { WEAVER_INFO, Weaver } from '../colonists/Weaver'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { SPINNING_MILL_INFO, SpinningMill } from '../workers/SpinningMill'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 48 // => Amount of buildings within range
@@ -64,14 +66,22 @@ export const Bathhouse = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Weaver
-            count={props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
-          />
-          OR
-          <TextileFactory
-            count={
-              props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
-            }
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Weaver
+                count={props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
+              />,
+              <TextileFactory
+                count={
+                  props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
+                }
+              />,
+              <SpinningMill
+                count={
+                  props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / SPINNING_MILL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
         </Paper>
         AND

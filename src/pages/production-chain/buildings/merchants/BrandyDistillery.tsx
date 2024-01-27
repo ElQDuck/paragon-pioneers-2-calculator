@@ -18,6 +18,7 @@ import { CIDER_MAKER_INFO, CiderMaker } from '../pioneers/CiderMaker'
 import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -59,24 +60,24 @@ export const BrandyDistillery = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Lumberjack
-            count={
-              props.count * (BRANDY_DISTILLERY_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={
+                  props.count *
+                  (BRANDY_DISTILLERY_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count *
+                  (BRANDY_DISTILLERY_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <ConiferLumberjack
-            count={
-              props.count *
-              (BRANDY_DISTILLERY_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
