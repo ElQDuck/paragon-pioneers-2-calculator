@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SheepFarmIcon from '../../../../assets/icons/buildings/colonists/SheepFarm.png'
 import {
@@ -47,7 +48,13 @@ export const SheepFarm = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SheepFarmIcon} alt={SheepFarm.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SheepFarmIcon}
+            title={capitalCase(SheepFarm.name)}
+            alt={SheepFarm.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

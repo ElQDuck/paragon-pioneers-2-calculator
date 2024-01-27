@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CiderMakerIcon from '../../../../assets/icons/buildings/pioneers/CiderMaker.png'
 import {
@@ -47,7 +48,13 @@ export const CiderMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CiderMakerIcon} alt={CiderMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CiderMakerIcon}
+            title={capitalCase(CiderMaker.name)}
+            alt={CiderMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

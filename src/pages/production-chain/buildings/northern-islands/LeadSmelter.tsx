@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LeadSmelterIcon from '../../../../assets/icons/buildings/northern-islands/LeadSmelter.png'
 import {
@@ -53,7 +54,13 @@ export const LeadSmelter = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LeadSmelterIcon} alt={LeadSmelter.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LeadSmelterIcon}
+            title={capitalCase(LeadSmelter.name)}
+            alt={LeadSmelter.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

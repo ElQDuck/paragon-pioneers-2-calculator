@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CopperMineNorthIcon from '../../../../assets/icons/buildings/northern-islands/CopperMineNorth.png'
 import {
@@ -47,7 +48,13 @@ export const CopperMineNorth = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CopperMineNorthIcon} alt={CopperMineNorth.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CopperMineNorthIcon}
+            title={capitalCase(CopperMineNorth.name)}
+            alt={CopperMineNorth.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

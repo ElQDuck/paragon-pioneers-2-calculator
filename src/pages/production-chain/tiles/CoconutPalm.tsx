@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import CoconutPalmIcon from '../../../assets/icons/tiles/CoconutPalm.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const COCONUT_PALM_INFO: Tile = {
 export const CoconutPalm = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={CoconutPalmIcon} alt={CoconutPalm.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={CoconutPalmIcon}
+        title={capitalCase(CoconutPalm.name)}
+        alt={CoconutPalm.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

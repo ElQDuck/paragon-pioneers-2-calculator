@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import WeirIcon from '../../../assets/icons/tiles/Weir.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,7 @@ export const WEIR_INFO: Tile = {
 export const Weir = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={WeirIcon} alt={Weir.name} style={BuildingImageSize} />
+      <Box component="img" src={WeirIcon} title={capitalCase(Weir.name)} alt={Weir.name} sx={BuildingImageSize} />
       {Number(props.count.toFixed(2))}
     </Box>
   )

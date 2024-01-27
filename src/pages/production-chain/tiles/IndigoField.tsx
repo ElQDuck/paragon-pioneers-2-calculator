@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import IndigoFieldIcon from '../../../assets/icons/tiles/IndigoField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const INDIGO_FIELD_INFO: Tile = {
 export const IndigoField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={IndigoFieldIcon} alt={IndigoField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={IndigoFieldIcon}
+        title={capitalCase(IndigoField.name)}
+        alt={IndigoField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

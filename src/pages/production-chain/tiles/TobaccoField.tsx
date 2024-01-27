@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import TobaccoFieldIcon from '../../../assets/icons/tiles/TobaccoField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const TOBACCO_FIELD_INFO: Tile = {
 export const TobaccoField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={TobaccoFieldIcon} alt={TobaccoField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={TobaccoFieldIcon}
+        title={capitalCase(TobaccoField.name)}
+        alt={TobaccoField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

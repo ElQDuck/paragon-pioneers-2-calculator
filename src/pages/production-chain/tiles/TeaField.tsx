@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import TeaFieldIcon from '../../../assets/icons/tiles/TeaField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const TEA_FIELD_INFO: Tile = {
 export const TeaField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={TeaFieldIcon} alt={TeaField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={TeaFieldIcon}
+        title={capitalCase(TeaField.name)}
+        alt={TeaField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

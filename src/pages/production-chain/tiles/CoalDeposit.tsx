@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import CoalDepositIcon from '../../../assets/icons/tiles/CoalDeposit.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const COAL_DEPOSIT_INFO: Tile = {
 export const CoalDeposit = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={CoalDepositIcon} alt={CoalDeposit.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={CoalDepositIcon}
+        title={capitalCase(CoalDeposit.name)}
+        alt={CoalDeposit.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

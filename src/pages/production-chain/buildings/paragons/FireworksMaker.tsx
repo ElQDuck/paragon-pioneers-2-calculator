@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import FireworksMakerIcon from '../../../../assets/icons/buildings/paragons/FireworksMaker.png'
 import {
@@ -53,7 +54,13 @@ export const FireworksMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={FireworksMakerIcon} alt={FireworksMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={FireworksMakerIcon}
+            title={capitalCase(FireworksMaker.name)}
+            alt={FireworksMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

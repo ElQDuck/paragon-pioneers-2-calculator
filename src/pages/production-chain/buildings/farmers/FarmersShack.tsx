@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import FarmersShackIcon from '../../../../assets/icons/buildings/farmers/FarmersShack.png'
 import { BuildingGroup, BuildingImageSize, SingleBuildingWithCount } from '../../../../assets/styling/BuildingStyle'
 import { BuildingButton } from '../../../../common/BuildingButton'
@@ -23,7 +24,13 @@ export const FarmersShack = (props: { count: number }) => {
   return (
     <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Box sx={SingleBuildingWithCount}>
-        <img src={FarmersShackIcon} alt={FarmersShack.name} style={BuildingImageSize} />
+        <Box
+          component="img"
+          src={FarmersShackIcon}
+          title={capitalCase(FarmersShack.name)}
+          alt={FarmersShack.name}
+          sx={BuildingImageSize}
+        />
         <Box>{Number(props.count.toFixed(2))}</Box>
         <Box>{'@ 100%'}</Box>
       </Box>

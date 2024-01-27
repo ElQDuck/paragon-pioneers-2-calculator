@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import ConiferForestIcon from '../../../assets/icons/tiles/ConiferForest.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -17,7 +18,13 @@ export const CONIFER_FOREST_INFO: Tile = {
 export const ConiferForest = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={ConiferForestIcon} alt={ConiferForest.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={ConiferForestIcon}
+        title={capitalCase(ConiferForest.name)}
+        alt={ConiferForest.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

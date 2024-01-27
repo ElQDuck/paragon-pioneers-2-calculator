@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CrossbowShootingRangeIcon from '../../../../assets/icons/buildings/merchants/CrossbowShootingRange.png'
 import {
@@ -53,7 +54,13 @@ export const CrossbowShootingRange = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CrossbowShootingRangeIcon} alt={CrossbowShootingRange.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CrossbowShootingRangeIcon}
+            title={capitalCase(CrossbowShootingRange.name)}
+            alt={CrossbowShootingRange.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import FiberMakerIcon from '../../../../assets/icons/buildings/farmers/FiberMaker.png'
 import {
@@ -47,7 +48,13 @@ export const FiberMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={FiberMakerIcon} alt={FiberMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={FiberMakerIcon}
+            title={capitalCase(FiberMaker.name)}
+            alt={FiberMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CrossbowMakerIcon from '../../../../assets/icons/buildings/merchants/CrossbowMaker.png'
 import {
@@ -60,7 +61,13 @@ export const CrossbowMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CrossbowMakerIcon} alt={CrossbowMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CrossbowMakerIcon}
+            title={capitalCase(CrossbowMaker.name)}
+            alt={CrossbowMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

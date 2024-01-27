@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import MusketeerSchoolIcon from '../../../../assets/icons/buildings/paragons/MusketeerSchool.png'
 import {
@@ -53,7 +54,13 @@ export const MusketeerSchool = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={MusketeerSchoolIcon} alt={MusketeerSchool.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={MusketeerSchoolIcon}
+            title={capitalCase(MusketeerSchool.name)}
+            alt={MusketeerSchool.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

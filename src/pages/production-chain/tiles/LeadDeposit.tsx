@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import LeadDepositIcon from '../../../assets/icons/tiles/LeadDeposit.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const LEAD_DEPOSIT_INFO: Tile = {
 export const LeadDeposit = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={LeadDepositIcon} alt={LeadDeposit.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={LeadDepositIcon}
+        title={capitalCase(LeadDeposit.name)}
+        alt={LeadDeposit.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

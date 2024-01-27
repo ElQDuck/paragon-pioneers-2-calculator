@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import SausageMakerIcon from '../../../../assets/icons/buildings/pioneers/SausageMaker.png'
@@ -45,7 +46,13 @@ export const SausageMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SausageMakerIcon} alt={SausageMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SausageMakerIcon}
+            title={capitalCase(SausageMaker.name)}
+            alt={SausageMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

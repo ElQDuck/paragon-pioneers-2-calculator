@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import FineWoodLoggerIcon from '../../../../assets/icons/buildings/workers/FineWoodLogger.png'
 import {
@@ -47,7 +48,13 @@ export const FineWoodLogger = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={FineWoodLoggerIcon} alt={FineWoodLogger.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={FineWoodLoggerIcon}
+            title={capitalCase(FineWoodLogger.name)}
+            alt={FineWoodLogger.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

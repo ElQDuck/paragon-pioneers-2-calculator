@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import BootCampIcon from '../../../../assets/icons/buildings/pioneers/BootCamp.png'
@@ -54,7 +55,13 @@ export const BootCamp = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BootCampIcon} alt={BootCamp.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BootCampIcon}
+            title={capitalCase(BootCamp.name)}
+            alt={BootCamp.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

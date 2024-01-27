@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import RoseFieldIcon from '../../../assets/icons/tiles/RoseField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const ROSE_FIELD_INFO: Tile = {
 export const RoseField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={RoseFieldIcon} alt={RoseField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={RoseFieldIcon}
+        title={capitalCase(RoseField.name)}
+        alt={RoseField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

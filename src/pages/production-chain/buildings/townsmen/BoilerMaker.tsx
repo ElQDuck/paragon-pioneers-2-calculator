@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import BoilerMakerIcon from '../../../../assets/icons/buildings/townsmen/BoilerMaker.png'
 import {
@@ -57,7 +58,13 @@ export const BoilerMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BoilerMakerIcon} alt={BoilerMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BoilerMakerIcon}
+            title={capitalCase(BoilerMaker.name)}
+            alt={BoilerMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

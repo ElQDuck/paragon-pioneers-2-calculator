@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import WaterIcon from '../../../assets/icons/tiles/Water.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,7 @@ export const WATER_INFO: Tile = {
 export const Water = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={WaterIcon} alt={Water.name} style={BuildingImageSize} />
+      <Box component="img" src={WaterIcon} title={capitalCase(Water.name)} alt={Water.name} sx={BuildingImageSize} />
       {Number(props.count.toFixed(2))}
     </Box>
   )

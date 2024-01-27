@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import NitrateFieldIcon from '../../../assets/icons/tiles/NitrateField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const NITRATE_FIELD_INFO: Tile = {
 export const NitrateField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={NitrateFieldIcon} alt={NitrateField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={NitrateFieldIcon}
+        title={capitalCase(NitrateField.name)}
+        alt={NitrateField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

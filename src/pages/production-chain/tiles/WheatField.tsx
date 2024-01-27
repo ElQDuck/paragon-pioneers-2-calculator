@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import WheatFieldIcon from '../../../assets/icons/tiles/WheatField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const WHEAT_FIELD_INFO: Tile = {
 export const WheatField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={WheatFieldIcon} alt={WheatField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={WheatFieldIcon}
+        title={capitalCase(WheatField.name)}
+        alt={WheatField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

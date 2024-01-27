@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LanceMakerIcon from '../../../../assets/icons/buildings/paragons/LanceMaker.png'
 import {
@@ -56,7 +57,13 @@ export const LanceMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LanceMakerIcon} alt={LanceMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LanceMakerIcon}
+            title={capitalCase(LanceMaker.name)}
+            alt={LanceMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

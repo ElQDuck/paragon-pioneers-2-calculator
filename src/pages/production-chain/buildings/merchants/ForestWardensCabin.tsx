@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import ForestWardensCabinIcon from '../../../../assets/icons/buildings/merchants/ForestWardensCabin.png'
@@ -46,7 +47,13 @@ export const ForestWardensCabin = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ForestWardensCabinIcon} alt={ForestWardensCabin.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ForestWardensCabinIcon}
+            title={capitalCase(ForestWardensCabin.name)}
+            alt={ForestWardensCabin.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>

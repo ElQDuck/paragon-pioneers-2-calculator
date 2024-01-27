@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import DrumMakerIcon from '../../../../assets/icons/buildings/townsmen/DrumMaker.png'
 import {
@@ -48,7 +49,13 @@ export const DrumMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={DrumMakerIcon} alt={DrumMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={DrumMakerIcon}
+            title={capitalCase(DrumMaker.name)}
+            alt={DrumMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
