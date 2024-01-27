@@ -5,10 +5,10 @@ import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
 import { SxProps, Theme } from '@mui/material/styles'
 import { signal } from '@preact/signals'
-import * as changeCase from 'change-case'
 import { useState } from 'react'
 import { globalNumberInputReadOnly } from '../App'
 import { StyledButton, StyledInput, StyledInputRoot } from '../assets/styling/Theme'
+import { capitalCase } from 'change-case'
 
 export const BuildingButton = (props: {
   updateProductionChanFunction: Function
@@ -37,7 +37,7 @@ export const BuildingButton = (props: {
       <Box
         component="img"
         src={props.buttonIcon}
-        title={changeCase.capitalCase(props.buildingElement.name)}
+        title={capitalCase(props.buildingElement.name)}
         sx={{ ...imgStyle, display: imgIsLoaded ? {} : 'none' }}
         onLoad={() => {
           setImgIsLoaded(true)
