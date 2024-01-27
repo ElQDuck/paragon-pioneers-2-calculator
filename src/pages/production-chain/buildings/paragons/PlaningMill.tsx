@@ -20,6 +20,10 @@ import { IRON_SMELTER_INFO, IronSmelter } from '../merchants/IronSmelter'
 import { ZINC_SMELTER_INFO, ZincSmelter } from '../northern-islands/ZincSmelter'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/CopperSmelterTropical'
+import { COPPER_SMELTER_NORTH_INFO, CopperSmelterNorth } from '../northern-islands/CopperSmelterNorth'
+import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/IronSmelterNorth'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 2
@@ -85,32 +89,51 @@ export const PlaningMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <IronSmelter
-            count={
-              props.count * (PLANING_MILL_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <IronSmelter
+                count={
+                  props.count *
+                  (PLANING_MILL_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <IronSmelterNorth
+                count={
+                  props.count *
+                  (PLANING_MILL_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
-        <Paper
-          ref={providerRef3}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CopperSmelter
-            count={
-              props.count *
-              (PLANING_MILL_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef3}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CopperSmelter
+                count={
+                  props.count *
+                  (PLANING_MILL_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterTropical
+                count={
+                  props.count *
+                  (PLANING_MILL_INFO.ConsumePerMinute.get('CopperIngot')! /
+                    COPPER_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterNorth
+                count={
+                  props.count *
+                  (PLANING_MILL_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef4}
           elevation={2}

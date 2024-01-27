@@ -104,7 +104,6 @@ export const PaperMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef3}
           elevation={2}

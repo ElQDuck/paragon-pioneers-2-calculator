@@ -20,6 +20,9 @@ import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 import { NITRATE_MAKER_INFO, NitrateMaker } from '../workers/NitrateMaker'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -70,19 +73,31 @@ export const PowderMill = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMine
-            count={props.count * (POWDER_MILL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMine
+                count={props.count * (POWDER_MILL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
+              />,
+              <CharcoalKiln
+                count={
+                  props.count * (POWDER_MILL_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (POWDER_MILL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineNorth
+                count={
+                  props.count * (POWDER_MILL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <CharcoalKiln
-            count={props.count * (POWDER_MILL_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)}
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -96,7 +111,6 @@ export const PowderMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef3}
           elevation={2}

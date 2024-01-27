@@ -20,6 +20,9 @@ import { GOLD_PANNER_INFO, GoldPanner } from '../workers/GoldPanner'
 import { SILK_TWINE_MILL_INFO, SilkTwineMill } from '../workers/SilkTwineMill'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { GOLD_SMELTER_NORTH_INFO, GoldSmelterNorth } from '../northern-islands/GoldSmelterNorth'
+import { GOLD_SMELTER_TROPICAL_INFO, GoldSmelterTropical } from '../workers/GoldSmelterTropical'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -70,25 +73,39 @@ export const BrocadeSpinningFactory = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <GoldSmelter
-            count={
-              props.count *
-              (BROCADE_SPINNING_FACTORY_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <GoldSmelter
+                count={
+                  props.count *
+                  (BROCADE_SPINNING_FACTORY_INFO.ConsumePerMinute.get('GoldIngot')! /
+                    GOLD_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldSmelterTropical
+                count={
+                  props.count *
+                  (BROCADE_SPINNING_FACTORY_INFO.ConsumePerMinute.get('GoldIngot')! /
+                    GOLD_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldPanner
+                count={
+                  props.count *
+                  (BROCADE_SPINNING_FACTORY_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_PANNER_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldSmelterNorth
+                count={
+                  props.count *
+                  (BROCADE_SPINNING_FACTORY_INFO.ConsumePerMinute.get('GoldIngot')! /
+                    GOLD_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <GoldPanner
-            count={
-              props.count *
-              (BROCADE_SPINNING_FACTORY_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_PANNER_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -104,7 +121,6 @@ export const BrocadeSpinningFactory = (props: { count: number }) => {
           />
         </Paper>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef3}
           elevation={2}
