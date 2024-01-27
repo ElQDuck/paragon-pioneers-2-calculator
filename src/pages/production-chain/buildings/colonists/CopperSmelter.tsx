@@ -19,6 +19,7 @@ import { COPPER_MINE_INFO, CopperMine } from './CopperMine'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { COPPER_MINE_TROPICAL_INFO, CopperMineTropical } from '../farmers/CopperMineTropical'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
 import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 import { COPPER_MINE_NORTH_INFO, CopperMineNorth } from '../northern-islands/CopperMineNorth'
 
@@ -74,6 +75,12 @@ export const CopperSmelter = (props: { count: number }) => {
                 count={
                   props.count *
                   (COPPER_SMELTER_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (COPPER_SMELTER_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
                 }
               />,
             ]}

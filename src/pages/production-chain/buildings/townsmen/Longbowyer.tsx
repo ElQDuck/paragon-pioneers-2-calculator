@@ -18,6 +18,7 @@ import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
 import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 240
@@ -70,6 +71,12 @@ export const Longbowyer = (props: { count: number }) => {
                 count={
                   props.count *
                   (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
                 }
               />,
             ]}

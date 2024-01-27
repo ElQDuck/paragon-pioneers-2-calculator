@@ -19,6 +19,7 @@ import { ROSE_CULTIVATION_INFO, RoseCultivation } from './RoseCultivation'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from './ForestWardensCabin'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -73,6 +74,12 @@ export const EssenceDistillery = (props: { count: number }) => {
                 count={
                   props.count *
                   (ESSENCE_DISTILLERY_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (ESSENCE_DISTILLERY_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
                 }
               />,
             ]}

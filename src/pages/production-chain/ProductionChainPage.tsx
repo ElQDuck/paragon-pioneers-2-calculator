@@ -84,6 +84,7 @@ import { CuringHouseButton } from './buildings/merchants/CuringHouse'
 import { DeepCopperMineButton } from './buildings/merchants/DeepCopperMine'
 import { EssenceDistilleryButton } from './buildings/merchants/EssenceDistillery'
 import { FeltmakingMillButton } from './buildings/merchants/FeltmakingMill'
+import { ForestWardensCabinButton } from './buildings/merchants/ForestWardensCabin'
 import { GoldSmelterButton } from './buildings/merchants/GoldSmelter'
 import { GoldsmithButton } from './buildings/merchants/Goldsmith'
 import { HattersShopButton } from './buildings/merchants/HattersShop'
@@ -446,6 +447,7 @@ export const ProductionChainPage = () => {
             <ArcherAcademyButton updateProductionChanFunction={updateProductionChainMap} />
             <CoiningPressButton updateProductionChanFunction={updateProductionChainMap} />
             <SugarBeetFarmButton updateProductionChanFunction={updateProductionChainMap} />
+            <ForestWardensCabinButton updateProductionChanFunction={updateProductionChainMap} />
             <HospitalButton updateProductionChanFunction={updateProductionChainMap} />
             <DeepCopperMineButton updateProductionChanFunction={updateProductionChainMap} />
           </Box>
