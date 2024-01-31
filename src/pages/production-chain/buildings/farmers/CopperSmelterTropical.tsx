@@ -8,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -19,6 +18,12 @@ import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from './CoalMineTropical'
 import { COPPER_MINE_TROPICAL_INFO, CopperMineTropical } from './CopperMineTropical'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COPPER_MINE_INFO, CopperMine } from '../colonists/CopperMine'
+import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
+import { COPPER_MINE_NORTH_INFO, CopperMineNorth } from '../northern-islands/CopperMineNorth'
+import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
+import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -66,39 +71,71 @@ export const CopperSmelterTropical = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMineTropical
-            count={
-              props.count *
-              (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! /
+                    COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMine
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <CharcoalKiln
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineNorth
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CopperMineTropical
-            count={
-              props.count *
-              (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Copper')! /
-                COPPER_MINE_TROPICAL_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CopperMineTropical
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Copper')! /
+                    COPPER_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperMine
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Copper')! / COPPER_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <DeepCopperMine
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Copper')! /
+                    DEEP_COPPER_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperMineNorth
+                count={
+                  props.count *
+                  (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Copper')! /
+                    COPPER_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <DeepCopperMine
-            count={
-              props.count *
-              (COPPER_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Copper')! / DEEP_COPPER_MINE_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
