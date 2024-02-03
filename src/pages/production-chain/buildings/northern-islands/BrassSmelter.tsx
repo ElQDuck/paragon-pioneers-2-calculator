@@ -18,6 +18,9 @@ import { COPPER_SMELTER_NORTH_INFO, CopperSmelterNorth } from './CopperSmelterNo
 import { ZINC_SMELTER_INFO, ZincSmelter } from './ZincSmelter'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COPPER_SMELTER_INFO, CopperSmelter } from '../colonists/CopperSmelter'
+import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/CopperSmelterTropical'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 5
@@ -65,18 +68,31 @@ export const BrassSmelter = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CopperSmelterNorth
-            count={
-              props.count *
-              (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CopperSmelterNorth
+                count={
+                  props.count *
+                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelter
+                count={
+                  props.count *
+                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterTropical
+                count={
+                  props.count *
+                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! /
+                    COPPER_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}

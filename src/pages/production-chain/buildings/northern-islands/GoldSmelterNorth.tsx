@@ -8,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -18,6 +17,11 @@ import { COAL_MINE_NORTH_INFO, CoalMineNorth } from './CoalMineNorth'
 import { GOLD_MINE_NORTH_INFO, GoldMineNorth } from './GoldMineNorth'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
+import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
+import { GOLD_MINE_TROPICAL_INFO, GoldMineTropical } from '../workers/GoldMineTropical'
 
 const ITERATION_TIME_IN_SECONDS = 960
 const PRODUCE_PER_ITERATION = 2
@@ -65,31 +69,55 @@ export const GoldSmelterNorth = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMineNorth
-            count={
-              props.count *
-              (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMineNorth
+                count={
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMine
+                count={
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <CharcoalKiln
+                count={
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <GoldMineNorth
-            count={
-              props.count *
-              (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Gold')! / GOLD_MINE_NORTH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <GoldMineNorth
+                count={
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Gold')! / GOLD_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldMineTropical
+                count={
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Gold')! / GOLD_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
