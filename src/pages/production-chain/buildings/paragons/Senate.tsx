@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SenateIcon from '../../../../assets/icons/buildings/paragons/Senate.png'
 import {
@@ -47,7 +48,13 @@ export const Senate = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SenateIcon} alt={Senate.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SenateIcon}
+            title={capitalCase(Senate.name)}
+            alt={Senate.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -73,6 +80,6 @@ export const SenateButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={SenateIcon}
       buildingElement={Senate}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

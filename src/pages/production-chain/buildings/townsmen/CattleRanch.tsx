@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CattleRanchIcon from '../../../../assets/icons/buildings/townsmen/CattleRanch.png'
 import {
@@ -45,7 +46,13 @@ export const CattleRanch = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CattleRanchIcon} alt={CattleRanch.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CattleRanchIcon}
+            title={capitalCase(CattleRanch.name)}
+            alt={CattleRanch.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -55,7 +62,7 @@ export const CattleRanch = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Grass count={props.count * CATTLE_RANCH_INFO.ConsumePerIteration.get('Gras')!}></Grass>
+          <Grass count={props.count * CATTLE_RANCH_INFO.ConsumePerIteration.get('Gras')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -69,6 +76,6 @@ export const CattleRanchButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={CattleRanchIcon}
       buildingElement={CattleRanch}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

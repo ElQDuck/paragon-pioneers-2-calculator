@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import PiggeryIcon from '../../../../assets/icons/buildings/pioneers/Piggery.png'
 import {
@@ -47,7 +48,13 @@ export const Piggery = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={PiggeryIcon} alt={Piggery.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={PiggeryIcon}
+            title={capitalCase(Piggery.name)}
+            alt={Piggery.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -57,7 +64,7 @@ export const Piggery = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Grass count={props.count * PIGGERY_INFO.ConsumePerIteration.get('Grass')!}></Grass>
+          <Grass count={props.count * PIGGERY_INFO.ConsumePerIteration.get('Grass')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +78,6 @@ export const PiggeryButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={PiggeryIcon}
       buildingElement={Piggery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

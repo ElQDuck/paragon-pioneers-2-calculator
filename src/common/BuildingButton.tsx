@@ -4,8 +4,10 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
 import { signal } from '@preact/signals'
+import { capitalCase } from 'change-case'
 import { useState } from 'react'
 import { globalNumberInputReadOnly } from '../App'
+import { BuildingImageSize } from '../assets/styling/BuildingStyle'
 import { StyledButton, StyledInput, StyledInputRoot } from '../assets/styling/Theme'
 
 export const BuildingButton = (props: {
@@ -15,9 +17,7 @@ export const BuildingButton = (props: {
 }) => {
   const count = signal<number>(0)
   const [imgIsLoaded, setImgIsLoaded] = useState<Boolean>(false)
-  // The resource image size is 128 x 170
-  const imgWidth = 64
-  const imgHeight = 85
+
   return (
     <Box
       sx={{
@@ -30,19 +30,13 @@ export const BuildingButton = (props: {
     >
       {imgIsLoaded ? null : (
         // The skeleton size should match the rendered image size to prevent the layout from "jumping during loading"
-        <Skeleton
-          variant="rectangular"
-          animation="pulse"
-          sx={{ bgcolor: 'grey.900' }}
-          width={imgWidth}
-          height={imgHeight}
-        />
+        <Skeleton variant="rectangular" animation="pulse" sx={{ ...BuildingImageSize, bgcolor: 'grey.900' }} />
       )}
-      <img
-        style={imgIsLoaded ? {} : { display: 'none' }}
+      <Box
+        component="img"
         src={props.buttonIcon}
-        alt={props.buildingElement.name}
-        width={imgWidth}
+        title={capitalCase(props.buildingElement.name)}
+        sx={{ ...BuildingImageSize, display: imgIsLoaded ? {} : 'none' }}
         onLoad={() => {
           setImgIsLoaded(true)
         }}
@@ -66,7 +60,7 @@ export const BuildingButton = (props: {
                   background: '#956a3c',
                 }}
               >
-                <props.buildingElement count={count.value}></props.buildingElement>
+                <props.buildingElement count={count.value} />
               </Box>
             )
           )

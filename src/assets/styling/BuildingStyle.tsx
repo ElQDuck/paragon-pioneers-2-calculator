@@ -31,4 +31,8 @@ export const ConsumerPaperStyle: SxProps<Theme> = {
   marginRight: 10,
 }
 
-export const BuildingImageSize = { width: '4rem' }
+// The resource image size is 128 x 170 == 8rem x 10.625rem
+export const BuildingImageSize: SxProps<Theme> = {
+  width: { xs: '3rem', md: '4rem' },
+  height: { xs: '4rem', md: '5.313rem' },
+}

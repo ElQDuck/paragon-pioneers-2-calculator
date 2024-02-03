@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import MarbleQuarryIcon from '../../../../assets/icons/buildings/merchants/MarbleQuarry.png'
 import {
@@ -47,7 +48,13 @@ export const MarbleQuarry = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={MarbleQuarryIcon} alt={MarbleQuarry.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={MarbleQuarryIcon}
+            title={capitalCase(MarbleQuarry.name)}
+            alt={MarbleQuarry.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const MarbleQuarryButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={MarbleQuarryIcon}
       buildingElement={MarbleQuarry}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import BreweryIcon from '../../../../assets/icons/buildings/townsmen/Brewery.png'
 import {
@@ -53,7 +54,13 @@ export const Brewery = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BreweryIcon} alt={Brewery.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BreweryIcon}
+            title={capitalCase(Brewery.name)}
+            alt={Brewery.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -63,9 +70,7 @@ export const Brewery = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <HopFarm
-            count={props.count * (BREWERY_INFO.ConsumePerMinute.get('Hop')! / HOP_FARM_INFO.ProducePerMinute)}
-          ></HopFarm>
+          <HopFarm count={props.count * (BREWERY_INFO.ConsumePerMinute.get('Hop')! / HOP_FARM_INFO.ProducePerMinute)} />
         </Paper>
         AND
         <Paper
@@ -75,7 +80,7 @@ export const Brewery = (props: { count: number }) => {
         >
           <Malthouse
             count={props.count * (BREWERY_INFO.ConsumePerMinute.get('Malt')! / MALTHOUSE_INFO.ProducePerMinute)}
-          ></Malthouse>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -90,6 +95,6 @@ export const BreweryButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={BreweryIcon}
       buildingElement={Brewery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

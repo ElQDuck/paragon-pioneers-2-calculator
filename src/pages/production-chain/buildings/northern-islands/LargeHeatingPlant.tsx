@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LargeHeatingPlantIcon from '../../../../assets/icons/buildings/northern-islands/LargeHeatingPlant.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -16,6 +16,10 @@ import { Building } from '../../../../types/Building'
 import { COAL_MINE_NORTH_INFO, CoalMineNorth } from './CoalMineNorth'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
+import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 20 // => Amount of buildings within range
@@ -45,23 +49,47 @@ export const LargeHeatingPlant = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LargeHeatingPlantIcon} alt={LargeHeatingPlant.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LargeHeatingPlantIcon}
+            title={capitalCase(LargeHeatingPlant.name)}
+            alt={LargeHeatingPlant.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMineNorth
-            count={
-              props.count *
-              (LARGE_HEATING_PLANT_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMineNorth
+                count={
+                  props.count *
+                  (LARGE_HEATING_PLANT_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMine
+                count={
+                  props.count *
+                  (LARGE_HEATING_PLANT_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <CharcoalKiln
+                count={
+                  props.count *
+                  (LARGE_HEATING_PLANT_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (LARGE_HEATING_PLANT_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
@@ -74,6 +102,6 @@ export const LargeHeatingPlantButton = (props: { updateProductionChanFunction: F
       buttonIcon={LargeHeatingPlantIcon}
       buildingElement={LargeHeatingPlant}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

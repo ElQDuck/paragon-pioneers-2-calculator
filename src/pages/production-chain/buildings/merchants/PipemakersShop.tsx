@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import PipemakersShopIcon from '../../../../assets/icons/buildings/merchants/PipemakersShop.png'
 import {
@@ -53,7 +54,13 @@ export const PipemakersShop = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={PipemakersShopIcon} alt={PipemakersShop.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={PipemakersShopIcon}
+            title={capitalCase(PipemakersShop.name)}
+            alt={PipemakersShop.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -96,6 +103,6 @@ export const PipemakersShopButton = (props: { updateProductionChanFunction: Func
       buttonIcon={PipemakersShopIcon}
       buildingElement={PipemakersShop}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

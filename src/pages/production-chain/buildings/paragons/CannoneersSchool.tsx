@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CannoneersSchoolIcon from '../../../../assets/icons/buildings/paragons/CannoneersSchool.png'
 import {
@@ -53,7 +54,13 @@ export const CannoneersSchool = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CannoneersSchoolIcon} alt={CannoneersSchool.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CannoneersSchoolIcon}
+            title={capitalCase(CannoneersSchool.name)}
+            alt={CannoneersSchool.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -68,7 +75,7 @@ export const CannoneersSchool = (props: { count: number }) => {
               props.count *
               (CANNONEERS_SCHOOL_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -96,6 +103,6 @@ export const CannoneersSchoolButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={CannoneersSchoolIcon}
       buildingElement={CannoneersSchool}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

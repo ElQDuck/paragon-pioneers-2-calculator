@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import TreasureSeekerIcon from '../../../../assets/icons/buildings/paragons/TreasureSeeker.png'
 import {
@@ -47,7 +48,13 @@ export const TreasureSeeker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={TreasureSeekerIcon} alt={TreasureSeeker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={TreasureSeekerIcon}
+            title={capitalCase(TreasureSeeker.name)}
+            alt={TreasureSeeker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const TreasureSeekerButton = (props: { updateProductionChanFunction: Func
       buttonIcon={TreasureSeekerIcon}
       buildingElement={TreasureSeeker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

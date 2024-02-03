@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ArcherAcademyIcon from '../../../../assets/icons/buildings/merchants/ArcherAcademy.png'
 import {
@@ -53,7 +54,13 @@ export const ArcherAcademy = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ArcherAcademyIcon} alt={ArcherAcademy.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ArcherAcademyIcon}
+            title={capitalCase(ArcherAcademy.name)}
+            alt={ArcherAcademy.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -67,7 +74,7 @@ export const ArcherAcademy = (props: { count: number }) => {
             count={
               props.count * (ARCHER_ACADEMY_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -95,6 +102,6 @@ export const ArcherAcademyButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={ArcherAcademyIcon}
       buildingElement={ArcherAcademy}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

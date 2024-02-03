@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import BallMakerIcon from '../../../../assets/icons/buildings/farmers/BallMaker.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { CROCODILE_RANCH_INFO, CrocodileRanch } from './CrocodileRanch'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { Tannery, TANNERY_INFO } from '../townsmen/Tannery'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -47,22 +49,32 @@ export const BallMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BallMakerIcon} alt={BallMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BallMakerIcon}
+            title={capitalCase(BallMaker.name)}
+            alt={BallMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CrocodileRanch
-            count={
-              props.count * (BALL_MAKER_INFO.ConsumePerMinute.get('Leather')! / CROCODILE_RANCH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CrocodileRanch
+                count={
+                  props.count *
+                  (BALL_MAKER_INFO.ConsumePerMinute.get('Leather')! / CROCODILE_RANCH_INFO.ProducePerMinute)
+                }
+              />,
+              <Tannery
+                count={(props.count * BALL_MAKER_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
@@ -75,6 +87,6 @@ export const BallMakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={BallMakerIcon}
       buildingElement={BallMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

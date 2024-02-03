@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import WheatFarmIcon from '../../../../assets/icons/buildings/colonists/WheatFarm.png'
 import {
@@ -47,7 +48,13 @@ export const WheatFarm = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={WheatFarmIcon} alt={WheatFarm.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={WheatFarmIcon}
+            title={capitalCase(WheatFarm.name)}
+            alt={WheatFarm.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -59,7 +66,7 @@ export const WheatFarm = (props: { count: number }) => {
         >
           <WheatField
             count={props.count * (WHEAT_FARM_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FIELD_INFO.ProducePerMinute)}
-          ></WheatField>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +80,6 @@ export const WheatFarmButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={WheatFarmIcon}
       buildingElement={WheatFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

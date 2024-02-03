@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import RenderingWorksIcon from '../../../../assets/icons/buildings/colonists/RenderingWorks.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -17,6 +17,7 @@ import { PIG_RANCH_INFO, PigRanch } from '../pioneers/PigRanch'
 import { PIGGERY_INFO, Piggery } from '../pioneers/Piggery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -46,30 +47,33 @@ export const RenderingWorks = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={RenderingWorksIcon} alt={RenderingWorks.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={RenderingWorksIcon}
+            title={capitalCase(RenderingWorks.name)}
+            alt={RenderingWorks.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Paper variant="outlined">
-            <Piggery
-              count={props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)}
-            ></Piggery>
-          </Paper>
-          OR
-          <Paper variant="outlined">
-            <PigRanch
-              count={
-                props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)
-              }
-            ></PigRanch>
-          </Paper>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Piggery
+                count={
+                  props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIGGERY_INFO.ProducePerMinute)
+                }
+              />,
+              <PigRanch
+                count={
+                  props.count * (RENDERING_WORKS_INFO.ConsumePerMinute.get('Pigs')! / PIG_RANCH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
@@ -82,6 +86,6 @@ export const RenderingWorksButton = (props: { updateProductionChanFunction: Func
       buttonIcon={RenderingWorksIcon}
       buildingElement={RenderingWorks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

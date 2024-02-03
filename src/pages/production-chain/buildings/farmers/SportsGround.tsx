@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SportsGroundIcon from '../../../../assets/icons/buildings/farmers/SportsGround.png'
 import {
@@ -45,7 +46,13 @@ export const SportsGround = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SportsGroundIcon} alt={SportsGround.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SportsGroundIcon}
+            title={capitalCase(SportsGround.name)}
+            alt={SportsGround.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const SportsGroundButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SportsGroundIcon}
       buildingElement={SportsGround}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

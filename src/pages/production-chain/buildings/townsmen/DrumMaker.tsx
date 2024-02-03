@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import DrumMakerIcon from '../../../../assets/icons/buildings/townsmen/DrumMaker.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { TANNERY_INFO, Tannery } from './Tannery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { CROCODILE_RANCH_INFO, CrocodileRanch } from '../farmers/CrocodileRanch'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -47,20 +49,32 @@ export const DrumMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={DrumMakerIcon} alt={DrumMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={DrumMakerIcon}
+            title={capitalCase(DrumMaker.name)}
+            alt={DrumMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Tannery
-            count={(props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
-          ></Tannery>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Tannery
+                count={(props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
+              />,
+              <CrocodileRanch
+                count={
+                  (props.count * DRUM_MAKER_INFO.ConsumePerMinute.get('Leather')!) /
+                  CROCODILE_RANCH_INFO.ProducePerMinute
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
@@ -73,6 +87,6 @@ export const DrumMakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={DrumMakerIcon}
       buildingElement={DrumMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

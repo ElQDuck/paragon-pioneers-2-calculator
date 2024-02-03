@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import CoastalFieldTropicalIcon from '../../../assets/icons/tiles/CoastalFieldTropical.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const COASTAL_FIELD_TROPICAL_INFO: Tile = {
 export const CoastalFieldTropical = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={CoastalFieldTropicalIcon} alt={CoastalFieldTropical.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={CoastalFieldTropicalIcon}
+        title={capitalCase(CoastalFieldTropical.name)}
+        alt={CoastalFieldTropical.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

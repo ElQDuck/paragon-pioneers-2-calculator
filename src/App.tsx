@@ -5,6 +5,7 @@ import './App.css'
 import { theme } from './assets/styling/Theme'
 import { ProductionChainPage } from './pages/production-chain/ProductionChainPage'
 
+export const globalExpertMode = signal<boolean>(localStorage.getItem('globalExpertMode') === 'true' ? true : false)
 export const globalNumberInputReadOnly = signal<boolean>(
   localStorage.getItem('globalNumberInputReadOnly') === 'false' ? false : true
 )

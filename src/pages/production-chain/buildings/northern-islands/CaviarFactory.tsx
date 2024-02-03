@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CaviarFactoryIcon from '../../../../assets/icons/buildings/northern-islands/CaviarFactory.png'
 import {
@@ -17,6 +18,10 @@ import { SALT_WORKS_NORTH_INFO, SaltWorksNorth } from './SaltWorksNorth'
 import { STURGEON_FARM_INFO, SturgeonFarm } from './SturgeonFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { SALTERN_TROPICAL_INFO, SalternTropical } from '../farmers/SalternTropical'
+import { SALTERN_INFO, Saltern } from '../paragons/Saltern'
+import { SALT_WORKS_INFO, SaltWorks } from '../townsmen/SaltWorks'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 6
@@ -53,22 +58,45 @@ export const CaviarFactory = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CaviarFactoryIcon} alt={CaviarFactory.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CaviarFactoryIcon}
+            title={capitalCase(CaviarFactory.name)}
+            alt={CaviarFactory.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SaltWorksNorth
-            count={
-              props.count * (CAVIAR_FACTORY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_NORTH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SaltWorksNorth
+                count={
+                  props.count *
+                  (CAVIAR_FACTORY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <SalternTropical
+                count={
+                  props.count *
+                  (CAVIAR_FACTORY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <SaltWorks
+                count={
+                  props.count * (CAVIAR_FACTORY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_INFO.ProducePerMinute)
+                }
+              />,
+              <Saltern
+                count={
+                  props.count * (CAVIAR_FACTORY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -95,6 +123,6 @@ export const CaviarFactoryButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={CaviarFactoryIcon}
       buildingElement={CaviarFactory}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

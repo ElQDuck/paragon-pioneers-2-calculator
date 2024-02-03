@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import RockSaltMineNorthIcon from '../../../../assets/icons/buildings/northern-islands/RockSaltMineNorth.png'
 import {
@@ -47,7 +48,13 @@ export const RockSaltMineNorth = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={RockSaltMineNorthIcon} alt={RockSaltMineNorth.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={RockSaltMineNorthIcon}
+            title={capitalCase(RockSaltMineNorth.name)}
+            alt={RockSaltMineNorth.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const RockSaltMineNorthButton = (props: { updateProductionChanFunction: F
       buttonIcon={RockSaltMineNorthIcon}
       buildingElement={RockSaltMineNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

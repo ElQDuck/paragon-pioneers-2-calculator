@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ZincSmelterIcon from '../../../../assets/icons/buildings/northern-islands/ZincSmelter.png'
 import {
@@ -18,6 +19,10 @@ import { GOLD_MINE_NORTH_INFO } from './GoldMineNorth'
 import { ZincMine } from './ZincMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
+import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -54,22 +59,45 @@ export const ZincSmelter = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ZincSmelterIcon} alt={ZincSmelter.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ZincSmelterIcon}
+            title={capitalCase(ZincSmelter.name)}
+            alt={ZincSmelter.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMineNorth
-            count={
-              props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMineNorth
+                count={
+                  props.count *
+                  (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMine
+                count={
+                  props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <CharcoalKiln
+                count={
+                  props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -95,6 +123,6 @@ export const ZincSmelterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={ZincSmelterIcon}
       buildingElement={ZincSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import CacaoFieldIcon from '../../../assets/icons/tiles/CacaoField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const CACAO_FIELD_INFO: Tile = {
 export const CacaoField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={CacaoFieldIcon} alt={CacaoField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={CacaoFieldIcon}
+        title={capitalCase(CacaoField.name)}
+        alt={CacaoField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

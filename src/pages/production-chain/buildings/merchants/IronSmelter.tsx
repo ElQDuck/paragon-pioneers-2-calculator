@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import IronSmelterIcon from '../../../../assets/icons/buildings/merchants/IronSmelter.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -18,6 +18,10 @@ import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 import { IRON_MINE_INFO, IronMine } from './IronMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
+import { IRON_MINE_NORTH_INFO, IronMineNorth } from '../northern-islands/IronMineNorth'
 
 const ITERATION_TIME_IN_SECONDS = 960
 const PRODUCE_PER_ITERATION = 2
@@ -54,36 +58,63 @@ export const IronSmelter = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={IronSmelterIcon} alt={IronSmelter.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={IronSmelterIcon}
+            title={capitalCase(IronSmelter.name)}
+            alt={IronSmelter.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMine
-            count={props.count * (IRON_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMine
+                count={
+                  props.count * (IRON_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <CharcoalKiln
+                count={
+                  props.count * (IRON_SMELTER_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (IRON_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineNorth
+                count={
+                  props.count *
+                  (IRON_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <CharcoalKiln
-            count={
-              props.count * (IRON_SMELTER_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <IronMine
-            count={props.count * (IRON_SMELTER_INFO.ConsumePerMinute.get('Iron')! / IRON_MINE_INFO.ProducePerMinute)}
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <IronMine
+                count={
+                  props.count * (IRON_SMELTER_INFO.ConsumePerMinute.get('Iron')! / IRON_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <IronMineNorth
+                count={
+                  props.count *
+                  (IRON_SMELTER_INFO.ConsumePerMinute.get('Iron')! / IRON_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -97,6 +128,6 @@ export const IronSmelterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={IronSmelterIcon}
       buildingElement={IronSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

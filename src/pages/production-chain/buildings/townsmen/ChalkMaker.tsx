@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ChalkMakerIcon from '../../../../assets/icons/buildings/townsmen/ChalkMaker.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -17,6 +17,7 @@ import { STONECUTTER_INFO, Stonecutter } from '../colonists/Stonecutter'
 import { BOULDER_GATHERER_INFO, BoulderGatherer } from './BoulderGatherer'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -48,29 +49,35 @@ export const ChalkMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ChalkMakerIcon} alt={ChalkMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ChalkMakerIcon}
+            title={capitalCase(ChalkMaker.name)}
+            alt={ChalkMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Stonecutter
-            count={
-              (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) / STONECUTTER_INFO.ProducePerMinute
-            }
-          ></Stonecutter>
-          OR
-          <BoulderGatherer
-            count={
-              (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
-              BOULDER_GATHERER_INFO.ProducePerMinute
-            }
-          ></BoulderGatherer>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Stonecutter
+                count={
+                  (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
+                  STONECUTTER_INFO.ProducePerMinute
+                }
+              />,
+              <BoulderGatherer
+                count={
+                  (props.count * CHALK_MAKER_INFO.ConsumePerMinute.get('Limestone')!) /
+                  BOULDER_GATHERER_INFO.ProducePerMinute
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
@@ -83,6 +90,6 @@ export const ChalkMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={ChalkMakerIcon}
       buildingElement={ChalkMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import RockSaltDepositIcon from '../../../assets/icons/tiles/RockSaltDeposit.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const ROCK_SALT_DEPOSIT_INFO: Tile = {
 export const RockSaltDeposit = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={RockSaltDepositIcon} alt={RockSaltDeposit.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={RockSaltDepositIcon}
+        title={capitalCase(RockSaltDeposit.name)}
+        alt={RockSaltDeposit.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import BuffaloButcheryIcon from '../../../../assets/icons/buildings/workers/BuffaloButchery.png'
 import {
@@ -17,6 +18,10 @@ import { SALTERN_TROPICAL_INFO, SalternTropical } from '../farmers/SalternTropic
 import { WATER_BUFFALO_RANCH_INFO, WaterBuffaloRanch } from '../farmers/WaterBuffaloRanch'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { SALT_WORKS_NORTH_INFO, SaltWorksNorth } from '../northern-islands/SaltWorksNorth'
+import { SALTERN_INFO, Saltern } from '../paragons/Saltern'
+import { SALT_WORKS_INFO, SaltWorks } from '../townsmen/SaltWorks'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 6
@@ -53,23 +58,45 @@ export const BuffaloButchery = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BuffaloButcheryIcon} alt={BuffaloButchery.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BuffaloButcheryIcon}
+            title={capitalCase(BuffaloButchery.name)}
+            alt={BuffaloButchery.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SalternTropical
-            count={
-              props.count *
-              (BUFFALO_BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SalternTropical
+                count={
+                  props.count *
+                  (BUFFALO_BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <SaltWorks
+                count={
+                  props.count * (BUFFALO_BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_INFO.ProducePerMinute)
+                }
+              />,
+              <SaltWorksNorth
+                count={
+                  props.count *
+                  (BUFFALO_BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALT_WORKS_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <Saltern
+                count={
+                  props.count * (BUFFALO_BUTCHERY_INFO.ConsumePerMinute.get('Salt')! / SALTERN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -96,6 +123,6 @@ export const BuffaloButcheryButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={BuffaloButcheryIcon}
       buildingElement={BuffaloButchery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

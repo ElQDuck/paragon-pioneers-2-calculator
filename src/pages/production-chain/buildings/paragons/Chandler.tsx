@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ChandlerIcon from '../../../../assets/icons/buildings/paragons/Chandler.png'
 import {
@@ -18,6 +19,7 @@ import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
 import { APIARY_INFO, Apiary } from '../merchants/Apiary'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -54,7 +56,13 @@ export const Chandler = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ChandlerIcon} alt={Chandler.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ChandlerIcon}
+            title={capitalCase(Chandler.name)}
+            alt={Chandler.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -67,19 +75,20 @@ export const Chandler = (props: { count: number }) => {
           <Apiary count={props.count * (CHANDLER_INFO.ConsumePerMinute.get('Honey')! / APIARY_INFO.ProducePerMinute)} />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <LinseedFarm
-            count={props.count * (CHANDLER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <LinseedFarm
+                count={
+                  props.count * (CHANDLER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)
+                }
+              />,
+              <FiberMaker
+                count={props.count * (CHANDLER_INFO.ConsumePerMinute.get('Fiber')! / FIBER_MAKER_INFO.ProducePerMinute)}
+              />,
+            ]}
           />
-          OR
-          <FiberMaker
-            count={props.count * (CHANDLER_INFO.ConsumePerMinute.get('Fiber')! / FIBER_MAKER_INFO.ProducePerMinute)}
-          />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -93,6 +102,6 @@ export const ChandlerButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={ChandlerIcon}
       buildingElement={Chandler}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

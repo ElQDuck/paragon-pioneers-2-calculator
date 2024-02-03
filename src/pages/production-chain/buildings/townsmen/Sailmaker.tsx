@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SailmakerIcon from '../../../../assets/icons/buildings/townsmen/Sailmaker.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -17,6 +17,9 @@ import { ROPERY_INFO, Ropery } from '../colonists/Ropery'
 import { SHEEP_FARM_INFO, SheepFarm } from '../colonists/SheepFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { ROPERY_TROPICAL_INFO, RoperyTropical } from '../farmers/RoperyTropical'
+import { COTTON_PLANTATION_INFO, CottonPlantation } from '../workers/CottonPlantation'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -53,30 +56,46 @@ export const Sailmaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SailmakerIcon} alt={Sailmaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SailmakerIcon}
+            title={capitalCase(Sailmaker.name)}
+            alt={Sailmaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Ropery
-            count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Rope')! / ROPERY_INFO.ProducePerMinute)}
-          ></Ropery>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Ropery
+                count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Rope')! / ROPERY_INFO.ProducePerMinute)}
+              />,
+              <RoperyTropical
+                count={
+                  props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Rope')! / ROPERY_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SheepFarm
-            count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)}
-          ></SheepFarm>
-        </Paper>
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SheepFarm
+                count={props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)}
+              />,
+              <CottonPlantation
+                count={
+                  props.count * (SAILMAKER_INFO.ConsumePerMinute.get('Yarn')! / COTTON_PLANTATION_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -90,6 +109,6 @@ export const SailmakerButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SailmakerIcon}
       buildingElement={Sailmaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

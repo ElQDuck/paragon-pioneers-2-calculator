@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import GrainBinIcon from '../../../../assets/icons/buildings/colonists/GrainBin.png'
 import {
@@ -47,7 +48,13 @@ export const GrainBin = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={GrainBinIcon} alt={GrainBin.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={GrainBinIcon}
+            title={capitalCase(GrainBin.name)}
+            alt={GrainBin.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -59,7 +66,7 @@ export const GrainBin = (props: { count: number }) => {
         >
           <WheatFarm
             count={props.count * (GRAIN_BIN_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)}
-          ></WheatFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +80,6 @@ export const GrainBinButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={GrainBinIcon}
       buildingElement={GrainBin}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

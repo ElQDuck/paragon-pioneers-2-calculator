@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import ForestIcon from '../../../assets/icons/tiles/Forest.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -17,7 +18,7 @@ export const FOREST_INFO: Tile = {
 export const Forest = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={ForestIcon} alt={Forest.name} style={BuildingImageSize} />
+      <Box component="img" src={ForestIcon} title={capitalCase(Forest.name)} alt={Forest.name} sx={BuildingImageSize} />
       {Number(props.count.toFixed(2))}
     </Box>
   )

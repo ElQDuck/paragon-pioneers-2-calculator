@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SoupKitchenIcon from '../../../../assets/icons/buildings/workers/SoupKitchen.png'
 import {
@@ -17,6 +18,8 @@ import { BUFFALO_BUTCHERY_INFO, BuffaloButchery } from './BuffaloButchery'
 import { COCONUT_PLANTATION_INFO, CoconutPlantation } from './CoconutPlantation'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { BUTCHERY_INFO, Butchery } from '../merchants/Butchery'
 
 const ITERATION_TIME_IN_SECONDS = 60
 const PRODUCE_PER_ITERATION = 1
@@ -53,7 +56,13 @@ export const SoupKitchen = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SoupKitchenIcon} alt={SoupKitchen.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SoupKitchenIcon}
+            title={capitalCase(SoupKitchen.name)}
+            alt={SoupKitchen.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,17 +80,22 @@ export const SoupKitchen = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <BuffaloButchery
-            count={
-              props.count * (SOUP_KITCHEN_INFO.ConsumePerMinute.get('Meat')! / BUFFALO_BUTCHERY_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <BuffaloButchery
+                count={
+                  props.count *
+                  (SOUP_KITCHEN_INFO.ConsumePerMinute.get('Meat')! / BUFFALO_BUTCHERY_INFO.ProducePerMinute)
+                }
+              />,
+
+              <Butchery
+                count={props.count * (SOUP_KITCHEN_INFO.ConsumePerMinute.get('Meat')! / BUTCHERY_INFO.ProducePerMinute)}
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -95,6 +109,6 @@ export const SoupKitchenButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={SoupKitchenIcon}
       buildingElement={SoupKitchen}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

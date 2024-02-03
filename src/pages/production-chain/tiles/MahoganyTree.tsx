@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import MahoganyTreeIcon from '../../../assets/icons/tiles/MahoganyTree.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -17,7 +18,13 @@ export const MAHOGANY_TREE_INFO: Tile = {
 export const MahoganyTree = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={MahoganyTreeIcon} alt={MahoganyTree.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={MahoganyTreeIcon}
+        title={capitalCase(MahoganyTree.name)}
+        alt={MahoganyTree.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

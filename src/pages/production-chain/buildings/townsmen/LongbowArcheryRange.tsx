@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LongbowArcheryRangeIcon from '../../../../assets/icons/buildings/townsmen/LongbowArcheryRange.png'
 import {
@@ -53,7 +54,13 @@ export const LongbowArcheryRange = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LongbowArcheryRangeIcon} alt={LongbowArcheryRange.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LongbowArcheryRangeIcon}
+            title={capitalCase(LongbowArcheryRange.name)}
+            alt={LongbowArcheryRange.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -68,7 +75,7 @@ export const LongbowArcheryRange = (props: { count: number }) => {
               props.count *
               (LONGBOW_ARCHERY_RANGE_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -81,7 +88,7 @@ export const LongbowArcheryRange = (props: { count: number }) => {
               props.count *
               (LONGBOW_ARCHERY_RANGE_INFO.ConsumePerMinute.get('Longbow')! / LONGBOWYER_INFO.ProducePerMinute)
             }
-          ></Longbowyer>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -96,6 +103,6 @@ export const LongbowArcheryRangeButton = (props: { updateProductionChanFunction:
       buttonIcon={LongbowArcheryRangeIcon}
       buildingElement={LongbowArcheryRange}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SilkTwineMillIcon from '../../../../assets/icons/buildings/workers/SilkTwineMill.png'
 import {
@@ -53,7 +54,13 @@ export const SilkTwineMill = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SilkTwineMillIcon} alt={SilkTwineMill.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SilkTwineMillIcon}
+            title={capitalCase(SilkTwineMill.name)}
+            alt={SilkTwineMill.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -70,7 +77,6 @@ export const SilkTwineMill = (props: { count: number }) => {
           />
         </Paper>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef2}
           elevation={2}
@@ -91,6 +97,6 @@ export const SilkTwineMillButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={SilkTwineMillIcon}
       buildingElement={SilkTwineMill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import CopperDepositTropicalIcon from '../../../assets/icons/tiles/CopperDepositTropical.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const COPPER_DEPOSIT_TROPICAL_INFO: Tile = {
 export const CopperDepositTropical = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={CopperDepositTropicalIcon} alt={CopperDepositTropical.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={CopperDepositTropicalIcon}
+        title={capitalCase(CopperDepositTropical.name)}
+        alt={CopperDepositTropical.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import VineyardIcon from '../../../assets/icons/tiles/Vineyard.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const VINEYARD_INFO: Tile = {
 export const Vineyard = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={VineyardIcon} alt={Vineyard.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={VineyardIcon}
+        title={capitalCase(Vineyard.name)}
+        alt={Vineyard.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

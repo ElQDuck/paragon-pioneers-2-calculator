@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import CottonFieldIcon from '../../../assets/icons/tiles/CottonField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const COTTON_FIELD_INFO: Tile = {
 export const CottonField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={CottonFieldIcon} alt={CottonField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={CottonFieldIcon}
+        title={capitalCase(CottonField.name)}
+        alt={CottonField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import PastryManufactureIcon from '../../../../assets/icons/buildings/merchants/PastryManufacture.png'
 import {
@@ -20,6 +21,7 @@ import { BUTCHERY_INFO, Butchery } from './Butchery'
 import { CHICKEN_FARM_INFO, ChickenFarm } from './ChickenFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 4
@@ -59,58 +61,53 @@ export const PastryManufacture = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={PastryManufactureIcon} alt={PastryManufacture.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={PastryManufactureIcon}
+            title={capitalCase(PastryManufacture.name)}
+            alt={PastryManufacture.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Paper
-            elevation={2}
-            sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-          >
-            <Butchery
-              count={
-                props.count * (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Meat')! / BUTCHERY_INFO.ProducePerMinute)
-              }
-            />
-          </Paper>
-          OR
-          <Paper
-            elevation={2}
-            sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-          >
-            <BuffaloButchery
-              count={
-                props.count *
-                (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Meat')! / BUFFALO_BUTCHERY_INFO.ProducePerMinute)
-              }
-            />
-          </Paper>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Butchery
+                count={
+                  props.count * (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Meat')! / BUTCHERY_INFO.ProducePerMinute)
+                }
+              />,
+              <BuffaloButchery
+                count={
+                  props.count *
+                  (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Meat')! / BUFFALO_BUTCHERY_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <FlourMill
-            count={
-              props.count * (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Flour')! / FLOUR_MILL_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <FlourMill
+                count={
+                  props.count *
+                  (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Flour')! / FLOUR_MILL_INFO.ProducePerMinute)
+                }
+              />,
+              <FlourWindmill
+                count={
+                  props.count *
+                  (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Flour')! / FLOUR_WINDMILL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <FlourWindmill
-            count={
-              props.count *
-              (PASTRY_MANUFACTURE_INFO.ConsumePerMinute.get('Flour')! / FLOUR_WINDMILL_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef3}
@@ -124,7 +121,6 @@ export const PastryManufacture = (props: { count: number }) => {
           />
         </Paper>
       </Box>
-      {/* TODO: Optimize arrows */}
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
       <Arrow start={providerRef3} end={consumerRef} />
@@ -138,6 +134,6 @@ export const PastryManufactureButton = (props: { updateProductionChanFunction: F
       buttonIcon={PastryManufactureIcon}
       buildingElement={PastryManufacture}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

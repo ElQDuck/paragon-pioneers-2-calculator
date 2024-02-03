@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SalternTropicalIcon from '../../../../assets/icons/buildings/farmers/SalternTropical.png'
 import {
@@ -47,7 +48,13 @@ export const SalternTropical = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SalternTropicalIcon} alt={SalternTropical.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SalternTropicalIcon}
+            title={capitalCase(SalternTropical.name)}
+            alt={SalternTropical.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const SalternTropicalButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={SalternTropicalIcon}
       buildingElement={SalternTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

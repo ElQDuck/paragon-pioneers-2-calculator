@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import GrainBinTropicalIcon from '../../../../assets/icons/buildings/workers/GrainBinTropical.png'
 import {
@@ -47,7 +48,13 @@ export const GrainBinTropical = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={GrainBinTropicalIcon} alt={GrainBinTropical.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={GrainBinTropicalIcon}
+            title={capitalCase(GrainBinTropical.name)}
+            alt={GrainBinTropical.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -75,6 +82,6 @@ export const GrainBinTropicalButton = (props: { updateProductionChanFunction: Fu
       buttonIcon={GrainBinTropicalIcon}
       buildingElement={GrainBinTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

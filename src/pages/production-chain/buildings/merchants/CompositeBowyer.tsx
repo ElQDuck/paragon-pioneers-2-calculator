@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CompositeBowyerIcon from '../../../../assets/icons/buildings/merchants/CompositeBowyer.png'
 import {
@@ -53,7 +54,13 @@ export const CompositeBowyer = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CompositeBowyerIcon} alt={CompositeBowyer.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CompositeBowyerIcon}
+            title={capitalCase(CompositeBowyer.name)}
+            alt={CompositeBowyer.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -92,6 +99,6 @@ export const CompositeBowyerButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={CompositeBowyerIcon}
       buildingElement={CompositeBowyer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

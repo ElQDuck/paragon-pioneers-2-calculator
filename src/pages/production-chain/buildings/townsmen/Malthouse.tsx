@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import MalthouseIcon from '../../../../assets/icons/buildings/townsmen/Malthouse.png'
 import {
@@ -47,7 +48,13 @@ export const Malthouse = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={MalthouseIcon} alt={Malthouse.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={MalthouseIcon}
+            title={capitalCase(Malthouse.name)}
+            alt={Malthouse.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -59,7 +66,7 @@ export const Malthouse = (props: { count: number }) => {
         >
           <WheatFarm
             count={(props.count * MALTHOUSE_INFO.ConsumePerMinute.get('Wheat')!) / WHEAT_FARM_INFO.ProducePerMinute}
-          ></WheatFarm>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +80,6 @@ export const MalthouseButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={MalthouseIcon}
       buildingElement={Malthouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

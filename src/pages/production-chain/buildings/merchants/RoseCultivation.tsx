@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import RoseCultivationIcon from '../../../../assets/icons/buildings/merchants/RoseCultivation.png'
 import {
@@ -45,7 +46,13 @@ export const RoseCultivation = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={RoseCultivationIcon} alt={RoseCultivation.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={RoseCultivationIcon}
+            title={capitalCase(RoseCultivation.name)}
+            alt={RoseCultivation.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -69,6 +76,6 @@ export const RoseCultivationButton = (props: { updateProductionChanFunction: Fun
       buttonIcon={RoseCultivationIcon}
       buildingElement={RoseCultivation}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

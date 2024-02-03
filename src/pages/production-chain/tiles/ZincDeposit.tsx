@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import ZincDepositIcon from '../../../assets/icons/tiles/ZincDeposit.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const ZINC_DEPOSIT_INFO: Tile = {
 export const ZincDeposit = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={ZincDepositIcon} alt={ZincDeposit.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={ZincDepositIcon}
+        title={capitalCase(ZincDeposit.name)}
+        alt={ZincDeposit.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

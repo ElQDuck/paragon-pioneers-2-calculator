@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CobblersShopIcon from '../../../../assets/icons/buildings/paragons/CobblersShop.png'
 import {
@@ -18,6 +19,7 @@ import { BRASS_SMELTER_INFO, BrassSmelter } from '../northern-islands/BrassSmelt
 import { TANNERY_INFO, Tannery } from '../townsmen/Tannery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 4
@@ -54,7 +56,13 @@ export const CobblersShop = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CobblersShopIcon} alt={CobblersShop.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CobblersShopIcon}
+            title={capitalCase(CobblersShop.name)}
+            alt={CobblersShop.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,22 +79,23 @@ export const CobblersShop = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Tannery
-            count={props.count * (COBBLERS_SHOP_INFO.ConsumePerMinute.get('Leather')! / TANNERY_INFO.ProducePerMinute)}
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Tannery
+                count={
+                  props.count * (COBBLERS_SHOP_INFO.ConsumePerMinute.get('Leather')! / TANNERY_INFO.ProducePerMinute)
+                }
+              />,
+              <CrocodileRanch
+                count={
+                  props.count *
+                  (COBBLERS_SHOP_INFO.ConsumePerMinute.get('Leather')! / CROCODILE_RANCH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <CrocodileRanch
-            count={
-              props.count *
-              (COBBLERS_SHOP_INFO.ConsumePerMinute.get('Leather')! / CROCODILE_RANCH_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -100,6 +109,6 @@ export const CobblersShopButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={CobblersShopIcon}
       buildingElement={CobblersShop}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

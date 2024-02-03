@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import WeaverIcon from '../../../../assets/icons/buildings/colonists/Weaver.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -16,6 +16,8 @@ import { Building } from '../../../../types/Building'
 import { SHEEP_FARM_INFO, SheepFarm } from './SheepFarm'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COTTON_PLANTATION_INFO, CottonPlantation } from '../workers/CottonPlantation'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -45,20 +47,31 @@ export const Weaver = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={WeaverIcon} alt={Weaver.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={WeaverIcon}
+            title={capitalCase(Weaver.name)}
+            alt={Weaver.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SheepFarm
-            count={props.count * (WEAVER_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)}
-          ></SheepFarm>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SheepFarm
+                count={props.count * (WEAVER_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)}
+              />,
+              <CottonPlantation
+                count={
+                  props.count * (WEAVER_INFO.ConsumePerMinute.get('Yarn')! / COTTON_PLANTATION_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>
@@ -71,6 +84,6 @@ export const WeaverButton = (props: { updateProductionChanFunction: Function }) 
       buttonIcon={WeaverIcon}
       buildingElement={Weaver}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

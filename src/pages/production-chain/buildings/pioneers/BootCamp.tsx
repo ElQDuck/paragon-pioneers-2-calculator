@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import BootCampIcon from '../../../../assets/icons/buildings/pioneers/BootCamp.png'
@@ -11,6 +12,7 @@ import {
   ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
@@ -53,7 +55,13 @@ export const BootCamp = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BootCampIcon} alt={BootCamp.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BootCampIcon}
+            title={capitalCase(BootCamp.name)}
+            alt={BootCamp.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -65,26 +73,21 @@ export const BootCamp = (props: { count: number }) => {
         >
           <PioneersHut
             count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)}
-          ></PioneersHut>
+          />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Paper variant="outlined">
-            <Sawmill
-              count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAWMILL_INFO.ProducePerMinute)}
-            ></Sawmill>
-          </Paper>
-          OR
-          <Paper variant="outlined">
-            <SawWorks
-              count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAW_WORKS_INFO.ProducePerMinute)}
-            ></SawWorks>
-          </Paper>
-        </Paper>
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SawWorks
+                count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAW_WORKS_INFO.ProducePerMinute)}
+              />,
+              <Sawmill
+                count={props.count * (BOOT_CAMP_INFO.ConsumePerMinute.get('Plank')! / SAWMILL_INFO.ProducePerMinute)}
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -98,6 +101,6 @@ export const BootCampButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={BootCampIcon}
       buildingElement={BootCamp}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

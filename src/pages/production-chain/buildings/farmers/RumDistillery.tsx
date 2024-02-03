@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import RumDistilleryIcon from '../../../../assets/icons/buildings/farmers/RumDistillery.png'
 import {
@@ -47,7 +48,13 @@ export const RumDistillery = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={RumDistilleryIcon} alt={RumDistillery.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={RumDistilleryIcon}
+            title={capitalCase(RumDistillery.name)}
+            alt={RumDistillery.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -76,6 +83,6 @@ export const RumDistilleryButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={RumDistilleryIcon}
       buildingElement={RumDistillery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

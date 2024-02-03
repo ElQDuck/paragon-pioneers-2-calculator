@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CoalMineIcon from '../../../../assets/icons/buildings/townsmen/CoalMine.png'
 import {
@@ -47,7 +48,13 @@ export const CoalMine = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CoalMineIcon} alt={CoalMine.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CoalMineIcon}
+            title={capitalCase(CoalMine.name)}
+            alt={CoalMine.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -57,7 +64,7 @@ export const CoalMine = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <CoalDeposit count={props.count * COAL_MINE_INFO.ConsumePerIteration.get('CoalDeposit')!}></CoalDeposit>
+          <CoalDeposit count={props.count * COAL_MINE_INFO.ConsumePerIteration.get('CoalDeposit')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +78,6 @@ export const CoalMineButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={CoalMineIcon}
       buildingElement={CoalMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

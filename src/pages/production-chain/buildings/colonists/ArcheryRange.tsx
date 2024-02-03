@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ArcheryRangeIcon from '../../../../assets/icons/buildings/colonists/ArcheryRange.png'
 import {
@@ -53,7 +54,13 @@ export const ArcheryRange = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ArcheryRangeIcon} alt={ArcheryRange.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ArcheryRangeIcon}
+            title={capitalCase(ArcheryRange.name)}
+            alt={ArcheryRange.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -67,7 +74,7 @@ export const ArcheryRange = (props: { count: number }) => {
             count={
               props.count * (ARCHERY_RANGE_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -77,7 +84,7 @@ export const ArcheryRange = (props: { count: number }) => {
         >
           <Bowyer
             count={props.count * (ARCHERY_RANGE_INFO.ConsumePerMinute.get('Bow')! / BOWYER_INFO.ProducePerMinute)}
-          ></Bowyer>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -92,6 +99,6 @@ export const ArcheryRangeButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={ArcheryRangeIcon}
       buildingElement={ArcheryRange}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

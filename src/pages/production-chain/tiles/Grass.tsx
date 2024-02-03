@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import GrassIcon from '../../../assets/icons/tiles/Grass.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,7 @@ export const GRASS_INFO: Tile = {
 export const Grass = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={GrassIcon} alt={Grass.name} style={BuildingImageSize} />
+      <Box component="img" src={GrassIcon} title={capitalCase(Grass.name)} alt={Grass.name} sx={BuildingImageSize} />
       {Number(props.count.toFixed(2))}
     </Box>
   )

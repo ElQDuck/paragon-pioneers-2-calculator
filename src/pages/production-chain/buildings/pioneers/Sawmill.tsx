@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SawmillIcon from '../../../../assets/icons/buildings/pioneers/Sawmill.png'
 import {
@@ -16,16 +17,26 @@ import { Building } from '../../../../types/Building'
 import { LUMBERJACK_INFO, Lumberjack } from './Lumberjack'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { RiverField } from '../../tiles/RiverField'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 30
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
-const CONSUME_PER_ITERATION = new Map<string, number>([['Wood', 2]])
+const CONSUME_PER_ITERATION = new Map<string, number>([
+  ['Wood', 2],
+  ['RiverField', 1],
+])
 const PRODUCE_PER_ITERATION = 3
 export const SAWMILL_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
-  ConsumePerMinute: new Map<string, number>([['Wood', CONSUME_PER_ITERATION.get('Wood')! / ITERATION_TIME_IN_DECIMAL]]),
+  ConsumePerMinute: new Map<string, number>([
+    ['Wood', CONSUME_PER_ITERATION.get('Wood')! / ITERATION_TIME_IN_DECIMAL],
+    ['RiverField', CONSUME_PER_ITERATION.get('RiverField')! / ITERATION_TIME_IN_DECIMAL],
+  ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
 }
@@ -33,6 +44,7 @@ export const SAWMILL_INFO: Building = {
 export const Sawmill = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
+  const providerRef2 = useRef(null)
   return (
     <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Paper
@@ -45,22 +57,48 @@ export const Sawmill = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SawmillIcon} alt={Sawmill.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SawmillIcon}
+            title={capitalCase(Sawmill.name)}
+            alt={Sawmill.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={props.count * (SAWMILL_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count * (SAWMILL_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (SAWMILL_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
+        AND
         <Paper
-          ref={providerRef1}
+          ref={providerRef2}
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Lumberjack
-            count={props.count * (SAWMILL_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
+          <RiverField count={props.count * SAWMILL_INFO.ConsumePerIteration.get('RiverField')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
+      <Arrow start={providerRef2} end={consumerRef} />
     </Box>
   )
 }
@@ -71,6 +109,6 @@ export const SawmillButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={SawmillIcon}
       buildingElement={Sawmill}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import TiltyardIcon from '../../../../assets/icons/buildings/paragons/Tiltyard.png'
 import {
@@ -53,7 +54,13 @@ export const Tiltyard = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={TiltyardIcon} alt={Tiltyard.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={TiltyardIcon}
+            title={capitalCase(Tiltyard.name)}
+            alt={Tiltyard.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -90,6 +97,6 @@ export const TiltyardButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={TiltyardIcon}
       buildingElement={Tiltyard}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

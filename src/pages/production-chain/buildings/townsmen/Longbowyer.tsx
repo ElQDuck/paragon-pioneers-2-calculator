@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LongbowyerIcon from '../../../../assets/icons/buildings/townsmen/Longbowyer.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -17,6 +17,10 @@ import { LINSEED_FARM_INFO, LinseedFarm } from '../colonists/LinseedFarm'
 import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -53,30 +57,55 @@ export const Longbowyer = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LongbowyerIcon} alt={Longbowyer.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LongbowyerIcon}
+            title={capitalCase(Longbowyer.name)}
+            alt={Longbowyer.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Lumberjack
-            count={props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count *
+                  (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (LONGBOWYER_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <LinseedFarm
-            count={props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)}
-          ></LinseedFarm>
-        </Paper>
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <LinseedFarm
+                count={
+                  props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)
+                }
+              />,
+              <FiberMaker
+                count={
+                  props.count * (LONGBOWYER_INFO.ConsumePerMinute.get('Fiber')! / FIBER_MAKER_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -90,6 +119,6 @@ export const LongbowyerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={LongbowyerIcon}
       buildingElement={Longbowyer}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

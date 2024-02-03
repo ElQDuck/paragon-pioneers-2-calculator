@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ConfectioneryIcon from '../../../../assets/icons/buildings/paragons/Confectionery.png'
 import {
@@ -53,7 +54,13 @@ export const Confectionery = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ConfectioneryIcon} alt={Confectionery.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ConfectioneryIcon}
+            title={capitalCase(Confectionery.name)}
+            alt={Confectionery.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -95,6 +102,6 @@ export const ConfectioneryButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={ConfectioneryIcon}
       buildingElement={Confectionery}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

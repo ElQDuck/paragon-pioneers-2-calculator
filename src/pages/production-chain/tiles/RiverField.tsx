@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import RiverFieldIcon from '../../../assets/icons/tiles/RiverField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const RIVER_FIELD_INFO: Tile = {
 export const RiverField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={RiverFieldIcon} alt={RiverField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={RiverFieldIcon}
+        title={capitalCase(RiverField.name)}
+        alt={RiverField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

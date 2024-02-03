@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import NitrateMakerIcon from '../../../../assets/icons/buildings/workers/NitrateMaker.png'
 import {
@@ -47,7 +48,13 @@ export const NitrateMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={NitrateMakerIcon} alt={NitrateMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={NitrateMakerIcon}
+            title={capitalCase(NitrateMaker.name)}
+            alt={NitrateMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const NitrateMakerButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={NitrateMakerIcon}
       buildingElement={NitrateMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

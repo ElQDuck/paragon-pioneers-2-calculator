@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import DrummersSchoolIcon from '../../../../assets/icons/buildings/townsmen/DrummersSchool.png'
 import {
@@ -53,7 +54,13 @@ export const DrummersSchool = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={DrummersSchoolIcon} alt={DrummersSchool.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={DrummersSchoolIcon}
+            title={capitalCase(DrummersSchool.name)}
+            alt={DrummersSchool.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -67,7 +74,7 @@ export const DrummersSchool = (props: { count: number }) => {
             count={
               props.count * (DRUMMERS_SCHOOL_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -79,7 +86,7 @@ export const DrummersSchool = (props: { count: number }) => {
             count={
               props.count * (DRUMMERS_SCHOOL_INFO.ConsumePerMinute.get('Drum')! / DRUM_MAKER_INFO.ProducePerMinute)
             }
-          ></DrumMaker>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -94,6 +101,6 @@ export const DrummersSchoolButton = (props: { updateProductionChanFunction: Func
       buttonIcon={DrummersSchoolIcon}
       buildingElement={DrummersSchool}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

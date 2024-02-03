@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import IronArmoryIcon from '../../../../assets/icons/buildings/merchants/IronArmory.png'
 import {
@@ -19,6 +20,10 @@ import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 import { IRON_SMELTER_INFO, IronSmelter } from './IronSmelter'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
+import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/IronSmelterNorth'
 
 const ITERATION_TIME_IN_SECONDS = 960
 const PRODUCE_PER_ITERATION = 2
@@ -58,38 +63,62 @@ export const IronArmory = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={IronArmoryIcon} alt={IronArmory.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={IronArmoryIcon}
+            title={capitalCase(IronArmory.name)}
+            alt={IronArmory.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMine
-            count={props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMine
+                count={props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
+              />,
+              <CharcoalKiln
+                count={
+                  props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineNorth
+                count={
+                  props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <CharcoalKiln
-            count={props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)}
-          />
-        </Paper>
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <IronSmelter
-            count={
-              props.count * (IRON_ARMORY_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <IronSmelter
+                count={
+                  props.count *
+                  (IRON_ARMORY_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <IronSmelterNorth
+                count={
+                  props.count *
+                  (IRON_ARMORY_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef3}
           elevation={2}
@@ -111,6 +140,6 @@ export const IronArmoryButton = (props: { updateProductionChanFunction: Function
       buttonIcon={IronArmoryIcon}
       buildingElement={IronArmory}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

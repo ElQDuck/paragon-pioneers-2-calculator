@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CopperMineTropicalIcon from '../../../../assets/icons/buildings/farmers/CopperMineTropical.png'
 import {
@@ -47,7 +48,13 @@ export const CopperMineTropical = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CopperMineTropicalIcon} alt={CopperMineTropical.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CopperMineTropicalIcon}
+            title={capitalCase(CopperMineTropical.name)}
+            alt={CopperMineTropical.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -71,6 +78,6 @@ export const CopperMineTropicalButton = (props: { updateProductionChanFunction: 
       buttonIcon={CopperMineTropicalIcon}
       buildingElement={CopperMineTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

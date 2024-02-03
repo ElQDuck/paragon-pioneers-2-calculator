@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CiderMakerIcon from '../../../../assets/icons/buildings/pioneers/CiderMaker.png'
 import {
@@ -47,7 +48,13 @@ export const CiderMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CiderMakerIcon} alt={CiderMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CiderMakerIcon}
+            title={capitalCase(CiderMaker.name)}
+            alt={CiderMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -59,7 +66,7 @@ export const CiderMaker = (props: { count: number }) => {
         >
           <AppleTrees
             count={props.count * (CIDER_MAKER_INFO.ConsumePerMinute.get('Apple')! / APPLE_TREES_INFO.ProducePerMinute)}
-          ></AppleTrees>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +80,6 @@ export const CiderMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={CiderMakerIcon}
       buildingElement={CiderMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

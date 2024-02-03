@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CuirassierAcademyIcon from '../../../../assets/icons/buildings/paragons/CuirassierAcademy.png'
 import {
@@ -53,7 +54,13 @@ export const CuirassierAcademy = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CuirassierAcademyIcon} alt={CuirassierAcademy.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CuirassierAcademyIcon}
+            title={capitalCase(CuirassierAcademy.name)}
+            alt={CuirassierAcademy.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -68,7 +75,7 @@ export const CuirassierAcademy = (props: { count: number }) => {
               props.count *
               (CUIRASSIER_ACADEMY_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -96,6 +103,6 @@ export const CuirassierAcademyButton = (props: { updateProductionChanFunction: F
       buttonIcon={CuirassierAcademyIcon}
       buildingElement={CuirassierAcademy}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

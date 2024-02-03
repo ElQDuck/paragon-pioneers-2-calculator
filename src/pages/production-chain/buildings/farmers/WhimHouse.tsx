@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import WhimHouseIcon from '../../../../assets/icons/buildings/farmers/WhimHouse.png'
 import {
@@ -47,7 +48,13 @@ export const WhimHouse = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={WhimHouseIcon} alt={WhimHouse.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={WhimHouseIcon}
+            title={capitalCase(WhimHouse.name)}
+            alt={WhimHouse.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -76,6 +83,6 @@ export const WhimHouseButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={WhimHouseIcon}
       buildingElement={WhimHouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

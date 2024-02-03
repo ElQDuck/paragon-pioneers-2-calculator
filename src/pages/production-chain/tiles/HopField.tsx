@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import HopFieldIcon from '../../../assets/icons/tiles/HopField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const HOP_FIELD_INFO: Tile = {
 export const HopField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={HopFieldIcon} alt={HopField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={HopFieldIcon}
+        title={capitalCase(HopField.name)}
+        alt={HopField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

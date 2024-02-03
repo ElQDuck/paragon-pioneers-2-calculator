@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import GoldDepositNorthIcon from '../../../assets/icons/tiles/GoldDepositNorth.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const GOLD_DEPOSIT_NORTH_INFO: Tile = {
 export const GoldDepositNorth = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={GoldDepositNorthIcon} alt={GoldDepositNorth.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={GoldDepositNorthIcon}
+        title={capitalCase(GoldDepositNorth.name)}
+        alt={GoldDepositNorth.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

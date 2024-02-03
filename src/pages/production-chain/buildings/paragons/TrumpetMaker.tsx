@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import TrumpetMakerIcon from '../../../../assets/icons/buildings/paragons/TrumpetMaker.png'
 import {
@@ -47,7 +48,13 @@ export const TrumpetMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={TrumpetMakerIcon} alt={TrumpetMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={TrumpetMakerIcon}
+            title={capitalCase(TrumpetMaker.name)}
+            alt={TrumpetMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -76,6 +83,6 @@ export const TrumpetMakerButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={TrumpetMakerIcon}
       buildingElement={TrumpetMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

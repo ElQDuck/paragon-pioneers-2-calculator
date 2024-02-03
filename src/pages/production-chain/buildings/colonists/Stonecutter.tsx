@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import StonecutterIcon from '../../../../assets/icons/buildings/colonists/Stonecutter.png'
 import {
@@ -47,7 +48,13 @@ export const Stonecutter = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={StonecutterIcon} alt={Stonecutter.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={StonecutterIcon}
+            title={capitalCase(Stonecutter.name)}
+            alt={Stonecutter.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -57,7 +64,7 @@ export const Stonecutter = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Cliff count={props.count * STONECUTTER_INFO.ConsumePerIteration.get('Cliff')!}></Cliff>
+          <Cliff count={props.count * STONECUTTER_INFO.ConsumePerIteration.get('Cliff')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -71,6 +78,6 @@ export const StonecutterButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={StonecutterIcon}
       buildingElement={Stonecutter}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

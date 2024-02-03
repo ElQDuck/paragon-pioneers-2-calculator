@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import BerserkerHallIcon from '../../../../assets/icons/buildings/colonists/BerserkerHall.png'
 import {
@@ -53,7 +54,13 @@ export const BerserkerHall = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BerserkerHallIcon} alt={BerserkerHall.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BerserkerHallIcon}
+            title={capitalCase(BerserkerHall.name)}
+            alt={BerserkerHall.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -67,7 +74,7 @@ export const BerserkerHall = (props: { count: number }) => {
             count={
               props.count * (BERSERKER_HALL_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -80,7 +87,7 @@ export const BerserkerHall = (props: { count: number }) => {
               props.count *
               (BERSERKER_HALL_INFO.ConsumePerMinute.get('CopperAxe')! / COPPER_AXESMITH_INFO.ProducePerMinute)
             }
-          ></CopperAxesmith>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -95,6 +102,6 @@ export const BerserkerHallButton = (props: { updateProductionChanFunction: Funct
       buttonIcon={BerserkerHallIcon}
       buildingElement={BerserkerHall}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

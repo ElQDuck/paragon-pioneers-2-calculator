@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import SugarBeetFieldIcon from '../../../assets/icons/tiles/SugarBeetField.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const SUGAR_BEET_FIELD_INFO: Tile = {
 export const SugarBeetField = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={SugarBeetFieldIcon} alt={SugarBeetField.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={SugarBeetFieldIcon}
+        title={capitalCase(SugarBeetField.name)}
+        alt={SugarBeetField.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

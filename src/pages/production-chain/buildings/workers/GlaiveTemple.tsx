@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import GlaiveTempleIcon from '../../../../assets/icons/buildings/workers/GlaiveTemple.png'
 import {
@@ -53,7 +54,13 @@ export const GlaiveTemple = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={GlaiveTempleIcon} alt={GlaiveTemple.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={GlaiveTempleIcon}
+            title={capitalCase(GlaiveTemple.name)}
+            alt={GlaiveTemple.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -94,6 +101,6 @@ export const GlaiveTempleButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={GlaiveTempleIcon}
       buildingElement={GlaiveTemple}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

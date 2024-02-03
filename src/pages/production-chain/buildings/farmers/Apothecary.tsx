@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ApothecaryIcon from '../../../../assets/icons/buildings/farmers/Apothecary.png'
 import {
@@ -17,6 +18,8 @@ import { CROCODILE_RANCH_INFO, CrocodileRanch } from './CrocodileRanch'
 import { RUM_DISTILLERY_INFO, RumDistillery } from './RumDistillery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { Tannery, TANNERY_INFO } from '../townsmen/Tannery'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -53,22 +56,32 @@ export const Apothecary = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ApothecaryIcon} alt={Apothecary.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ApothecaryIcon}
+            title={capitalCase(Apothecary.name)}
+            alt={Apothecary.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CrocodileRanch
-            count={
-              props.count * (APOTHECARY_INFO.ConsumePerMinute.get('Leather')! / CROCODILE_RANCH_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CrocodileRanch
+                count={
+                  props.count *
+                  (APOTHECARY_INFO.ConsumePerMinute.get('Leather')! / CROCODILE_RANCH_INFO.ProducePerMinute)
+                }
+              />,
+              <Tannery
+                count={(props.count * APOTHECARY_INFO.ConsumePerMinute.get('Leather')!) / TANNERY_INFO.ProducePerMinute}
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -92,6 +105,6 @@ export const ApothecaryButton = (props: { updateProductionChanFunction: Function
       buttonIcon={ApothecaryIcon}
       buildingElement={Apothecary}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

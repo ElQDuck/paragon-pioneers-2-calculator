@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import GlassworksIcon from '../../../../assets/icons/buildings/paragons/Glassworks.png'
 import {
@@ -19,6 +20,7 @@ import { BOULDER_GATHERER_INFO, BoulderGatherer } from '../townsmen/BoulderGathe
 import { QUARTZ_QUARRY_INFO, QuartzQuarry } from './QuartzQuarry'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 2
@@ -58,29 +60,34 @@ export const Glassworks = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={GlassworksIcon} alt={Glassworks.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={GlassworksIcon}
+            title={capitalCase(Glassworks.name)}
+            alt={Glassworks.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Stonecutter
-            count={
-              props.count * (GLASSWORKS_INFO.ConsumePerMinute.get('Limestone')! / STONECUTTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Stonecutter
+                count={
+                  props.count * (GLASSWORKS_INFO.ConsumePerMinute.get('Limestone')! / STONECUTTER_INFO.ProducePerMinute)
+                }
+              />,
+              <BoulderGatherer
+                count={
+                  props.count *
+                  (GLASSWORKS_INFO.ConsumePerMinute.get('Limestone')! / BOULDER_GATHERER_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <BoulderGatherer
-            count={
-              props.count *
-              (GLASSWORKS_INFO.ConsumePerMinute.get('Limestone')! / BOULDER_GATHERER_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -117,6 +124,6 @@ export const GlassworksButton = (props: { updateProductionChanFunction: Function
       buttonIcon={GlassworksIcon}
       buildingElement={Glassworks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

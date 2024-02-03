@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LimeKilnIcon from '../../../../assets/icons/buildings/colonists/LimeKiln.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -18,6 +18,9 @@ import { BOULDER_GATHERER_INFO, BoulderGatherer } from '../townsmen/BoulderGathe
 import { STONECUTTER_INFO, Stonecutter } from './Stonecutter'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -54,38 +57,56 @@ export const LimeKiln = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LimeKilnIcon} alt={LimeKiln.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LimeKilnIcon}
+            title={capitalCase(LimeKiln.name)}
+            alt={LimeKiln.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Lumberjack
-            count={props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
-          ></Lumberjack>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count *
+                  (LIME_KILN_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (LIME_KILN_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Stonecutter
-            count={
-              props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Limestone')! / STONECUTTER_INFO.ProducePerMinute)
-            }
-          ></Stonecutter>
-          OR
-          <BoulderGatherer
-            count={
-              props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Limestone')! / BOULDER_GATHERER_INFO.ProducePerMinute)
-            }
-          ></BoulderGatherer>
-        </Paper>
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Stonecutter
+                count={
+                  props.count * (LIME_KILN_INFO.ConsumePerMinute.get('Limestone')! / STONECUTTER_INFO.ProducePerMinute)
+                }
+              />,
+              <BoulderGatherer
+                count={
+                  props.count *
+                  (LIME_KILN_INFO.ConsumePerMinute.get('Limestone')! / BOULDER_GATHERER_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -99,6 +120,6 @@ export const LimeKilnButton = (props: { updateProductionChanFunction: Function }
       buttonIcon={LimeKilnIcon}
       buildingElement={LimeKiln}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

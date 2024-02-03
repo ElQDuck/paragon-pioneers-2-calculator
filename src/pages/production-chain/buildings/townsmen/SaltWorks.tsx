@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SaltWorksIcon from '../../../../assets/icons/buildings/townsmen/SaltWorks.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -18,6 +18,10 @@ import { COAL_MINE_INFO, CoalMine } from './CoalMine'
 import { ROCK_SALT_MINE_INFO, RockSaltMine } from './RockSaltMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
+import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
+import { ROCK_SALT_MINE_NORTH_INFO, RockSaltMineNorth } from '../northern-islands/RockSaltMineNorth'
 
 const ITERATION_TIME_IN_SECONDS = 720
 const PRODUCE_PER_ITERATION = 2
@@ -54,36 +58,61 @@ export const SaltWorks = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SaltWorksIcon} alt={SaltWorks.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SaltWorksIcon}
+            title={capitalCase(SaltWorks.name)}
+            alt={SaltWorks.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoalMine
-            count={props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
-          ></CoalMine>
-          OR
-          <CharcoalKiln
-            count={props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)}
-          ></CharcoalKiln>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoalMine
+                count={props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)}
+              />,
+              <CharcoalKiln
+                count={
+                  props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineTropical
+                count={
+                  props.count *
+                  (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CoalMineNorth
+                count={
+                  props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <RockSaltMine
-            count={
-              props.count * (SALT_WORKS_INFO.ConsumePerMinute.get('RockSalt')! / ROCK_SALT_MINE_INFO.ProducePerMinute)
-            }
-          ></RockSaltMine>
-        </Paper>
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <RockSaltMine
+                count={
+                  props.count *
+                  (SALT_WORKS_INFO.ConsumePerMinute.get('RockSalt')! / ROCK_SALT_MINE_INFO.ProducePerMinute)
+                }
+              />,
+              <RockSaltMineNorth
+                count={
+                  props.count *
+                  (SALT_WORKS_INFO.ConsumePerMinute.get('RockSalt')! / ROCK_SALT_MINE_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -97,6 +126,6 @@ export const SaltWorksButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={SaltWorksIcon}
       buildingElement={SaltWorks}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

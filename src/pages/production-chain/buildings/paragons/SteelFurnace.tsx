@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import SteelFurnaceIcon from '../../../../assets/icons/buildings/paragons/SteelFurnace.png'
 import {
@@ -19,6 +20,8 @@ import { IRON_SMELTER_INFO, IronSmelter } from '../merchants/IronSmelter'
 import { COKERY_INFO, Cokery } from './Cokery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/IronSmelterNorth'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -61,7 +64,13 @@ export const SteelFurnace = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={SteelFurnaceIcon} alt={SteelFurnace.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={SteelFurnaceIcon}
+            title={capitalCase(SteelFurnace.name)}
+            alt={SteelFurnace.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -88,19 +97,25 @@ export const SteelFurnace = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef3}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <IronSmelter
-            count={
-              props.count * (STEEL_FURNACE_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef3}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <IronSmelter
+                count={
+                  props.count *
+                  (STEEL_FURNACE_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <IronSmelterNorth
+                count={
+                  props.count *
+                  (STEEL_FURNACE_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef4}
           elevation={2}
@@ -123,6 +138,6 @@ export const SteelFurnaceButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={SteelFurnaceIcon}
       buildingElement={SteelFurnace}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

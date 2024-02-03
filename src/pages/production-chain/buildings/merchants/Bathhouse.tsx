@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import BathhouseIcon from '../../../../assets/icons/buildings/merchants/Bathhouse.png'
 import {
@@ -18,6 +19,8 @@ import { TEXTILE_FACTORY_INFO, TextileFactory } from '../colonists/TextileFactor
 import { WEAVER_INFO, Weaver } from '../colonists/Weaver'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { SPINNING_MILL_INFO, SpinningMill } from '../workers/SpinningMill'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 48 // => Amount of buildings within range
@@ -54,7 +57,13 @@ export const Bathhouse = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={BathhouseIcon} alt={Bathhouse.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={BathhouseIcon}
+            title={capitalCase(Bathhouse.name)}
+            alt={Bathhouse.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -64,14 +73,22 @@ export const Bathhouse = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Weaver
-            count={props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
-          />
-          OR
-          <TextileFactory
-            count={
-              props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
-            }
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Weaver
+                count={props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
+              />,
+              <TextileFactory
+                count={
+                  props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
+                }
+              />,
+              <SpinningMill
+                count={
+                  props.count * (BATHHOUSE_INFO.ConsumePerMinute.get('Fabric')! / SPINNING_MILL_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
         </Paper>
         AND
@@ -97,6 +114,6 @@ export const BathhouseButton = (props: { updateProductionChanFunction: Function 
       buttonIcon={BathhouseIcon}
       buildingElement={Bathhouse}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

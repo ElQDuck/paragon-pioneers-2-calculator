@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import MarbleDepositNorthIcon from '../../../assets/icons/tiles/MarbleDepositNorth.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const MARBLE_DEPOSIT_NORTH_INFO: Tile = {
 export const MarbleDepositNorth = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={MarbleDepositNorthIcon} alt={MarbleDepositNorth.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={MarbleDepositNorthIcon}
+        title={capitalCase(MarbleDepositNorth.name)}
+        alt={MarbleDepositNorth.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

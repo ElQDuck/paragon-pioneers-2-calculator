@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import RidingArenaIcon from '../../../../assets/icons/buildings/townsmen/RidingArena.png'
 import {
@@ -53,7 +54,13 @@ export const RidingArena = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={RidingArenaIcon} alt={RidingArena.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={RidingArenaIcon}
+            title={capitalCase(RidingArena.name)}
+            alt={RidingArena.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -67,7 +74,7 @@ export const RidingArena = (props: { count: number }) => {
             count={
               props.count * (RIDING_ARENA_INFO.ConsumePerMinute.get('Militia')! / PIONEERS_HUT_INFO.ProducePerMinute)
             }
-          ></PioneersHut>
+          />
         </Paper>
         AND
         <Paper
@@ -79,7 +86,7 @@ export const RidingArena = (props: { count: number }) => {
             count={
               props.count * (RIDING_ARENA_INFO.ConsumePerMinute.get('Horse')! / HORSE_BREEDER_INFO.ProducePerMinute)
             }
-          ></HorseBreeder>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -94,6 +101,6 @@ export const RidingArenaButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={RidingArenaIcon}
       buildingElement={RidingArena}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

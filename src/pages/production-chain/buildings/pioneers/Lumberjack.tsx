@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import LumberjackIcon from '../../../../assets/icons/buildings/pioneers/Lumberjack.png'
@@ -46,7 +47,13 @@ export const Lumberjack = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LumberjackIcon} alt={Lumberjack.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LumberjackIcon}
+            title={capitalCase(Lumberjack.name)}
+            alt={Lumberjack.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -58,7 +65,7 @@ export const Lumberjack = (props: { count: number }) => {
         >
           <Forest
             count={props.count * (LUMBERJACK_INFO.ConsumePerMinute.get('Forest')! / FOREST_INFO.ProducePerMinute)}
-          ></Forest>
+          />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -72,6 +79,6 @@ export const LumberjackButton = (props: { updateProductionChanFunction: Function
       buttonIcon={LumberjackIcon}
       buildingElement={Lumberjack}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

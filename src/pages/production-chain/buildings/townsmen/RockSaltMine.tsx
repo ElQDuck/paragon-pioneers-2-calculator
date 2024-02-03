@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import RockSaltMineIcon from '../../../../assets/icons/buildings/townsmen/RockSaltMine.png'
 import {
@@ -47,7 +48,13 @@ export const RockSaltMine = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={RockSaltMineIcon} alt={RockSaltMine.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={RockSaltMineIcon}
+            title={capitalCase(RockSaltMine.name)}
+            alt={RockSaltMine.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -57,9 +64,7 @@ export const RockSaltMine = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <RockSaltDeposit
-            count={props.count * ROCK_SALT_MINE_INFO.ConsumePerIteration.get('RockSaltDeposit')!}
-          ></RockSaltDeposit>
+          <RockSaltDeposit count={props.count * ROCK_SALT_MINE_INFO.ConsumePerIteration.get('RockSaltDeposit')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -73,6 +78,6 @@ export const RockSaltMineButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={RockSaltMineIcon}
       buildingElement={RockSaltMine}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { capitalCase } from 'change-case'
 import GemstoneDepositIcon from '../../../assets/icons/tiles/GemstoneDeposit.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
@@ -16,7 +17,13 @@ export const GEMSTONE_DEPOSIT_INFO: Tile = {
 export const GemstoneDeposit = (props: { count: number }) => {
   return (
     <Box sx={SingleBuildingWithCount}>
-      <img src={GemstoneDepositIcon} alt={GemstoneDeposit.name} style={BuildingImageSize} />
+      <Box
+        component="img"
+        src={GemstoneDepositIcon}
+        title={capitalCase(GemstoneDeposit.name)}
+        alt={GemstoneDeposit.name}
+        sx={BuildingImageSize}
+      />
       {Number(props.count.toFixed(2))}
     </Box>
   )

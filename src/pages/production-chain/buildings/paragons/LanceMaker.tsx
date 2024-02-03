@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import LanceMakerIcon from '../../../../assets/icons/buildings/paragons/LanceMaker.png'
 import {
@@ -17,6 +18,9 @@ import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { INDIGO_PLANTATION_INFO, IndigoPlantation } from '../workers/IndigoPlantation'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
@@ -53,7 +57,13 @@ export const LanceMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={LanceMakerIcon} alt={LanceMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={LanceMakerIcon}
+            title={capitalCase(LanceMaker.name)}
+            alt={LanceMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -70,15 +80,29 @@ export const LanceMaker = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Lumberjack
-            count={props.count * (LANCE_MAKER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)}
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={
+                  props.count * (LANCE_MAKER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count *
+                  (LANCE_MAKER_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (LANCE_MAKER_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -92,6 +116,6 @@ export const LanceMakerButton = (props: { updateProductionChanFunction: Function
       buttonIcon={LanceMakerIcon}
       buildingElement={LanceMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

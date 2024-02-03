@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import ChocolaterieIcon from '../../../../assets/icons/buildings/workers/Chocolaterie.png'
 import {
@@ -18,6 +19,8 @@ import { SUGAR_WINDMILL_INFO, SugarWindmill } from '../farmers/SugarWindmill'
 import { CACAO_PLANTATION_INFO, CacaoPlantation } from './CacaoPlantation'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { SUGAR_BEET_FARM_INFO, SugarBeetFarm } from '../merchants/SugarBeetFarm'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 2
@@ -54,26 +57,40 @@ export const Chocolaterie = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={ChocolaterieIcon} alt={Chocolaterie.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={ChocolaterieIcon}
+            title={capitalCase(Chocolaterie.name)}
+            alt={Chocolaterie.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SugarMill
-            count={props.count * (CHOCOLATERIE_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_MILL_INFO.ProducePerMinute)}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SugarMill
+                count={
+                  props.count * (CHOCOLATERIE_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_MILL_INFO.ProducePerMinute)
+                }
+              />,
+              <SugarWindmill
+                count={
+                  props.count *
+                  (CHOCOLATERIE_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_WINDMILL_INFO.ProducePerMinute)
+                }
+              />,
+              <SugarBeetFarm
+                count={
+                  props.count *
+                  (CHOCOLATERIE_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_BEET_FARM_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <SugarWindmill
-            count={
-              props.count * (CHOCOLATERIE_INFO.ConsumePerMinute.get('Sugar')! / SUGAR_WINDMILL_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
@@ -99,6 +116,6 @@ export const ChocolaterieButton = (props: { updateProductionChanFunction: Functi
       buttonIcon={ChocolaterieIcon}
       buildingElement={Chocolaterie}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

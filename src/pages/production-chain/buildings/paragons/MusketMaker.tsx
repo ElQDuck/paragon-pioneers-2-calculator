@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import MusketMakerIcon from '../../../../assets/icons/buildings/paragons/MusketMaker.png'
 import {
@@ -61,7 +62,13 @@ export const MusketMaker = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={MusketMakerIcon} alt={MusketMaker.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={MusketMakerIcon}
+            title={capitalCase(MusketMaker.name)}
+            alt={MusketMaker.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -103,7 +110,6 @@ export const MusketMaker = (props: { count: number }) => {
           />
         </Paper>
         AND
-        {/* TODO: Add river field to all buildings which need to be build on top of*/}
         <Paper
           ref={providerRef4}
           elevation={2}
@@ -126,6 +132,6 @@ export const MusketMakerButton = (props: { updateProductionChanFunction: Functio
       buttonIcon={MusketMakerIcon}
       buildingElement={MusketMaker}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

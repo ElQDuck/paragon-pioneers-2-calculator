@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import CopperAxesmithIcon from '../../../../assets/icons/buildings/colonists/CopperAxesmith.png'
 import {
@@ -7,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -17,6 +17,11 @@ import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { COPPER_SMELTER_INFO, CopperSmelter } from './CopperSmelter'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/CopperSmelterTropical'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
+import { COPPER_SMELTER_NORTH_INFO, CopperSmelterNorth } from '../northern-islands/CopperSmelterNorth'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -53,35 +58,67 @@ export const CopperAxesmith = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={CopperAxesmithIcon} alt={CopperAxesmith.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={CopperAxesmithIcon}
+            title={capitalCase(CopperAxesmith.name)}
+            alt={CopperAxesmith.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <Lumberjack
-            count={
-              props.count * (COPPER_AXESMITH_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
-            }
-          ></Lumberjack>
-        </Paper>
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Lumberjack
+                count={
+                  props.count * (COPPER_AXESMITH_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ConiferLumberjack
+                count={
+                  props.count *
+                  (COPPER_AXESMITH_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
+                }
+              />,
+              <ForestWardensCabin
+                count={
+                  props.count *
+                  (COPPER_AXESMITH_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CopperSmelter
-            count={
-              props.count *
-              (COPPER_AXESMITH_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
-            }
-          ></CopperSmelter>
-        </Paper>
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CopperSmelter
+                count={
+                  props.count *
+                  (COPPER_AXESMITH_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterTropical
+                count={
+                  props.count *
+                  (COPPER_AXESMITH_INFO.ConsumePerMinute.get('CopperIngot')! /
+                    COPPER_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterNorth
+                count={
+                  props.count *
+                  (COPPER_AXESMITH_INFO.ConsumePerMinute.get('CopperIngot')! /
+                    COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />
@@ -95,6 +132,6 @@ export const CopperAxesmithButton = (props: { updateProductionChanFunction: Func
       buttonIcon={CopperAxesmithIcon}
       buildingElement={CopperAxesmith}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

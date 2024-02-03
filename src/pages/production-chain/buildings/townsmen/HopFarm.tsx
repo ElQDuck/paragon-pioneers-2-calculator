@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import { capitalCase } from 'change-case'
 import { useRef } from 'react'
 import HopFarmIcon from '../../../../assets/icons/buildings/townsmen/HopFarm.png'
 import {
@@ -45,7 +46,13 @@ export const HopFarm = (props: { count: number }) => {
         }}
       >
         <Box sx={SingleBuildingWithCount}>
-          <img src={HopFarmIcon} alt={HopFarm.name} style={BuildingImageSize} />
+          <Box
+            component="img"
+            src={HopFarmIcon}
+            title={capitalCase(HopFarm.name)}
+            alt={HopFarm.name}
+            sx={BuildingImageSize}
+          />
           {Number(props.count.toFixed(2))}
         </Box>
       </Paper>
@@ -55,7 +62,7 @@ export const HopFarm = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <HopField count={props.count * HOP_FARM_INFO.ConsumePerIteration.get('Hop')!}></HopField>
+          <HopField count={props.count * HOP_FARM_INFO.ConsumePerIteration.get('Hop')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
@@ -69,6 +76,6 @@ export const HopFarmButton = (props: { updateProductionChanFunction: Function })
       buttonIcon={HopFarmIcon}
       buildingElement={HopFarm}
       updateProductionChanFunction={props.updateProductionChanFunction}
-    ></BuildingButton>
+    />
   )
 }

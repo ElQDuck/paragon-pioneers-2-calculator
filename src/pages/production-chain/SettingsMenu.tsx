@@ -5,10 +5,11 @@ import Tooltip from '@mui/material/Tooltip'
 import { SxProps, Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useState } from 'react'
-import { globalInvertBuildingChainOrder, globalNumberInputReadOnly } from '../../App'
+import { globalExpertMode, globalInvertBuildingChainOrder, globalNumberInputReadOnly } from '../../App'
 import { theme } from '../../assets/styling/Theme'
 
 export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Function }) => {
+  const [expertModeSwitchState, setExpertModeSwitchState] = useState<boolean>(globalExpertMode.value)
   const [numberInputReadOnlySwitchState, setNumberInputReadOnlySwitchState] = useState<boolean>(
     globalNumberInputReadOnly.value
   )
@@ -22,7 +23,7 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
   const labelPlacement = 'start'
 
   const expertModeDescription =
-    'Toggle between: showing all possible building combinations / showing only the next possible building.'
+    'Toggle between: showing all possible building combinations / showing only the next possible building. Showing the alternative buildings can also be triggered manually.'
   const numberInputReadOnlyDescription =
     'Make the number input field editable. Note: If turned on, the mobile keyboard will popup if the increment/decrement button is pressed.'
   const changeBuildingOrderDescription = 'Toggle how the building order is displayed: left -> right / right -> left'
@@ -33,7 +34,18 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
         <FormControlLabel
           label="Expert Mode"
           labelPlacement={labelPlacement}
-          control={<Switch color={switchColor} disabled />}
+          control={
+            <Switch
+              color={switchColor}
+              checked={expertModeSwitchState}
+              onChange={() => {
+                globalExpertMode.value = !globalExpertMode.value
+                // Saving the state in web storage
+                localStorage.setItem('globalExpertMode', String(globalExpertMode.value))
+                setExpertModeSwitchState(!expertModeSwitchState)
+              }}
+            />
+          }
           sx={formControlStyling}
         />
       </Tooltip>
@@ -69,6 +81,9 @@ export const SettingsMenu = (props: { drawerOpen: boolean; setDrawerOpen: Functi
                 // Saving the state in web storage
                 localStorage.setItem('globalInvertBuildingChainOrder', String(globalInvertBuildingChainOrder.value))
                 setInvertBuildingChainOrderSwitchState(!invertBuildingChainOrderSwitchState)
+                // Reloading the page so the user is aware of changes
+                // TODO: Optimize this
+                window.location.reload()
               }}
             />
           }
