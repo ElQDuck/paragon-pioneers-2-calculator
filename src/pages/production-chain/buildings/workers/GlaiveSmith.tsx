@@ -19,6 +19,7 @@ import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/I
 import { GEMSTONE_MINE_INFO, GemstoneMine } from './GemstoneMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -66,24 +67,24 @@ export const GlaiveSmith = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <IronSmelter
-            count={
-              props.count * (GLAIVE_SMITH_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <IronSmelter
+                count={
+                  props.count *
+                  (GLAIVE_SMITH_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <IronSmelterNorth
+                count={
+                  props.count *
+                  (GLAIVE_SMITH_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <IronSmelterNorth
-            count={
-              props.count *
-              (GLAIVE_SMITH_INFO.ConsumePerMinute.get('IronIngot')! / IRON_SMELTER_NORTH_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}

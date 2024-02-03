@@ -20,6 +20,8 @@ import { GOLD_PANNER_INFO, GoldPanner } from './GoldPanner'
 import { GOLD_SMELTER_TROPICAL_INFO, GoldSmelterTropical } from './GoldSmelterTropical'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { GOLD_SMELTER_INFO, GoldSmelter } from '../merchants/GoldSmelter'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -67,32 +69,37 @@ export const HeraldicArmourer = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <GoldSmelterTropical
-            count={
-              props.count *
-              (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_TROPICAL_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <GoldSmelterTropical
+                count={
+                  props.count *
+                  (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! /
+                    GOLD_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldPanner
+                count={
+                  props.count *
+                  (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_PANNER_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldSmelterNorth
+                count={
+                  props.count *
+                  (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <GoldSmelter
+                count={
+                  props.count *
+                  (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <GoldPanner
-            count={
-              props.count *
-              (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_PANNER_INFO.ProducePerMinute)
-            }
-          />
-          OR
-          <GoldSmelterNorth
-            count={
-              props.count *
-              (HERALDIC_ARMOURER_INFO.ConsumePerMinute.get('GoldIngot')! / GOLD_SMELTER_NORTH_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}

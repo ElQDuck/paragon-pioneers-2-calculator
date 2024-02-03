@@ -20,6 +20,7 @@ import { INDIGO_PLANTATION_INFO, IndigoPlantation } from './IndigoPlantation'
 import { SPINNING_MILL_INFO, SpinningMill } from './SpinningMill'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
@@ -79,25 +80,25 @@ export const Costumier = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <SpinningMill
-            count={props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / SPINNING_MILL_INFO.ProducePerMinute)}
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <SpinningMill
+                count={
+                  props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / SPINNING_MILL_INFO.ProducePerMinute)
+                }
+              />,
+              <Weaver
+                count={props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
+              />,
+              <TextileFactory
+                count={
+                  props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-          OR
-          <Weaver
-            count={props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / WEAVER_INFO.ProducePerMinute)}
-          />
-          OR
-          <TextileFactory
-            count={
-              props.count * (COSTUMIER_INFO.ConsumePerMinute.get('Fabric')! / TEXTILE_FACTORY_INFO.ProducePerMinute)
-            }
-          />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
       <Arrow start={providerRef2} end={consumerRef} />

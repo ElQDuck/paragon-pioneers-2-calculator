@@ -17,7 +17,9 @@ import { Building } from '../../../../types/Building'
 import { COTTON_PLANTATION_INFO, CottonPlantation } from './CottonPlantation'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { RiverFieldTropical } from '../../tiles/RiverFieldTropical'
+import { SHEEP_FARM_INFO, SheepFarm } from '../colonists/SheepFarm'
 
 const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 3
@@ -65,17 +67,23 @@ export const SpinningMill = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CottonPlantation
-            count={
-              props.count * (SPINNING_MILL_INFO.ConsumePerMinute.get('Yarn')! / COTTON_PLANTATION_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CottonPlantation
+                count={
+                  props.count *
+                  (SPINNING_MILL_INFO.ConsumePerMinute.get('Yarn')! / COTTON_PLANTATION_INFO.ProducePerMinute)
+                }
+              />,
+              <SheepFarm
+                count={
+                  props.count * (SPINNING_MILL_INFO.ConsumePerMinute.get('Yarn')! / SHEEP_FARM_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}
