@@ -27,11 +27,11 @@ import { CopperMineButton } from './buildings/colonists/CopperMine'
 import { CopperSmelterButton } from './buildings/colonists/CopperSmelter'
 import { FlourMillButton } from './buildings/colonists/FlourMill'
 import { FlourWindmillButton } from './buildings/colonists/FlourWindmill'
-import { GrainBinButton } from './buildings/colonists/GrainBin'
 import { LimeKilnButton } from './buildings/colonists/LimeKiln'
 import { LinseedFarmButton } from './buildings/colonists/LinseedFarm'
 import { MortarBatchWorksButton } from './buildings/colonists/MortarBatchWorks'
 import { RenderingWorksButton } from './buildings/colonists/RenderingWorks'
+import { RickyardButton } from './buildings/colonists/Rickyard'
 import { RoperyButton } from './buildings/colonists/Ropery'
 import { SheepFarmButton } from './buildings/colonists/SheepFarm'
 import { SoapMakerButton } from './buildings/colonists/SoapMaker'
@@ -212,12 +212,12 @@ import { GlaiveTempleButton } from './buildings/workers/GlaiveTemple'
 import { GoldMineTropicalButton } from './buildings/workers/GoldMineTropical'
 import { GoldPannerButton } from './buildings/workers/GoldPanner'
 import { GoldSmelterTropicalButton } from './buildings/workers/GoldSmelterTropical'
-import { GrainBinTropicalButton } from './buildings/workers/GrainBinTropical'
 import { HeraldicArmourerButton } from './buildings/workers/HeraldicArmourer'
 import { IndigoPlantationButton } from './buildings/workers/IndigoPlantation'
 import { LuthierButton } from './buildings/workers/Luthier'
 import { NitrateMakerButton } from './buildings/workers/NitrateMaker'
 import { NobleTailorButton } from './buildings/workers/NobleTailor'
+import { RickyardTropicalButton } from './buildings/workers/RickyardTropical'
 import { ShieldGuardianTempleButton } from './buildings/workers/ShieldGuardianTemple'
 import { SilkPlantationButton } from './buildings/workers/SilkPlantation'
 import { SilkTwineMillButton } from './buildings/workers/SilkTwineMill'
@@ -378,7 +378,7 @@ export const ProductionChainPage = () => {
             <MortarBatchWorksButton updateProductionChanFunction={updateProductionChainMap} />
             <TextileFactoryButton updateProductionChanFunction={updateProductionChainMap} />
             <FlourWindmillButton updateProductionChanFunction={updateProductionChainMap} />
-            <GrainBinButton updateProductionChanFunction={updateProductionChainMap} />
+            <RickyardButton updateProductionChanFunction={updateProductionChainMap} />
             <CopperAxesmithButton updateProductionChanFunction={updateProductionChainMap} />
             <BerserkerHallButton updateProductionChanFunction={updateProductionChainMap} />
           </Box>
@@ -555,7 +555,7 @@ export const ProductionChainPage = () => {
             <NitrateMakerButton updateProductionChanFunction={updateProductionChainMap} />
             <CottonPlantationButton updateProductionChanFunction={updateProductionChainMap} />
             <SpinningMillButton updateProductionChanFunction={updateProductionChainMap} />
-            <GrainBinTropicalButton updateProductionChanFunction={updateProductionChainMap} />
+            <RickyardTropicalButton updateProductionChanFunction={updateProductionChainMap} />
             <BuffaloPastureButton updateProductionChanFunction={updateProductionChainMap} />
             <HeraldicArmourerButton updateProductionChanFunction={updateProductionChainMap} />
             <ShieldGuardianTempleButton updateProductionChanFunction={updateProductionChainMap} />

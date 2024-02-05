@@ -28,7 +28,7 @@ const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Wood', 10],
+  ['Wood', 8],
   ['Copper', 1],
 ])
 export const COPPER_SMELTER_NORTH_INFO: Building = {

@@ -4,7 +4,7 @@ import ConiferForestIcon from '../../../assets/icons/tiles/ConiferForest.png'
 import { BuildingImageSize, SingleBuildingWithCount } from '../../../assets/styling/BuildingStyle'
 import { Tile } from '../../../types/Tile'
 
-const ITERATION_TIME_IN_SECONDS = 240
+const ITERATION_TIME_IN_SECONDS = 720
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 // TODO: Tree producion depends on amount of trees on tile. Solution: Add smal tile selector so the user can select with how much trees per tile he wants to calculate.
 const PRODUCE_PER_ITERATION = 2

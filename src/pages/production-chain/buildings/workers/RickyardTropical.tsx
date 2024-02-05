@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
 import { useRef } from 'react'
-import GrainBinTropicalIcon from '../../../../assets/icons/buildings/workers/GrainBinTropical.png'
+import RickyardTropicalIcon from '../../../../assets/icons/buildings/workers/RickyardTropical.png'
 import {
   BuildingGroup,
   BuildingImageSize,
@@ -22,7 +22,7 @@ const ITERATION_TIME_IN_SECONDS = 60
 const PRODUCE_PER_ITERATION = 24 // => Amount of buildings within range
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Wheat', 1]])
-export const GRAIN_BIN_TROPICAL_INFO: Building = {
+export const RICKYARD_TROPICAL_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
@@ -33,7 +33,7 @@ export const GRAIN_BIN_TROPICAL_INFO: Building = {
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
 }
 
-export const GrainBinTropical = (props: { count: number }) => {
+export const RickyardTropical = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
   return (
@@ -50,9 +50,9 @@ export const GrainBinTropical = (props: { count: number }) => {
         <Box sx={SingleBuildingWithCount}>
           <Box
             component="img"
-            src={GrainBinTropicalIcon}
-            title={capitalCase(GrainBinTropical.name)}
-            alt={GrainBinTropical.name}
+            src={RickyardTropicalIcon}
+            title={capitalCase(RickyardTropical.name)}
+            alt={RickyardTropical.name}
             sx={BuildingImageSize}
           />
           {Number(props.count.toFixed(2))}
@@ -66,7 +66,7 @@ export const GrainBinTropical = (props: { count: number }) => {
         >
           <WheatFarm
             count={
-              props.count * (GRAIN_BIN_TROPICAL_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)
+              props.count * (RICKYARD_TROPICAL_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)
             }
           />
         </Paper>
@@ -76,11 +76,11 @@ export const GrainBinTropical = (props: { count: number }) => {
   )
 }
 
-export const GrainBinTropicalButton = (props: { updateProductionChanFunction: Function }) => {
+export const RickyardTropicalButton = (props: { updateProductionChanFunction: Function }) => {
   return (
     <BuildingButton
-      buttonIcon={GrainBinTropicalIcon}
-      buildingElement={GrainBinTropical}
+      buttonIcon={RickyardTropicalIcon}
+      buildingElement={RickyardTropical}
       updateProductionChanFunction={props.updateProductionChanFunction}
     />
   )

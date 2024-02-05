@@ -22,7 +22,7 @@ import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 240
-const PRODUCE_PER_ITERATION = 15
+const PRODUCE_PER_ITERATION = 7
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['GoldIngot', 1]])
 export const COINING_PRESS_INFO: Building = {
