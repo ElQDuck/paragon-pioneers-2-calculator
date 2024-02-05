@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
 import { useRef } from 'react'
-import GrainBinIcon from '../../../../assets/icons/buildings/colonists/GrainBin.png'
+import RickyardIcon from '../../../../assets/icons/buildings/colonists/Rickyard.png'
 import {
   BuildingGroup,
   BuildingImageSize,
@@ -22,7 +22,7 @@ const ITERATION_TIME_IN_SECONDS = 60
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Wheat', 1]])
-export const GRAIN_BIN_INFO: Building = {
+export const RICKYARD_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
@@ -33,7 +33,7 @@ export const GRAIN_BIN_INFO: Building = {
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
 }
 
-export const GrainBin = (props: { count: number }) => {
+export const Rickyard = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
   return (
@@ -50,9 +50,9 @@ export const GrainBin = (props: { count: number }) => {
         <Box sx={SingleBuildingWithCount}>
           <Box
             component="img"
-            src={GrainBinIcon}
-            title={capitalCase(GrainBin.name)}
-            alt={GrainBin.name}
+            src={RickyardIcon}
+            title={capitalCase(Rickyard.name)}
+            alt={Rickyard.name}
             sx={BuildingImageSize}
           />
           {Number(props.count.toFixed(2))}
@@ -65,7 +65,7 @@ export const GrainBin = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <WheatFarm
-            count={props.count * (GRAIN_BIN_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)}
+            count={props.count * (RICKYARD_INFO.ConsumePerMinute.get('Wheat')! / WHEAT_FARM_INFO.ProducePerMinute)}
           />
         </Paper>
       </Box>
@@ -74,11 +74,11 @@ export const GrainBin = (props: { count: number }) => {
   )
 }
 
-export const GrainBinButton = (props: { updateProductionChanFunction: Function }) => {
+export const RickyardButton = (props: { updateProductionChanFunction: Function }) => {
   return (
     <BuildingButton
-      buttonIcon={GrainBinIcon}
-      buildingElement={GrainBin}
+      buttonIcon={RickyardIcon}
+      buildingElement={Rickyard}
       updateProductionChanFunction={props.updateProductionChanFunction}
     />
   )
