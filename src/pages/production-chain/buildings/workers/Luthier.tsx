@@ -14,10 +14,12 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { BRASS_SMELTER_INFO, BrassSmelter } from '../northern-islands/BrassSmelter'
 import { FINE_WOOD_LOGGER_INFO, FineWoodLogger } from './FineWoodLogger'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands/BrassSmelterNorth'
+import { BRASS_SMELTER_INFO, BrassSmelter } from '../paragons/BrassSmelter'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 2
@@ -65,15 +67,23 @@ export const Luthier = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <BrassSmelter
-            count={props.count * (LUTHIER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_INFO.ProducePerMinute)}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <BrassSmelter
+                count={
+                  props.count * (LUTHIER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <BrassSmelterNorth
+                count={
+                  props.count *
+                  (LUTHIER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef2}

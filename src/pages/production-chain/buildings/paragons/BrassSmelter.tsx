@@ -2,7 +2,8 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
 import { useRef } from 'react'
-import LensGrinderIcon from '../../../../assets/icons/buildings/paragons/LensGrinder.png'
+import { globalInvertBuildingChainOrder } from '../../../../App'
+import BrassSmelterIcon from '../../../../assets/icons/buildings/paragons/BrassSmelter.png'
 import {
   BuildingGroup,
   BuildingImageSize,
@@ -11,36 +12,35 @@ import {
   ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { GLASSWORKS_INFO, Glassworks } from './Glassworks'
+import { COPPER_SMELTER_INFO, CopperSmelter } from '../colonists/CopperSmelter'
+import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/CopperSmelterTropical'
+import { COPPER_SMELTER_NORTH_INFO, CopperSmelterNorth } from '../northern-islands/CopperSmelterNorth'
+import { ZINC_SMELTER_INFO, ZincSmelter } from '../northern-islands/ZincSmelter'
 
-import { globalInvertBuildingChainOrder } from '../../../../App'
-import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
-import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands/BrassSmelterNorth'
-import { BRASS_SMELTER_INFO, BrassSmelter } from './BrassSmelter'
-
-const ITERATION_TIME_IN_SECONDS = 240
-const PRODUCE_PER_ITERATION = 4
+const ITERATION_TIME_IN_SECONDS = 480
+const PRODUCE_PER_ITERATION = 5
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Brass', 1],
-  ['Glass', 2],
+  ['CopperIngot', 3],
+  ['ZincIngot', 2],
 ])
-export const LENS_GRINDER_INFO: Building = {
+export const BRASS_SMELTER_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
   ConsumePerMinute: new Map<string, number>([
-    ['Brass', CONSUME_PER_ITERATION.get('Brass')! / ITERATION_TIME_IN_DECIMAL],
-    ['Glass', CONSUME_PER_ITERATION.get('Glass')! / ITERATION_TIME_IN_DECIMAL],
+    ['CopperIngot', CONSUME_PER_ITERATION.get('CopperIngot')! / ITERATION_TIME_IN_DECIMAL],
+    ['ZincIngot', CONSUME_PER_ITERATION.get('ZincIngot')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
 }
 
-export const LensGrinder = (props: { count: number }) => {
+export const BrassSmelter = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
@@ -58,9 +58,9 @@ export const LensGrinder = (props: { count: number }) => {
         <Box sx={SingleBuildingWithCount}>
           <Box
             component="img"
-            src={LensGrinderIcon}
-            title={capitalCase(LensGrinder.name)}
-            alt={LensGrinder.name}
+            src={BrassSmelterIcon}
+            title={capitalCase(BrassSmelter.name)}
+            alt={BrassSmelter.name}
             sx={BuildingImageSize}
           />
           {Number(props.count.toFixed(2))}
@@ -70,15 +70,23 @@ export const LensGrinder = (props: { count: number }) => {
         <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
-              <BrassSmelter
-                count={
-                  props.count * (LENS_GRINDER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_INFO.ProducePerMinute)
-                }
-              />,
-              <BrassSmelterNorth
+              <CopperSmelter
                 count={
                   props.count *
-                  (LENS_GRINDER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_NORTH_INFO.ProducePerMinute)
+                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterNorth
+                count={
+                  props.count *
+                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+              <CopperSmelterTropical
+                count={
+                  props.count *
+                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! /
+                    COPPER_SMELTER_TROPICAL_INFO.ProducePerMinute)
                 }
               />,
             ]}
@@ -90,8 +98,10 @@ export const LensGrinder = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <Glassworks
-            count={props.count * (LENS_GRINDER_INFO.ConsumePerMinute.get('Glass')! / GLASSWORKS_INFO.ProducePerMinute)}
+          <ZincSmelter
+            count={
+              props.count * (BRASS_SMELTER_INFO.ConsumePerMinute.get('ZincIngot')! / ZINC_SMELTER_INFO.ProducePerMinute)
+            }
           />
         </Paper>
       </Box>
@@ -101,11 +111,11 @@ export const LensGrinder = (props: { count: number }) => {
   )
 }
 
-export const LensGrinderButton = (props: { updateProductionChanFunction: Function }) => {
+export const BrassSmelterButton = (props: { updateProductionChanFunction: Function }) => {
   return (
     <BuildingButton
-      buttonIcon={LensGrinderIcon}
-      buildingElement={LensGrinder}
+      buttonIcon={BrassSmelterIcon}
+      buildingElement={BrassSmelter}
       updateProductionChanFunction={props.updateProductionChanFunction}
     />
   )
