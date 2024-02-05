@@ -15,11 +15,13 @@ import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
 import { RiverField } from '../../tiles/RiverField'
-import { BRASS_SMELTER_INFO, BrassSmelter } from '../northern-islands/BrassSmelter'
 import { POWDER_MILL_INFO, PowderMill } from './PowderMill'
 import { STEEL_FURNACE_INFO, SteelFurnace } from './SteelFurnace'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
+import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands/BrassSmelterNorth'
+import { BRASS_SMELTER_INFO, BrassSmelter } from './BrassSmelter'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -85,18 +87,24 @@ export const MusketMaker = (props: { count: number }) => {
           />
         </Paper>
         AND
-        <Paper
-          ref={providerRef2}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <BrassSmelter
-            count={
-              props.count *
-              (MUSKET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! / BRASS_SMELTER_INFO.ProducePerMinute)
-            }
+        <Box ref={providerRef2}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <BrassSmelter
+                count={
+                  props.count *
+                  (MUSKET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! / BRASS_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <BrassSmelterNorth
+                count={
+                  props.count *
+                  (MUSKET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! / BRASS_SMELTER_NORTH_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
           />
-        </Paper>
+        </Box>
         AND
         <Paper
           ref={providerRef3}

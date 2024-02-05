@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
 import { useRef } from 'react'
-import BrassSmelterIcon from '../../../../assets/icons/buildings/northern-islands/BrassSmelter.png'
+import BrassSmelterNorthIcon from '../../../../assets/icons/buildings/northern-islands/BrassSmelterNorth.png'
 import {
   BuildingGroup,
   BuildingImageSize,
@@ -29,7 +29,7 @@ const CONSUME_PER_ITERATION = new Map<string, number>([
   ['CopperIngot', 3],
   ['ZincIngot', 2],
 ])
-export const BRASS_SMELTER_INFO: Building = {
+export const BRASS_SMELTER_NORTH_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
@@ -41,7 +41,7 @@ export const BRASS_SMELTER_INFO: Building = {
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
 }
 
-export const BrassSmelter = (props: { count: number }) => {
+export const BrassSmelterNorth = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
   const providerRef2 = useRef(null)
@@ -59,9 +59,9 @@ export const BrassSmelter = (props: { count: number }) => {
         <Box sx={SingleBuildingWithCount}>
           <Box
             component="img"
-            src={BrassSmelterIcon}
-            title={capitalCase(BrassSmelter.name)}
-            alt={BrassSmelter.name}
+            src={BrassSmelterNorthIcon}
+            title={capitalCase(BrassSmelterNorth.name)}
+            alt={BrassSmelterNorth.name}
             sx={BuildingImageSize}
           />
           {Number(props.count.toFixed(2))}
@@ -74,19 +74,20 @@ export const BrassSmelter = (props: { count: number }) => {
               <CopperSmelterNorth
                 count={
                   props.count *
-                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
+                  (BRASS_SMELTER_NORTH_INFO.ConsumePerMinute.get('CopperIngot')! /
+                    COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
                 }
               />,
               <CopperSmelter
                 count={
                   props.count *
-                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
+                  (BRASS_SMELTER_NORTH_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
                 }
               />,
               <CopperSmelterTropical
                 count={
                   props.count *
-                  (BRASS_SMELTER_INFO.ConsumePerMinute.get('CopperIngot')! /
+                  (BRASS_SMELTER_NORTH_INFO.ConsumePerMinute.get('CopperIngot')! /
                     COPPER_SMELTER_TROPICAL_INFO.ProducePerMinute)
                 }
               />,
@@ -101,7 +102,8 @@ export const BrassSmelter = (props: { count: number }) => {
         >
           <ZincSmelter
             count={
-              props.count * (BRASS_SMELTER_INFO.ConsumePerMinute.get('ZincIngot')! / ZINC_SMELTER_INFO.ProducePerMinute)
+              props.count *
+              (BRASS_SMELTER_NORTH_INFO.ConsumePerMinute.get('ZincIngot')! / ZINC_SMELTER_INFO.ProducePerMinute)
             }
           />
         </Paper>
@@ -112,11 +114,11 @@ export const BrassSmelter = (props: { count: number }) => {
   )
 }
 
-export const BrassSmelterButton = (props: { updateProductionChanFunction: Function }) => {
+export const BrassSmelterNorthButton = (props: { updateProductionChanFunction: Function }) => {
   return (
     <BuildingButton
-      buttonIcon={BrassSmelterIcon}
-      buildingElement={BrassSmelter}
+      buttonIcon={BrassSmelterNorthIcon}
+      buildingElement={BrassSmelterNorth}
       updateProductionChanFunction={props.updateProductionChanFunction}
     />
   )

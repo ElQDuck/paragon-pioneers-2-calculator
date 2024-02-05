@@ -102,7 +102,7 @@ import { SugarBeetFarmButton } from './buildings/merchants/SugarBeetFarm'
 import { ToolmakerButton } from './buildings/merchants/Toolmaker'
 import { TownhallButton } from './buildings/merchants/Townhall'
 import { AmbergrisProductionButton } from './buildings/northern-islands/AmbergrisProduction'
-import { BrassSmelterButton } from './buildings/northern-islands/BrassSmelter'
+import { BrassSmelterNorthButton } from './buildings/northern-islands/BrassSmelterNorth'
 import { CaviarFactoryButton } from './buildings/northern-islands/CaviarFactory'
 import { CoalMineNorthButton } from './buildings/northern-islands/CoalMineNorth'
 import { ConiferLumberjackButton } from './buildings/northern-islands/ConiferLumberjack'
@@ -127,6 +127,7 @@ import { ZincMineButton } from './buildings/northern-islands/ZincMine'
 import { ZincSmelterButton } from './buildings/northern-islands/ZincSmelter'
 import { ArmorsmithButton } from './buildings/paragons/Armorsmith'
 import { BookbinderButton } from './buildings/paragons/Bookbinder'
+import { BrassSmelterButton } from './buildings/paragons/BrassSmelter'
 import { BrocadeSpinningFactoryButton } from './buildings/paragons/BrocadeSpinningFactory'
 import { CannonFoundryButton } from './buildings/paragons/CannonFoundry'
 import { CannoneersSchoolButton } from './buildings/paragons/CannoneersSchool'
@@ -456,6 +457,7 @@ export const ProductionChainPage = () => {
         {/* Paragons */}
         {paragonsVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <BrassSmelterButton updateProductionChanFunction={updateProductionChainMap} />
             <CobblersShopButton updateProductionChanFunction={updateProductionChainMap} />
             <QuartzQuarryButton updateProductionChanFunction={updateProductionChainMap} />
             <GlassworksButton updateProductionChanFunction={updateProductionChainMap} />
@@ -587,7 +589,7 @@ export const ProductionChainPage = () => {
             <MarbleQuarryNorthButton updateProductionChanFunction={updateProductionChainMap} />
             <ZincMineButton updateProductionChanFunction={updateProductionChainMap} />
             <ZincSmelterButton updateProductionChanFunction={updateProductionChainMap} />
-            <BrassSmelterButton updateProductionChanFunction={updateProductionChainMap} />
+            <BrassSmelterNorthButton updateProductionChanFunction={updateProductionChainMap} />
             <LeadMineButton updateProductionChanFunction={updateProductionChainMap} />
             <LeadSmelterButton updateProductionChanFunction={updateProductionChainMap} />
             <FurTrapperButton updateProductionChanFunction={updateProductionChainMap} />
