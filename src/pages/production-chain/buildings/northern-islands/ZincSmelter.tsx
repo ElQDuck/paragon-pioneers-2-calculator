@@ -14,21 +14,20 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { COAL_MINE_NORTH_INFO, CoalMineNorth } from './CoalMineNorth'
 import { GOLD_MINE_NORTH_INFO } from './GoldMineNorth'
 import { ZincMine } from './ZincMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
-import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
-import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
-import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from './ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Coal', 1],
+  ['Wood', 8],
   ['Zinc', 1],
 ])
 export const ZINC_SMELTER_INFO: Building = {
@@ -36,7 +35,7 @@ export const ZINC_SMELTER_INFO: Building = {
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
   ConsumePerMinute: new Map<string, number>([
-    ['Coal', CONSUME_PER_ITERATION.get('Coal')! / ITERATION_TIME_IN_DECIMAL],
+    ['Wood', CONSUME_PER_ITERATION.get('Wood')! / ITERATION_TIME_IN_DECIMAL],
     ['Zinc', CONSUME_PER_ITERATION.get('Zinc')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
@@ -73,26 +72,21 @@ export const ZincSmelter = (props: { count: number }) => {
         <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
-              <CoalMineNorth
+              <ConiferLumberjack
                 count={
                   props.count *
-                  (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                  (ZINC_SMELTER_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
                 }
               />,
-              <CoalMine
+              <Lumberjack
                 count={
-                  props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                  props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
                 }
               />,
-              <CharcoalKiln
-                count={
-                  props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
-                }
-              />,
-              <CoalMineTropical
+              <ForestWardensCabin
                 count={
                   props.count *
-                  (ZINC_SMELTER_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                  (ZINC_SMELTER_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
                 }
               />,
             ]}
