@@ -13,29 +13,27 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
 import { GOLD_MINE_TROPICAL_INFO, GoldMineTropical } from './GoldMineTropical'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
-import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
+import { LINSEED_FARM_INFO, LinseedFarm } from '../colonists/LinseedFarm'
+import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
 import { GOLD_MINE_NORTH_INFO, GoldMineNorth } from '../northern-islands/GoldMineNorth'
-import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
-import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 
-const ITERATION_TIME_IN_SECONDS = 960
+const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 2
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Coal', 1],
-  ['Gold', 2],
+  ['Fiber', 8],
+  ['Gold', 1],
 ])
 export const GOLD_SMELTER_TROPICAL_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
   ConsumePerMinute: new Map<string, number>([
-    ['Coal', CONSUME_PER_ITERATION.get('Coal')! / ITERATION_TIME_IN_DECIMAL],
+    ['Fiber', CONSUME_PER_ITERATION.get('Fiber')! / ITERATION_TIME_IN_DECIMAL],
     ['Gold', CONSUME_PER_ITERATION.get('Gold')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
@@ -72,28 +70,16 @@ export const GoldSmelterTropical = (props: { count: number }) => {
         <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
-              <CoalMineTropical
+              <FiberMaker
                 count={
                   props.count *
-                  (GOLD_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                  (GOLD_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Fiber')! / FIBER_MAKER_INFO.ProducePerMinute)
                 }
               />,
-              <CoalMine
+              <LinseedFarm
                 count={
                   props.count *
-                  (GOLD_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
-                }
-              />,
-              <CharcoalKiln
-                count={
-                  props.count *
-                  (GOLD_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
-                }
-              />,
-              <CoalMineNorth
-                count={
-                  props.count *
-                  (GOLD_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                  (GOLD_SMELTER_TROPICAL_INFO.ConsumePerMinute.get('Fiber')! / LINSEED_FARM_INFO.ProducePerMinute)
                 }
               />,
             ]}
