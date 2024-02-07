@@ -14,7 +14,6 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { GOLD_MINE_NORTH_INFO } from './GoldMineNorth'
 import { ZINC_MINE_NORTH_INFO, ZincMine } from './ZincMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
