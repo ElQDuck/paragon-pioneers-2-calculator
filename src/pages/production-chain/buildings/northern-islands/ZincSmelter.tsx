@@ -14,8 +14,7 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { GOLD_MINE_NORTH_INFO } from './GoldMineNorth'
-import { ZincMine } from './ZincMine'
+import { ZINC_MINE_NORTH_INFO, ZincMine } from './ZincMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
@@ -100,7 +99,7 @@ export const ZincSmelter = (props: { count: number }) => {
         >
           <ZincMine
             count={
-              props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Zinc')! / GOLD_MINE_NORTH_INFO.ProducePerMinute)
+              props.count * (ZINC_SMELTER_INFO.ConsumePerMinute.get('Zinc')! / ZINC_MINE_NORTH_INFO.ProducePerMinute)
             }
           />
         </Paper>

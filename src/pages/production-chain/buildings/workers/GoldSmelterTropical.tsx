@@ -22,7 +22,7 @@ import { FIBER_MAKER_INFO, FiberMaker } from '../farmers/FiberMaker'
 import { GOLD_MINE_NORTH_INFO, GoldMineNorth } from '../northern-islands/GoldMineNorth'
 
 const ITERATION_TIME_IN_SECONDS = 480
-const PRODUCE_PER_ITERATION = 2
+const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Fiber', 8],
