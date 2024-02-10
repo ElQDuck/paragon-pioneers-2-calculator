@@ -168,6 +168,7 @@ import { PiggeryButton } from './buildings/pioneers/Piggery'
 import { SausageMakerButton } from './buildings/pioneers/SausageMaker'
 import { SawWorksButton } from './buildings/pioneers/SawWorks'
 import { SawmillButton } from './buildings/pioneers/Sawmill'
+import { PopulationColonistsHouseButton } from './buildings/population/PopulationColonistsHouse'
 import { PopulationPioneersHutButton } from './buildings/population/PopulationPioneersHut'
 import { BoilerMakerButton } from './buildings/townsmen/BoilerMaker'
 import { BoilingHouseButton } from './buildings/townsmen/BoilingHouse'
@@ -342,8 +343,8 @@ export const ProductionChainPage = () => {
         {/* Pioneers */}
         {pioneersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <LumberjackButton updateProductionChanFunction={updateProductionChainMap} />
             <PopulationPioneersHutButton updateProductionChanFunction={updateProductionChainMap} />
+            <LumberjackButton updateProductionChanFunction={updateProductionChainMap} />
             <FishermansHutButton updateProductionChanFunction={updateProductionChainMap} />
             <PiggeryButton updateProductionChanFunction={updateProductionChainMap} />
             <SausageMakerButton updateProductionChanFunction={updateProductionChainMap} />
@@ -358,6 +359,7 @@ export const ProductionChainPage = () => {
         {/* Colonists */}
         {colonistsVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationColonistsHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <RenderingWorksButton updateProductionChanFunction={updateProductionChainMap} />
             <AshHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <SoapMakerButton updateProductionChanFunction={updateProductionChainMap} />
