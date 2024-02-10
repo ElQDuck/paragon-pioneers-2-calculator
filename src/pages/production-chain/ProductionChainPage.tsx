@@ -170,6 +170,7 @@ import { SawWorksButton } from './buildings/pioneers/SawWorks'
 import { SawmillButton } from './buildings/pioneers/Sawmill'
 import { PopulationColonistsHouseButton } from './buildings/population/PopulationColonistsHouse'
 import { PopulationMerchantsMansionButton } from './buildings/population/PopulationMerchantsMansion'
+import { PopulationParagonsResidenceButton } from './buildings/population/PopulationParagonsResidence'
 import { PopulationPioneersHutButton } from './buildings/population/PopulationPioneersHut'
 import { PopulationTownsmenHouseButton } from './buildings/population/PopulationTownsmenHouse'
 import { BoilerMakerButton } from './buildings/townsmen/BoilerMaker'
@@ -463,6 +464,7 @@ export const ProductionChainPage = () => {
         {/* Paragons */}
         {paragonsVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationParagonsResidenceButton updateProductionChanFunction={updateProductionChainMap} />
             <BrassSmelterButton updateProductionChanFunction={updateProductionChainMap} />
             <CobblersShopButton updateProductionChanFunction={updateProductionChainMap} />
             <QuartzQuarryButton updateProductionChanFunction={updateProductionChainMap} />
