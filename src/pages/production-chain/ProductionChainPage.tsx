@@ -52,7 +52,6 @@ import { CopperMineTropicalButton } from './buildings/farmers/CopperMineTropical
 import { CopperSmelterTropicalButton } from './buildings/farmers/CopperSmelterTropical'
 import { CrocodileRanchButton } from './buildings/farmers/CrocodileRanch'
 import { DairyButton } from './buildings/farmers/Dairy'
-import { FarmersShackButton } from './buildings/farmers/FarmersShack'
 import { FiberMakerButton } from './buildings/farmers/FiberMaker'
 import { FieldSurgeonHouseButton } from './buildings/farmers/FieldSurgeonHouse'
 import { GoatFarmButton } from './buildings/farmers/GoatFarm'
@@ -169,6 +168,7 @@ import { SausageMakerButton } from './buildings/pioneers/SausageMaker'
 import { SawWorksButton } from './buildings/pioneers/SawWorks'
 import { SawmillButton } from './buildings/pioneers/Sawmill'
 import { PopulationColonistsHouseButton } from './buildings/population/PopulationColonistsHouse'
+import { PopulationFarmersShackButton } from './buildings/population/PopulationFarmersShack'
 import { PopulationMerchantsMansionButton } from './buildings/population/PopulationMerchantsMansion'
 import { PopulationParagonsResidenceButton } from './buildings/population/PopulationParagonsResidence'
 import { PopulationPioneersHutButton } from './buildings/population/PopulationPioneersHut'
@@ -505,8 +505,8 @@ export const ProductionChainPage = () => {
         {/* Farmers */}
         {farmersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationFarmersShackButton updateProductionChanFunction={updateProductionChainMap} />
             <FiberMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <FarmersShackButton updateProductionChanFunction={updateProductionChainMap} />
             <BeachFishermansHutButton updateProductionChanFunction={updateProductionChainMap} />
             <TeaPlantationButton updateProductionChanFunction={updateProductionChainMap} />
             <SugarCanePlantationButton updateProductionChanFunction={updateProductionChainMap} />

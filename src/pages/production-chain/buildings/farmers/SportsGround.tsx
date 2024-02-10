@@ -19,7 +19,7 @@ import { BALL_MAKER_INFO, BallMaker } from './BallMaker'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 
 const ITERATION_TIME_IN_SECONDS = 120
-const PRODUCE_PER_ITERATION = 36 // => Amount of buildings within range
+const PRODUCE_PER_ITERATION = 40 // => Amount of buildings within range
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Ball', 1]])
 export const SPORTS_GROUND_INFO: Building = {
