@@ -165,10 +165,10 @@ import { FishermansHutButton } from './buildings/pioneers/FishermansHut'
 import { LumberjackButton } from './buildings/pioneers/Lumberjack'
 import { PigRanchButton } from './buildings/pioneers/PigRanch'
 import { PiggeryButton } from './buildings/pioneers/Piggery'
-import { PioneersHutButton } from './buildings/pioneers/PioneersHut'
 import { SausageMakerButton } from './buildings/pioneers/SausageMaker'
 import { SawWorksButton } from './buildings/pioneers/SawWorks'
 import { SawmillButton } from './buildings/pioneers/Sawmill'
+import { PopulationPioneersHutButton } from './buildings/population/PopulationPioneersHut'
 import { BoilerMakerButton } from './buildings/townsmen/BoilerMaker'
 import { BoilingHouseButton } from './buildings/townsmen/BoilingHouse'
 import { BoulderGathererButton } from './buildings/townsmen/BoulderGatherer'
@@ -343,7 +343,7 @@ export const ProductionChainPage = () => {
         {pioneersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <LumberjackButton updateProductionChanFunction={updateProductionChainMap} />
-            <PioneersHutButton updateProductionChanFunction={updateProductionChainMap} />
+            <PopulationPioneersHutButton updateProductionChanFunction={updateProductionChainMap} />
             <FishermansHutButton updateProductionChanFunction={updateProductionChainMap} />
             <PiggeryButton updateProductionChanFunction={updateProductionChainMap} />
             <SausageMakerButton updateProductionChanFunction={updateProductionChainMap} />
