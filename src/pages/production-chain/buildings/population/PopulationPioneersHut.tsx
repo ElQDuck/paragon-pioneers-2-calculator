@@ -16,14 +16,19 @@ import { AlternativeCombinationProvider } from '../../../../common/AlternativeCo
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
+import { HARBOR_TAVERN_INFO, HarborTavern } from '../colonists/HarborTavern'
 import { BEACH_FISHERMANS_HUT_INFO, BeachFishermansHut } from '../farmers/BeachFishermansHut'
 import { BATHHOUSE_INFO, Bathhouse } from '../merchants/Bathhouse'
+import { SALMON_FISHERMANS_HUT_INFO, SalmonFishermansHut } from '../northern-islands/SalmonFishermansHut'
 import { LARGE_THERMAL_BATH_INFO, LargeThermalBath } from '../paragons/LargeThermalBath'
+import { THEATRE_INFO, Theatre } from '../paragons/Theatre'
+import { CIDER_MAKER_INFO, CiderMaker } from '../pioneers/CiderMaker'
 import { CISTERN_INFO, Cistern } from '../pioneers/Cistern'
 import { FISHERMANS_HUT_INFO, FishermansHut } from '../pioneers/FishermansHut'
 import { SAUSAGE_MAKER_INFO, SausageMaker } from '../pioneers/SausageMaker'
+import { TAVERN_INFO, Tavern } from '../pioneers/Tavern'
 import { WELL_INFO, Well } from '../pioneers/Well'
-import { CIDER_MAKER_INFO, CiderMaker } from '../pioneers/CiderMaker'
+import { FAIR_INFO, Fair } from '../townsmen/Fair'
 
 const ITERATION_TIME_IN_SECONDS = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
@@ -96,6 +101,13 @@ export const PopulationPioneersHut = (props: { count: number }) => {
                     BEACH_FISHERMANS_HUT_INFO.ProducePerMinute)
                 }
               />,
+              <SalmonFishermansHut
+                count={
+                  props.count *
+                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Fish')! /
+                    SALMON_FISHERMANS_HUT_INFO.ProducePerMinute)
+                }
+              />,
             ]}
           />
         </Box>
@@ -160,7 +172,35 @@ export const PopulationPioneersHut = (props: { count: number }) => {
         </Paper>
         AND
         <Box ref={providerRef5}>
-          <AlternativeCombinationProvider combinationList={[]} />
+          <AlternativeCombinationProvider
+            combinationList={[
+              <Tavern
+                count={
+                  props.count *
+                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
+                }
+              />,
+              <HarborTavern
+                count={
+                  props.count *
+                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! /
+                    HARBOR_TAVERN_INFO.ProducePerMinute)
+                }
+              />,
+              <Fair
+                count={
+                  props.count *
+                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                }
+              />,
+              <Theatre
+                count={
+                  props.count *
+                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute)
+                }
+              />,
+            ]}
+          />
         </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
