@@ -173,6 +173,7 @@ import { PopulationMerchantsMansionButton } from './buildings/population/Populat
 import { PopulationParagonsResidenceButton } from './buildings/population/PopulationParagonsResidence'
 import { PopulationPioneersHutButton } from './buildings/population/PopulationPioneersHut'
 import { PopulationTownsmenHouseButton } from './buildings/population/PopulationTownsmenHouse'
+import { PopulationWorkersHouseButton } from './buildings/population/PopulationWorkersHouse'
 import { BoilerMakerButton } from './buildings/townsmen/BoilerMaker'
 import { BoilingHouseButton } from './buildings/townsmen/BoilingHouse'
 import { BoulderGathererButton } from './buildings/townsmen/BoulderGatherer'
@@ -542,6 +543,7 @@ export const ProductionChainPage = () => {
         {/* Workers */}
         {workersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationWorkersHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <CacaoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
             <ChocolaterieButton updateProductionChanFunction={updateProductionChainMap} />
             <FineWoodLoggerButton updateProductionChanFunction={updateProductionChainMap} />
