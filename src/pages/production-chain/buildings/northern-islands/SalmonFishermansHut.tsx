@@ -8,7 +8,6 @@ import {
   BuildingImageSize,
   ConsumerPaperStyle,
   ProviderBoxStyle,
-  ProviderPaperStyle,
   SingleBuildingWithCount,
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
@@ -18,6 +17,7 @@ import { CoastalFieldNorth } from '../../tiles/CoastalFieldNorth'
 import { Weir } from '../../tiles/Weir'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
+import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
 const ITERATION_TIME_IN_SECONDS = 45
 const PRODUCE_PER_ITERATION = 1
@@ -60,17 +60,16 @@ export const SalmonFishermansHut = (props: { count: number }) => {
         </Box>
       </Paper>
       <Box sx={{ ...ProviderBoxStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}>
-        <Paper
-          ref={providerRef1}
-          elevation={2}
-          sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
-        >
-          <CoastalFieldNorth
-            count={props.count * SALMON_FISHERMANS_HUT_INFO.ConsumePerIteration.get('CoastalField')!}
+        <Box ref={providerRef1}>
+          <AlternativeCombinationProvider
+            combinationList={[
+              <CoastalFieldNorth
+                count={props.count * SALMON_FISHERMANS_HUT_INFO.ConsumePerIteration.get('CoastalField')!}
+              />,
+              <Weir count={(props.count * SALMON_FISHERMANS_HUT_INFO.ConsumePerIteration.get('CoastalField')!) / 2} />,
+            ]}
           />
-          OR
-          <Weir count={(props.count * SALMON_FISHERMANS_HUT_INFO.ConsumePerIteration.get('CoastalField')!) / 2} />
-        </Paper>
+        </Box>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />
     </Box>

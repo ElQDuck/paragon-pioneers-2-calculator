@@ -52,7 +52,6 @@ import { CopperMineTropicalButton } from './buildings/farmers/CopperMineTropical
 import { CopperSmelterTropicalButton } from './buildings/farmers/CopperSmelterTropical'
 import { CrocodileRanchButton } from './buildings/farmers/CrocodileRanch'
 import { DairyButton } from './buildings/farmers/Dairy'
-import { FarmersShackButton } from './buildings/farmers/FarmersShack'
 import { FiberMakerButton } from './buildings/farmers/FiberMaker'
 import { FieldSurgeonHouseButton } from './buildings/farmers/FieldSurgeonHouse'
 import { GoatFarmButton } from './buildings/farmers/GoatFarm'
@@ -165,10 +164,16 @@ import { FishermansHutButton } from './buildings/pioneers/FishermansHut'
 import { LumberjackButton } from './buildings/pioneers/Lumberjack'
 import { PigRanchButton } from './buildings/pioneers/PigRanch'
 import { PiggeryButton } from './buildings/pioneers/Piggery'
-import { PioneersHutButton } from './buildings/pioneers/PioneersHut'
 import { SausageMakerButton } from './buildings/pioneers/SausageMaker'
 import { SawWorksButton } from './buildings/pioneers/SawWorks'
 import { SawmillButton } from './buildings/pioneers/Sawmill'
+import { PopulationColonistsHouseButton } from './buildings/population/PopulationColonistsHouse'
+import { PopulationFarmersShackButton } from './buildings/population/PopulationFarmersShack'
+import { PopulationMerchantsMansionButton } from './buildings/population/PopulationMerchantsMansion'
+import { PopulationParagonsResidenceButton } from './buildings/population/PopulationParagonsResidence'
+import { PopulationPioneersHutButton } from './buildings/population/PopulationPioneersHut'
+import { PopulationTownsmenHouseButton } from './buildings/population/PopulationTownsmenHouse'
+import { PopulationWorkersHouseButton } from './buildings/population/PopulationWorkersHouse'
 import { BoilerMakerButton } from './buildings/townsmen/BoilerMaker'
 import { BoilingHouseButton } from './buildings/townsmen/BoilingHouse'
 import { BoulderGathererButton } from './buildings/townsmen/BoulderGatherer'
@@ -342,8 +347,8 @@ export const ProductionChainPage = () => {
         {/* Pioneers */}
         {pioneersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationPioneersHutButton updateProductionChanFunction={updateProductionChainMap} />
             <LumberjackButton updateProductionChanFunction={updateProductionChainMap} />
-            <PioneersHutButton updateProductionChanFunction={updateProductionChainMap} />
             <FishermansHutButton updateProductionChanFunction={updateProductionChainMap} />
             <PiggeryButton updateProductionChanFunction={updateProductionChainMap} />
             <SausageMakerButton updateProductionChanFunction={updateProductionChainMap} />
@@ -358,6 +363,7 @@ export const ProductionChainPage = () => {
         {/* Colonists */}
         {colonistsVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationColonistsHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <RenderingWorksButton updateProductionChanFunction={updateProductionChainMap} />
             <AshHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <SoapMakerButton updateProductionChanFunction={updateProductionChainMap} />
@@ -388,6 +394,7 @@ export const ProductionChainPage = () => {
         {/* Townsmen */}
         {townsmenVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationTownsmenHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <BoilerMakerButton updateProductionChanFunction={updateProductionChainMap} />
             <SailmakerButton updateProductionChanFunction={updateProductionChainMap} />
             <HopFarmButton updateProductionChanFunction={updateProductionChainMap} />
@@ -420,6 +427,7 @@ export const ProductionChainPage = () => {
         {/* Merchants */}
         {merchantsVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationMerchantsMansionButton updateProductionChanFunction={updateProductionChainMap} />
             <FeltmakingMillButton updateProductionChanFunction={updateProductionChainMap} />
             <HattersShopButton updateProductionChanFunction={updateProductionChainMap} />
             <ApiaryButton updateProductionChanFunction={updateProductionChainMap} />
@@ -457,6 +465,7 @@ export const ProductionChainPage = () => {
         {/* Paragons */}
         {paragonsVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationParagonsResidenceButton updateProductionChanFunction={updateProductionChainMap} />
             <BrassSmelterButton updateProductionChanFunction={updateProductionChainMap} />
             <CobblersShopButton updateProductionChanFunction={updateProductionChainMap} />
             <QuartzQuarryButton updateProductionChanFunction={updateProductionChainMap} />
@@ -497,8 +506,8 @@ export const ProductionChainPage = () => {
         {/* Farmers */}
         {farmersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationFarmersShackButton updateProductionChanFunction={updateProductionChainMap} />
             <FiberMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <FarmersShackButton updateProductionChanFunction={updateProductionChainMap} />
             <BeachFishermansHutButton updateProductionChanFunction={updateProductionChainMap} />
             <TeaPlantationButton updateProductionChanFunction={updateProductionChainMap} />
             <SugarCanePlantationButton updateProductionChanFunction={updateProductionChainMap} />
@@ -534,6 +543,7 @@ export const ProductionChainPage = () => {
         {/* Workers */}
         {workersVisible ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <PopulationWorkersHouseButton updateProductionChanFunction={updateProductionChainMap} />
             <CacaoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
             <ChocolaterieButton updateProductionChanFunction={updateProductionChainMap} />
             <FineWoodLoggerButton updateProductionChanFunction={updateProductionChainMap} />
