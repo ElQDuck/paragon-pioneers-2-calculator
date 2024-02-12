@@ -212,17 +212,17 @@ export const PopulationWorkersHouse = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <WhimHouse
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Water')! /
-                    (WHIM_HOUSE_INFO.ProducePerMinute * WHIM_HOUSE_INFO.IterationTimeInSeconds))
-                }
+                    (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Water')! /
+                      (WHIM_HOUSE_INFO.ProducePerMinute * WHIM_HOUSE_INFO.IterationTimeInSeconds))
+                )}
               />,
               <Drywell
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Water')! / DRYWELL_INFO.ProducePerMinute)
-                }
+                    (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Water')! / DRYWELL_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -234,11 +234,11 @@ export const PopulationWorkersHouse = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <CoffeeHouse
-            count={
+            count={Math.ceil(
               props.count *
-              (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Community')! /
-                (COFFEE_HOUSE_INFO.ProducePerMinute * COFFEE_HOUSE_INFO.IterationTimeInSeconds))
-            }
+                (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Community')! /
+                  (COFFEE_HOUSE_INFO.ProducePerMinute * COFFEE_HOUSE_INFO.IterationTimeInSeconds))
+            )}
           />
         </Paper>
         AND
@@ -246,17 +246,17 @@ export const PopulationWorkersHouse = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Stadium
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Sports')! / STADIUM_INFO.ProducePerMinute)
-                }
+                    (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Sports')! / STADIUM_INFO.ProducePerMinute)
+                )}
               />,
               <SportsGround
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Sports')! /
-                    (SPORTS_GROUND_INFO.ProducePerMinute * SPORTS_GROUND_INFO.IterationTimeInSeconds))
-                }
+                    (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Sports')! /
+                      (SPORTS_GROUND_INFO.ProducePerMinute * SPORTS_GROUND_INFO.IterationTimeInSeconds))
+                )}
               />,
             ]}
           />
@@ -346,10 +346,10 @@ export const PopulationWorkersHouse = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <MarketHall
-            count={
+            count={Math.ceil(
               props.count *
-              (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Trading')! / MARKET_HALL_INFO.ProducePerMinute)
-            }
+                (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Trading')! / MARKET_HALL_INFO.ProducePerMinute)
+            )}
           />
         </Paper>
         AND
@@ -359,11 +359,11 @@ export const PopulationWorkersHouse = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <Cemetery
-            count={
+            count={Math.ceil(
               props.count *
-              (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Cemetery')! /
-                (CEMETERY_INFO.ProducePerMinute * CEMETERY_INFO.IterationTimeInSeconds))
-            }
+                (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Cemetery')! /
+                  (CEMETERY_INFO.ProducePerMinute * CEMETERY_INFO.IterationTimeInSeconds))
+            )}
           />
         </Paper>
         AND
@@ -373,11 +373,11 @@ export const PopulationWorkersHouse = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <DancingSchool
-            count={
+            count={Math.ceil(
               props.count *
-              (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Entertainment')! /
-                (DANCING_SCHOOL_INFO.ProducePerMinute * DANCING_SCHOOL_INFO.IterationTimeInSeconds))
-            }
+                (POPULATION_WORKERS_HOUSE_INFO.ConsumePerMinute.get('Entertainment')! /
+                  (DANCING_SCHOOL_INFO.ProducePerMinute * DANCING_SCHOOL_INFO.IterationTimeInSeconds))
+            )}
           />
         </Paper>
       </Box>

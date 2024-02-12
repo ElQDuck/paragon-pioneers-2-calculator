@@ -116,30 +116,30 @@ export const PopulationPioneersHut = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Well
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute)
+                )}
               />,
               <Cistern
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute)
+                )}
               />,
               <Bathhouse
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
+                      (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                )}
               />,
               <LargeThermalBath
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
+                      LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -175,29 +175,29 @@ export const PopulationPioneersHut = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Tavern
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <HarborTavern
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! /
-                    HARBOR_TAVERN_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! /
+                      HARBOR_TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <Fair
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                )}
               />,
               <Theatre
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute)
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
