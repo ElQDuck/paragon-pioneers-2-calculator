@@ -210,29 +210,29 @@ export const PopulationMerchantsMansion = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Bathhouse
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Water')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds)))
                 }
               />,
               <Cistern
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute)
+                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute))
                 }
               />,
               <Well
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute)
+                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute))
                 }
               />,
               <LargeThermalBath
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Water')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                    LARGE_THERMAL_BATH_INFO.ProducePerMinute))
                 }
               />,
             ]}
@@ -243,28 +243,28 @@ export const PopulationMerchantsMansion = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Tavern
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
+                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute))
                 }
               />,
               <HarborTavern
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! /
-                    HARBOR_TAVERN_INFO.ProducePerMinute)
+                    HARBOR_TAVERN_INFO.ProducePerMinute))
                 }
               />,
               <Fair
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute))
                 }
               />,
               <Theatre
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute)
+                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute))
                 }
               />,
             ]}
@@ -275,16 +275,16 @@ export const PopulationMerchantsMansion = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <TownSchool
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Education')! /
-                    (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds))
+                    (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds)))
                 }
               />,
               <School
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute)
+                  (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute))
                 }
               />,
             ]}
@@ -295,17 +295,17 @@ export const PopulationMerchantsMansion = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Hospital
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds))
+                    (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds)))
                 }
               />,
               <Medicus
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds))
+                    (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds)))
                 }
               />,
             ]}
@@ -403,17 +403,17 @@ export const PopulationMerchantsMansion = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Townhall
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Administration')! /
-                    (TOWNHALL_INFO.ProducePerMinute * TOWNHALL_INFO.IterationTimeInSeconds))
+                    (TOWNHALL_INFO.ProducePerMinute * TOWNHALL_INFO.IterationTimeInSeconds)))
                 }
               />,
               <Senate
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Administration')! /
-                    (SENATE_INFO.ProducePerMinute * SENATE_INFO.IterationTimeInSeconds))
+                    (SENATE_INFO.ProducePerMinute * SENATE_INFO.IterationTimeInSeconds)))
                 }
               />,
             ]}
@@ -424,17 +424,17 @@ export const PopulationMerchantsMansion = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Bathhouse
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Hygiene')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds)))
                 }
               />,
               <LargeThermalBath
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_MERCHANTS_MANSION_INFO.ConsumePerMinute.get('Hygiene')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                    LARGE_THERMAL_BATH_INFO.ProducePerMinute))
                 }
               />,
             ]}
