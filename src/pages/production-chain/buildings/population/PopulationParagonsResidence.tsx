@@ -225,28 +225,29 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
               <Theatre
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
-                    THEATRE_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
+                      THEATRE_INFO.ProducePerMinute)
+                )}
               />,
               <Tavern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
+                      TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <HarborTavern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
-                    HARBOR_TAVERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
+                      HARBOR_TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <Fair
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -258,15 +259,16 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
               <TownSchool
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! /
-                    (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! /
+                      (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds))
+                )}
               />,
               <School
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! /
+                      SCHOOL_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -278,16 +280,16 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
               <Hospital
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('MedicalCare')! /
+                      (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds))
+                )}
               />,
               <Medicus
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('MedicalCare')! /
+                      (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds))
+                )}
               />,
             ]}
           />
@@ -299,16 +301,16 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
               <Senate
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Administration')! /
-                    (SENATE_INFO.ProducePerMinute * SENATE_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Administration')! /
+                      (SENATE_INFO.ProducePerMinute * SENATE_INFO.IterationTimeInSeconds))
+                )}
               />,
               <Townhall
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Administration')! /
-                    (TOWNHALL_INFO.ProducePerMinute * TOWNHALL_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Administration')! /
+                      (TOWNHALL_INFO.ProducePerMinute * TOWNHALL_INFO.IterationTimeInSeconds))
+                )}
               />,
             ]}
           />
@@ -320,16 +322,16 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
               <LargeThermalBath
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Hygiene')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Hygiene')! /
+                      LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                )}
               />,
               <Bathhouse
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Hygiene')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Hygiene')! /
+                      (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                )}
               />,
             ]}
           />
@@ -423,8 +425,8 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <Coiffeur
             count={Math.ceil(
               props.count *
-              (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Coiffeur')! / COIFFEUR_INFO.ProducePerMinute))
-            }
+                (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Coiffeur')! / COIFFEUR_INFO.ProducePerMinute)
+            )}
           />
         </Paper>
         AND
@@ -436,9 +438,9 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <Theatre
             count={Math.ceil(
               props.count *
-              (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Entertainment')! /
-                THEATRE_INFO.ProducePerMinute))
-            }
+                (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Entertainment')! /
+                  THEATRE_INFO.ProducePerMinute)
+            )}
           />
         </Paper>
         AND
@@ -450,9 +452,9 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <University
             count={Math.ceil(
               props.count *
-              (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('HigherEducation')! /
-                (UNIVERSITY_INFO.ProducePerMinute * UNIVERSITY_INFO.IterationTimeInSeconds)))
-            }
+                (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('HigherEducation')! /
+                  (UNIVERSITY_INFO.ProducePerMinute * UNIVERSITY_INFO.IterationTimeInSeconds))
+            )}
           />
         </Paper>
         AND
@@ -464,9 +466,9 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <Tiltyard
             count={Math.ceil(
               props.count *
-              (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Gambling')! /
-                (TILTYARD_INFO.ProducePerMinute * TILTYARD_INFO.IterationTimeInSeconds)))
-            }
+                (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Gambling')! /
+                  (TILTYARD_INFO.ProducePerMinute * TILTYARD_INFO.IterationTimeInSeconds))
+            )}
           />
         </Paper>
       </Box>

@@ -174,28 +174,28 @@ export const PopulationTownsmenHouse = (props: { count: number }) => {
               <Cistern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute)
+                )}
               />,
               <Well
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute)
+                )}
               />,
               <Bathhouse
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! /
+                      (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                )}
               />,
               <LargeThermalBath
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Water')! /
+                      LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -207,27 +207,27 @@ export const PopulationTownsmenHouse = (props: { count: number }) => {
               <Tavern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <HarborTavern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! /
-                    HARBOR_TAVERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! /
+                      HARBOR_TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <Fair
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                )}
               />,
               <Theatre
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -239,15 +239,15 @@ export const PopulationTownsmenHouse = (props: { count: number }) => {
               <TownSchool
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Education')! /
-                    (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Education')! /
+                      (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds))
+                )}
               />,
               <School
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -330,16 +330,16 @@ export const PopulationTownsmenHouse = (props: { count: number }) => {
               <Medicus
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('MedicalCare')! /
+                      (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds))
+                )}
               />,
               <Hospital
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_TOWNSMEN_HOUSE_INFO.ConsumePerMinute.get('MedicalCare')! /
+                      (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds))
+                )}
               />,
             ]}
           />

@@ -117,29 +117,29 @@ export const PopulationPioneersHut = (props: { count: number }) => {
             combinationList={[
               <Well
                 count={Math.ceil(
-                  (props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute)))
-                }
+                  props.count *
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / WELL_INFO.ProducePerMinute)
+                )}
               />,
               <Cistern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! / CISTERN_INFO.ProducePerMinute)
+                )}
               />,
               <Bathhouse
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
+                      (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                )}
               />,
               <LargeThermalBath
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Water')! /
+                      LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
@@ -177,27 +177,27 @@ export const PopulationPioneersHut = (props: { count: number }) => {
               <Tavern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <HarborTavern
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! /
-                    HARBOR_TAVERN_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! /
+                      HARBOR_TAVERN_INFO.ProducePerMinute)
+                )}
               />,
               <Fair
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                )}
               />,
               <Theatre
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute))
-                }
+                    (POPULATION_PIONEERS_HUT_INFO.ConsumePerMinute.get('Community')! / THEATRE_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />

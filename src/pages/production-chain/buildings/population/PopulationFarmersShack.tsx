@@ -139,15 +139,15 @@ export const PopulationFarmersShack = (props: { count: number }) => {
               <Drywell
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Water')! / DRYWELL_INFO.ProducePerMinute))
-                }
+                    (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Water')! / DRYWELL_INFO.ProducePerMinute)
+                )}
               />,
               <WhimHouse
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Water')! /
-                    (WHIM_HOUSE_INFO.ProducePerMinute * WHIM_HOUSE_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Water')! /
+                      (WHIM_HOUSE_INFO.ProducePerMinute * WHIM_HOUSE_INFO.IterationTimeInSeconds))
+                )}
               />,
             ]}
           />
@@ -200,9 +200,9 @@ export const PopulationFarmersShack = (props: { count: number }) => {
           <CoffeeHouse
             count={Math.ceil(
               props.count *
-              (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Community')! /
-                (COFFEE_HOUSE_INFO.ProducePerMinute * COFFEE_HOUSE_INFO.IterationTimeInSeconds)))
-            }
+                (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Community')! /
+                  (COFFEE_HOUSE_INFO.ProducePerMinute * COFFEE_HOUSE_INFO.IterationTimeInSeconds))
+            )}
           />
         </Paper>
         AND
@@ -212,15 +212,15 @@ export const PopulationFarmersShack = (props: { count: number }) => {
               <SportsGround
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Sports')! /
-                    (SPORTS_GROUND_INFO.ProducePerMinute * SPORTS_GROUND_INFO.IterationTimeInSeconds)))
-                }
+                    (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Sports')! /
+                      (SPORTS_GROUND_INFO.ProducePerMinute * SPORTS_GROUND_INFO.IterationTimeInSeconds))
+                )}
               />,
               <Stadium
                 count={Math.ceil(
                   props.count *
-                  (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Sports')! / STADIUM_INFO.ProducePerMinute))
-                }
+                    (POPULATION_FARMERS_SHACK_INFO.ConsumePerMinute.get('Sports')! / STADIUM_INFO.ProducePerMinute)
+                )}
               />,
             ]}
           />
