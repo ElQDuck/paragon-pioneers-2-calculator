@@ -223,29 +223,29 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Theatre
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
-                    THEATRE_INFO.ProducePerMinute)
+                    THEATRE_INFO.ProducePerMinute))
                 }
               />,
               <Tavern
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute)
+                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / TAVERN_INFO.ProducePerMinute))
                 }
               />,
               <HarborTavern
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! /
-                    HARBOR_TAVERN_INFO.ProducePerMinute)
+                    HARBOR_TAVERN_INFO.ProducePerMinute))
                 }
               />,
               <Fair
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute)
+                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Community')! / FAIR_INFO.ProducePerMinute))
                 }
               />,
             ]}
@@ -256,16 +256,16 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <TownSchool
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! /
-                    (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds))
+                    (TOWN_SCHOOL_INFO.ProducePerMinute * TOWN_SCHOOL_INFO.IterationTimeInSeconds)))
                 }
               />,
               <School
-                count={
+                count={Math.ceil(
                   props.count *
-                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute)
+                  (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Education')! / SCHOOL_INFO.ProducePerMinute))
                 }
               />,
             ]}
@@ -276,17 +276,17 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Hospital
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds))
+                    (HOSPITAL_INFO.ProducePerMinute * HOSPITAL_INFO.IterationTimeInSeconds)))
                 }
               />,
               <Medicus
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('MedicalCare')! /
-                    (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds))
+                    (MEDICUS_INFO.ProducePerMinute * MEDICUS_INFO.IterationTimeInSeconds)))
                 }
               />,
             ]}
@@ -297,17 +297,17 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <Senate
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Administration')! /
-                    (SENATE_INFO.ProducePerMinute * SENATE_INFO.IterationTimeInSeconds))
+                    (SENATE_INFO.ProducePerMinute * SENATE_INFO.IterationTimeInSeconds)))
                 }
               />,
               <Townhall
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Administration')! /
-                    (TOWNHALL_INFO.ProducePerMinute * TOWNHALL_INFO.IterationTimeInSeconds))
+                    (TOWNHALL_INFO.ProducePerMinute * TOWNHALL_INFO.IterationTimeInSeconds)))
                 }
               />,
             ]}
@@ -318,17 +318,17 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           <AlternativeCombinationProvider
             combinationList={[
               <LargeThermalBath
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Hygiene')! /
-                    LARGE_THERMAL_BATH_INFO.ProducePerMinute)
+                    LARGE_THERMAL_BATH_INFO.ProducePerMinute))
                 }
               />,
               <Bathhouse
-                count={
+                count={Math.ceil(
                   props.count *
                   (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Hygiene')! /
-                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds))
+                    (BATHHOUSE_INFO.ProducePerMinute * BATHHOUSE_INFO.IterationTimeInSeconds)))
                 }
               />,
             ]}
@@ -421,9 +421,9 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <Coiffeur
-            count={
+            count={Math.ceil(
               props.count *
-              (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Coiffeur')! / COIFFEUR_INFO.ProducePerMinute)
+              (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Coiffeur')! / COIFFEUR_INFO.ProducePerMinute))
             }
           />
         </Paper>
@@ -434,10 +434,10 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <Theatre
-            count={
+            count={Math.ceil(
               props.count *
               (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Entertainment')! /
-                THEATRE_INFO.ProducePerMinute)
+                THEATRE_INFO.ProducePerMinute))
             }
           />
         </Paper>
@@ -448,10 +448,10 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <University
-            count={
+            count={Math.ceil(
               props.count *
               (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('HigherEducation')! /
-                (UNIVERSITY_INFO.ProducePerMinute * UNIVERSITY_INFO.IterationTimeInSeconds))
+                (UNIVERSITY_INFO.ProducePerMinute * UNIVERSITY_INFO.IterationTimeInSeconds)))
             }
           />
         </Paper>
@@ -462,10 +462,10 @@ export const PopulationParagonsResidence = (props: { count: number }) => {
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
           <Tiltyard
-            count={
+            count={Math.ceil(
               props.count *
               (POPULATION_PARAGONS_RESIDENCE_INFO.ConsumePerMinute.get('Gambling')! /
-                (TILTYARD_INFO.ProducePerMinute * TILTYARD_INFO.IterationTimeInSeconds))
+                (TILTYARD_INFO.ProducePerMinute * TILTYARD_INFO.IterationTimeInSeconds)))
             }
           />
         </Paper>
