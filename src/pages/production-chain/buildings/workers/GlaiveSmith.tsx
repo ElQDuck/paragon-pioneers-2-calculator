@@ -14,16 +14,14 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { IRON_SMELTER_INFO, IronSmelter } from '../merchants/IronSmelter'
-import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/IronSmelterNorth'
 import { GEMSTONE_MINE_INFO, GemstoneMine } from './GemstoneMine'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
-import { CopperSmelter, COPPER_SMELTER_INFO } from '../colonists/CopperSmelter'
-import { CopperSmelterTropical, COPPER_SMELTER_TROPICAL_INFO } from '../farmers/CopperSmelterTropical'
-import { CopperSmelterNorth, COPPER_SMELTER_NORTH_INFO } from '../northern-islands/CopperSmelterNorth'
-import { FineWoodLogger, FINE_WOOD_LOGGER_INFO } from './FineWoodLogger'
+import { COPPER_SMELTER_INFO, CopperSmelter } from '../colonists/CopperSmelter'
+import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/CopperSmelterTropical'
+import { COPPER_SMELTER_NORTH_INFO, CopperSmelterNorth } from '../northern-islands/CopperSmelterNorth'
+import { FINE_WOOD_LOGGER_INFO, FineWoodLogger } from './FineWoodLogger'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -87,15 +85,13 @@ export const GlaiveSmith = (props: { count: number }) => {
               <CopperSmelter
                 count={
                   props.count *
-                  (GLAIVE_SMITH_INFO.ConsumePerMinute.get('CopperIngot')! /
-                    COPPER_SMELTER_INFO.ProducePerMinute)
+                  (GLAIVE_SMITH_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_INFO.ProducePerMinute)
                 }
               />,
               <CopperSmelterNorth
                 count={
                   props.count *
-                  (GLAIVE_SMITH_INFO.ConsumePerMinute.get('CopperIngot')! /
-                    COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
+                  (GLAIVE_SMITH_INFO.ConsumePerMinute.get('CopperIngot')! / COPPER_SMELTER_NORTH_INFO.ProducePerMinute)
                 }
               />,
             ]}

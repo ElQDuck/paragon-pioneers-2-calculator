@@ -13,18 +13,14 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { Building } from '../../../../types/Building'
-import { COAL_MINE_NORTH_INFO, CoalMineNorth } from './CoalMineNorth'
 import { GOLD_MINE_NORTH_INFO, GoldMineNorth } from './GoldMineNorth'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
-import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTropical'
-import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
-import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
+import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
+import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { GOLD_MINE_TROPICAL_INFO, GoldMineTropical } from '../workers/GoldMineTropical'
-import { ForestWardensCabin, FOREST_WARDENS_CABIN_INFO } from '../merchants/ForestWardensCabin'
-import { Lumberjack, LUMBERJACK_INFO } from '../pioneers/Lumberjack'
-import { ConiferLumberjack, CONIFER_LUMBERJACK_INFO } from './ConiferLumberjack'
+import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from './ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
@@ -83,7 +79,8 @@ export const GoldSmelterNorth = (props: { count: number }) => {
               />,
               <Lumberjack
                 count={
-                  props.count * (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
+                  props.count *
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
                 }
               />,
               <ForestWardensCabin
