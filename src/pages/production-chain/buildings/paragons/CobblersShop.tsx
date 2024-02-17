@@ -22,11 +22,11 @@ import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands
 import { BRASS_SMELTER_INFO, BrassSmelter } from './BrassSmelter'
 
 const ITERATION_TIME_IN_SECONDS = 480
-const PRODUCE_PER_ITERATION = 4
+const PRODUCE_PER_ITERATION = 8
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Brass', 1],
-  ['Leather', 2],
+  ['Leather', 4],
 ])
 export const COBBLERS_SHOP_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,

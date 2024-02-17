@@ -21,12 +21,12 @@ import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { IRON_SMELTER_NORTH_INFO, IronSmelterNorth } from '../northern-islands/IronSmelterNorth'
 
-const ITERATION_TIME_IN_SECONDS = 240
-const PRODUCE_PER_ITERATION = 3
+const ITERATION_TIME_IN_SECONDS = 480
+const PRODUCE_PER_ITERATION = 2
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['IronIngot', 1],
-  ['Plank', 12],
+  ['Plank', 8],
 ])
 export const COOPER_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,

@@ -22,21 +22,24 @@ import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTr
 import { CHARCOAL_KILN_INFO, CharcoalKiln } from '../townsmen/CharcoalKiln'
 import { COAL_MINE_INFO, CoalMine } from '../townsmen/CoalMine'
 import { GOLD_MINE_TROPICAL_INFO, GoldMineTropical } from '../workers/GoldMineTropical'
+import { ForestWardensCabin, FOREST_WARDENS_CABIN_INFO } from '../merchants/ForestWardensCabin'
+import { Lumberjack, LUMBERJACK_INFO } from '../pioneers/Lumberjack'
+import { ConiferLumberjack, CONIFER_LUMBERJACK_INFO } from './ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 480
-const PRODUCE_PER_ITERATION = 2
+const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Coal', 1],
-  ['Gold', 2],
+  ['Wood', 2],
+  ['GoldOre', 1],
 ])
 export const GOLD_SMELTER_NORTH_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
   ConsumePerMinute: new Map<string, number>([
-    ['Coal', CONSUME_PER_ITERATION.get('Coal')! / ITERATION_TIME_IN_DECIMAL],
-    ['Gold', CONSUME_PER_ITERATION.get('Gold')! / ITERATION_TIME_IN_DECIMAL],
+    ['Wood', CONSUME_PER_ITERATION.get('Wood')! / ITERATION_TIME_IN_DECIMAL],
+    ['GoldOre', CONSUME_PER_ITERATION.get('GoldOre')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
@@ -72,28 +75,21 @@ export const GoldSmelterNorth = (props: { count: number }) => {
         <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
-              <CoalMineNorth
+              <ConiferLumberjack
                 count={
                   props.count *
-                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_NORTH_INFO.ProducePerMinute)
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Wood')! / CONIFER_LUMBERJACK_INFO.ProducePerMinute)
                 }
               />,
-              <CoalMine
+              <Lumberjack
                 count={
-                  props.count *
-                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_INFO.ProducePerMinute)
+                  props.count * (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Wood')! / LUMBERJACK_INFO.ProducePerMinute)
                 }
               />,
-              <CharcoalKiln
+              <ForestWardensCabin
                 count={
                   props.count *
-                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / CHARCOAL_KILN_INFO.ProducePerMinute)
-                }
-              />,
-              <CoalMineTropical
-                count={
-                  props.count *
-                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Coal')! / COAL_MINE_TROPICAL_INFO.ProducePerMinute)
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Wood')! / FOREST_WARDENS_CABIN_INFO.ProducePerMinute)
                 }
               />,
             ]}
@@ -106,13 +102,13 @@ export const GoldSmelterNorth = (props: { count: number }) => {
               <GoldMineNorth
                 count={
                   props.count *
-                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Gold')! / GOLD_MINE_NORTH_INFO.ProducePerMinute)
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('GoldOre')! / GOLD_MINE_NORTH_INFO.ProducePerMinute)
                 }
               />,
               <GoldMineTropical
                 count={
                   props.count *
-                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('Gold')! / GOLD_MINE_TROPICAL_INFO.ProducePerMinute)
+                  (GOLD_SMELTER_NORTH_INFO.ConsumePerMinute.get('GoldOre')! / GOLD_MINE_TROPICAL_INFO.ProducePerMinute)
                 }
               />,
             ]}

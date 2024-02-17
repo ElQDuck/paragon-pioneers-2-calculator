@@ -21,7 +21,7 @@ import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/
 import { COPPER_SMELTER_NORTH_INFO, CopperSmelterNorth } from '../northern-islands/CopperSmelterNorth'
 import { ZINC_SMELTER_INFO, ZincSmelter } from '../northern-islands/ZincSmelter'
 
-const ITERATION_TIME_IN_SECONDS = 480
+const ITERATION_TIME_IN_SECONDS = 360
 const PRODUCE_PER_ITERATION = 5
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([

@@ -19,9 +19,9 @@ import { Grass } from '../../tiles/Grass'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 
 const ITERATION_TIME_IN_SECONDS = 60
+const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Grass', 20]])
-const PRODUCE_PER_ITERATION = 1
 export const FLOWER_HOUSE_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,

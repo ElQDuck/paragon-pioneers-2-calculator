@@ -26,7 +26,7 @@ import { COAL_MINE_TROPICAL_INFO, CoalMineTropical } from '../farmers/CoalMineTr
 import { COAL_MINE_NORTH_INFO, CoalMineNorth } from '../northern-islands/CoalMineNorth'
 
 const ITERATION_TIME_IN_SECONDS = 960
-const PRODUCE_PER_ITERATION = 8
+const PRODUCE_PER_ITERATION = 6
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Coal', 1],

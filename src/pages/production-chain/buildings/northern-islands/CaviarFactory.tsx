@@ -24,7 +24,7 @@ import { SALTERN_INFO, Saltern } from '../paragons/Saltern'
 import { SALT_WORKS_INFO, SaltWorks } from '../townsmen/SaltWorks'
 
 const ITERATION_TIME_IN_SECONDS = 480
-const PRODUCE_PER_ITERATION = 6
+const PRODUCE_PER_ITERATION = 2
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Salt', 1],

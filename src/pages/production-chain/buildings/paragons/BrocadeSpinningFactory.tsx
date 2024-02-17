@@ -24,12 +24,12 @@ import { AlternativeCombinationProvider } from '../../../../common/AlternativeCo
 import { GOLD_SMELTER_NORTH_INFO, GoldSmelterNorth } from '../northern-islands/GoldSmelterNorth'
 import { GOLD_SMELTER_TROPICAL_INFO, GoldSmelterTropical } from '../workers/GoldSmelterTropical'
 
-const ITERATION_TIME_IN_SECONDS = 120
+const ITERATION_TIME_IN_SECONDS = 60
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['GoldIngot', 1],
-  ['SilkFabric', 4],
+  ['SilkFabric', 1],
   ['RiverField', 1],
 ])
 export const BROCADE_SPINNING_FACTORY_INFO: Building = {

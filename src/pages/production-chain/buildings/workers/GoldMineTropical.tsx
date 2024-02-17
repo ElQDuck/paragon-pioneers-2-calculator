@@ -21,13 +21,13 @@ import { globalInvertBuildingChainOrder } from '../../../../App'
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
-const CONSUME_PER_ITERATION = new Map<string, number>([['Gemstone', 1]])
+const CONSUME_PER_ITERATION = new Map<string, number>([['GoldOre', 1]])
 export const GOLD_MINE_TROPICAL_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
   ConsumePerIteration: CONSUME_PER_ITERATION,
   ConsumePerMinute: new Map<string, number>([
-    ['Gemstone', CONSUME_PER_ITERATION.get('Gemstone')! / ITERATION_TIME_IN_DECIMAL],
+    ['GoldOre', CONSUME_PER_ITERATION.get('GoldOre')! / ITERATION_TIME_IN_DECIMAL],
   ]),
   ProducePerIteration: PRODUCE_PER_ITERATION,
   ProducePerMinute: PRODUCE_PER_ITERATION / ITERATION_TIME_IN_DECIMAL,
@@ -64,7 +64,7 @@ export const GoldMineTropical = (props: { count: number }) => {
           elevation={2}
           sx={{ ...ProviderPaperStyle, alignItems: globalInvertBuildingChainOrder.value ? 'end' : 'start' }}
         >
-          <GoldDepositTropical count={props.count * GOLD_MINE_TROPICAL_INFO.ConsumePerIteration.get('Gemstone')!} />
+          <GoldDepositTropical count={props.count * GOLD_MINE_TROPICAL_INFO.ConsumePerIteration.get('GoldOre')!} />
         </Paper>
       </Box>
       <Arrow start={providerRef1} end={consumerRef} />

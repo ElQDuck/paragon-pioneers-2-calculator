@@ -22,11 +22,11 @@ import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/Fore
 import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from './ConiferLumberjack'
 
-const ITERATION_TIME_IN_SECONDS = 480
+const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Wood', 8],
+  ['Wood', 2],
   ['Lead', 1],
 ])
 export const LEAD_SMELTER_INFO: Building = {

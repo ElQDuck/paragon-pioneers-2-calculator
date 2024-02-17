@@ -18,7 +18,7 @@ import { ZincDeposit } from '../../tiles/ZincDeposit'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 
-const ITERATION_TIME_IN_SECONDS = 240
+const ITERATION_TIME_IN_SECONDS = 180
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Zinc', 1]])

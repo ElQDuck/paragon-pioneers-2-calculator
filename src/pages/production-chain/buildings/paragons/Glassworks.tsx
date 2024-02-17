@@ -22,13 +22,13 @@ import { QUARTZ_QUARRY_INFO, QuartzQuarry } from './QuartzQuarry'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 
-const ITERATION_TIME_IN_SECONDS = 480
-const PRODUCE_PER_ITERATION = 2
+const ITERATION_TIME_IN_SECONDS = 240
+const PRODUCE_PER_ITERATION = 4
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Limestone', 1],
   ['Potash', 2],
-  ['Quartz', 3],
+  ['Quartz', 4],
 ])
 export const GLASSWORKS_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
