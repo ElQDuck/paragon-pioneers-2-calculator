@@ -20,11 +20,11 @@ import { WINERY_INFO, Winery } from './Winery'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 
-const ITERATION_TIME_IN_SECONDS = 240
+const ITERATION_TIME_IN_SECONDS = 360
 const PRODUCE_PER_ITERATION = 3
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Barrel', 2],
+  ['Barrel', 1],
   ['Grape', 4],
   ['RiverField', 1],
 ])

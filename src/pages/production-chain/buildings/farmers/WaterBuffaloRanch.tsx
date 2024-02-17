@@ -20,12 +20,12 @@ import { globalInvertBuildingChainOrder } from '../../../../App'
 import { RiverFieldTropical } from '../../tiles/RiverFieldTropical'
 
 const ITERATION_TIME_IN_SECONDS = 240
+const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Grass', 2],
   ['RiverField', 1],
 ])
-const PRODUCE_PER_ITERATION = 1
 export const WATER_BUFFALO_RANCH_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,

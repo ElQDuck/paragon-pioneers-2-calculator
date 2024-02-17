@@ -25,7 +25,7 @@ const ITERATION_TIME_IN_SECONDS = 480
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Fiber', 8],
+  ['Fiber', 4],
   ['Gold', 1],
 ])
 export const GOLD_SMELTER_TROPICAL_INFO: Building = {

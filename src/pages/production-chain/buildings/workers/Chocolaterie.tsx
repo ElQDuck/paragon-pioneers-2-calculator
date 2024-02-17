@@ -23,11 +23,11 @@ import { AlternativeCombinationProvider } from '../../../../common/AlternativeCo
 import { SUGAR_BEET_FARM_INFO, SugarBeetFarm } from '../merchants/SugarBeetFarm'
 
 const ITERATION_TIME_IN_SECONDS = 120
-const PRODUCE_PER_ITERATION = 2
+const PRODUCE_PER_ITERATION = 3
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Sugar', 1],
-  ['Cacao', 2],
+  ['Cacao', 3],
 ])
 export const CHOCOLATERIE_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,

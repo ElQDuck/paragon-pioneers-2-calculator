@@ -22,7 +22,7 @@ import { AlternativeCombinationProvider } from '../../../../common/AlternativeCo
 import { COPPER_SMELTER_INFO, CopperSmelter } from '../colonists/CopperSmelter'
 import { COPPER_SMELTER_TROPICAL_INFO, CopperSmelterTropical } from '../farmers/CopperSmelterTropical'
 
-const ITERATION_TIME_IN_SECONDS = 480
+const ITERATION_TIME_IN_SECONDS = 360
 const PRODUCE_PER_ITERATION = 5
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([

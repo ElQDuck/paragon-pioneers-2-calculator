@@ -19,12 +19,12 @@ import { PAPER_MILL_INFO, PaperMill } from './PaperMill'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 
-const ITERATION_TIME_IN_SECONDS = 240
+const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 2
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Dye', 1],
-  ['Paper', 2],
+  ['Paper', 8],
 ])
 export const BOOKBINDER_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,

@@ -59,7 +59,7 @@ const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Hat', 25 / 8000],
   ['Pipe', 25 / 8800],
   ['Pastry', 25 / 8800],
-  ['Caviar', 25 / 11800],
+  ['Caviar', 25 / 36000],
   ['GoldJewelry', 25 / 12400],
   ['Perfume', 25 / 12400],
   ['Administration', 1],

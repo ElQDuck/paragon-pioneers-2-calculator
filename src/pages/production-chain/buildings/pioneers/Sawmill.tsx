@@ -23,12 +23,12 @@ import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/Fore
 import { CONIFER_LUMBERJACK_INFO, ConiferLumberjack } from '../northern-islands/ConiferLumberjack'
 
 const ITERATION_TIME_IN_SECONDS = 30
+const PRODUCE_PER_ITERATION = 3
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Wood', 2],
   ['RiverField', 1],
 ])
-const PRODUCE_PER_ITERATION = 3
 export const SAWMILL_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,

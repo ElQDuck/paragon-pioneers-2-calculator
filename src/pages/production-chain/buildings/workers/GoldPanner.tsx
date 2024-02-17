@@ -18,7 +18,7 @@ import { RiverFieldTropical } from '../../tiles/RiverFieldTropical'
 
 import { globalInvertBuildingChainOrder } from '../../../../App'
 
-const ITERATION_TIME_IN_SECONDS = 1920
+const ITERATION_TIME_IN_SECONDS = 960
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['RiverField', 1]])

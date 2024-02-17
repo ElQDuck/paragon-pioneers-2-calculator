@@ -24,11 +24,11 @@ import { COPPER_MINE_TROPICAL_INFO, CopperMineTropical } from '../farmers/Copper
 import { FOREST_WARDENS_CABIN_INFO, ForestWardensCabin } from '../merchants/ForestWardensCabin'
 import { LUMBERJACK_INFO, Lumberjack } from '../pioneers/Lumberjack'
 
-const ITERATION_TIME_IN_SECONDS = 480
+const ITERATION_TIME_IN_SECONDS = 240
 const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Wood', 8],
+  ['Wood', 2],
   ['Copper', 1],
 ])
 export const COPPER_SMELTER_NORTH_INFO: Building = {

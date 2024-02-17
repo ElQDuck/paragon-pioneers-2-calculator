@@ -21,12 +21,12 @@ import { SAW_WORKS_INFO, SawWorks } from './SawWorks'
 import { SAWMILL_INFO, Sawmill } from './Sawmill'
 
 const ITERATION_TIME_IN_SECONDS = 300
+const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Militia', 1],
   ['Plank', 1],
 ])
-const PRODUCE_PER_ITERATION = 1
 export const BOOT_CAMP_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,

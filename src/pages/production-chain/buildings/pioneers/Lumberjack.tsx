@@ -18,9 +18,9 @@ import { Building } from '../../../../types/Building'
 import { FOREST_INFO, Forest } from '../../tiles/Forest'
 
 const ITERATION_TIME_IN_SECONDS = 30
+const PRODUCE_PER_ITERATION = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([['Forest', 1]])
-const PRODUCE_PER_ITERATION = 1
 export const LUMBERJACK_INFO: Building = {
   IterationTimeInSeconds: ITERATION_TIME_IN_SECONDS,
   IterationTimeInDecimal: ITERATION_TIME_IN_SECONDS / 60,
