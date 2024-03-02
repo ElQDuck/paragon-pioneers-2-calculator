@@ -15,9 +15,9 @@ import {
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
 import { BuildingSummeryContext } from '../../../../common/BuildingSummeryContext'
+import { UpdateBuildingSummery } from '../../../../common/UpdateBuildingSummery'
 import { Building } from '../../../../types/Building'
 import { FOREST_INFO, Forest } from '../../tiles/Forest'
-import { UpdateBuildingSummery } from '../../../../common/UpdateBuildingSummery'
 
 const ITERATION_TIME_IN_SECONDS = 30
 const PRODUCE_PER_ITERATION = 1
@@ -41,7 +41,7 @@ export const Lumberjack = (props: { count: number }) => {
   const [buildingSummery, setBuildingSummery] = useContext(BuildingSummeryContext)
   const [oldValue, setOldValue] = useState(0)
   useEffect(() => {
-    UpdateBuildingSummery("randomName", props.count, [buildingSummery, setBuildingSummery], [oldValue, setOldValue])
+    UpdateBuildingSummery('randomName', props.count, [buildingSummery, setBuildingSummery], [oldValue, setOldValue])
   }, [props.count])
 
   return (

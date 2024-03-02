@@ -466,44 +466,44 @@ export const ProductionChainPage = () => {
             </Box>
           ) : null}
 
-        {/* Paragons */}
-        {paragonsVisible ? (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <PopulationParagonsResidenceButton updateProductionChanFunction={updateProductionChainMap} />
-            <BrassSmelterButton updateProductionChanFunction={updateProductionChainMap} />
-            <CobblersShopButton updateProductionChanFunction={updateProductionChainMap} />
-            <QuartzQuarryButton updateProductionChanFunction={updateProductionChainMap} />
-            <GlassworksButton updateProductionChanFunction={updateProductionChainMap} />
-            <LensGrinderButton updateProductionChanFunction={updateProductionChainMap} />
-            <GalziersWorkshopButton updateProductionChanFunction={updateProductionChainMap} />
-            <LanceMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <TiltyardButton updateProductionChanFunction={updateProductionChainMap} />
-            <CokeryButton updateProductionChanFunction={updateProductionChainMap} />
-            <SteelFurnaceButton updateProductionChanFunction={updateProductionChainMap} />
-            <ArmorsmithButton updateProductionChanFunction={updateProductionChainMap} />
-            <CuirassierAcademyButton updateProductionChanFunction={updateProductionChainMap} />
-            <PaperMillButton updateProductionChanFunction={updateProductionChainMap} />
-            <BookbinderButton updateProductionChanFunction={updateProductionChainMap} />
-            <HoneyDistilleryButton updateProductionChanFunction={updateProductionChainMap} />
-            <ConfectioneryButton updateProductionChanFunction={updateProductionChainMap} />
-            <PowderMillButton updateProductionChanFunction={updateProductionChainMap} />
-            <CannonFoundryButton updateProductionChanFunction={updateProductionChainMap} />
-            <CannoneersSchoolButton updateProductionChanFunction={updateProductionChainMap} />
-            <BrocadeSpinningFactoryButton updateProductionChanFunction={updateProductionChainMap} />
-            <OrnateTailorButton updateProductionChanFunction={updateProductionChainMap} />
-            <ChandlerButton updateProductionChanFunction={updateProductionChainMap} />
-            <UniversityButton updateProductionChanFunction={updateProductionChainMap} />
-            <WineryButton updateProductionChanFunction={updateProductionChainMap} />
-            <CooperButton updateProductionChanFunction={updateProductionChainMap} />
-            <WinepressButton updateProductionChanFunction={updateProductionChainMap} />
-            <PlaningMillButton updateProductionChanFunction={updateProductionChainMap} />
-            <FireworksMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <MusketMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <MusketeerSchoolButton updateProductionChanFunction={updateProductionChainMap} />
-            <SalternButton updateProductionChanFunction={updateProductionChainMap} />
-            <TreasureSeekerButton updateProductionChanFunction={updateProductionChainMap} />
-          </Box>
-        ) : null}
+          {/* Paragons */}
+          {paragonsVisible ? (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+              <PopulationParagonsResidenceButton updateProductionChanFunction={updateProductionChainMap} />
+              <BrassSmelterButton updateProductionChanFunction={updateProductionChainMap} />
+              <CobblersShopButton updateProductionChanFunction={updateProductionChainMap} />
+              <QuartzQuarryButton updateProductionChanFunction={updateProductionChainMap} />
+              <GlassworksButton updateProductionChanFunction={updateProductionChainMap} />
+              <LensGrinderButton updateProductionChanFunction={updateProductionChainMap} />
+              <GalziersWorkshopButton updateProductionChanFunction={updateProductionChainMap} />
+              <LanceMakerButton updateProductionChanFunction={updateProductionChainMap} />
+              <TiltyardButton updateProductionChanFunction={updateProductionChainMap} />
+              <CokeryButton updateProductionChanFunction={updateProductionChainMap} />
+              <SteelFurnaceButton updateProductionChanFunction={updateProductionChainMap} />
+              <ArmorsmithButton updateProductionChanFunction={updateProductionChainMap} />
+              <CuirassierAcademyButton updateProductionChanFunction={updateProductionChainMap} />
+              <PaperMillButton updateProductionChanFunction={updateProductionChainMap} />
+              <BookbinderButton updateProductionChanFunction={updateProductionChainMap} />
+              <HoneyDistilleryButton updateProductionChanFunction={updateProductionChainMap} />
+              <ConfectioneryButton updateProductionChanFunction={updateProductionChainMap} />
+              <PowderMillButton updateProductionChanFunction={updateProductionChainMap} />
+              <CannonFoundryButton updateProductionChanFunction={updateProductionChainMap} />
+              <CannoneersSchoolButton updateProductionChanFunction={updateProductionChainMap} />
+              <BrocadeSpinningFactoryButton updateProductionChanFunction={updateProductionChainMap} />
+              <OrnateTailorButton updateProductionChanFunction={updateProductionChainMap} />
+              <ChandlerButton updateProductionChanFunction={updateProductionChainMap} />
+              <UniversityButton updateProductionChanFunction={updateProductionChainMap} />
+              <WineryButton updateProductionChanFunction={updateProductionChainMap} />
+              <CooperButton updateProductionChanFunction={updateProductionChainMap} />
+              <WinepressButton updateProductionChanFunction={updateProductionChainMap} />
+              <PlaningMillButton updateProductionChanFunction={updateProductionChainMap} />
+              <FireworksMakerButton updateProductionChanFunction={updateProductionChainMap} />
+              <MusketMakerButton updateProductionChanFunction={updateProductionChainMap} />
+              <MusketeerSchoolButton updateProductionChanFunction={updateProductionChainMap} />
+              <SalternButton updateProductionChanFunction={updateProductionChainMap} />
+              <TreasureSeekerButton updateProductionChanFunction={updateProductionChainMap} />
+            </Box>
+          ) : null}
 
           {/* Farmers */}
           {farmersVisible ? (
