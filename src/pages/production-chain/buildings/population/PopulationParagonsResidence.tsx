@@ -47,8 +47,8 @@ import { TOWN_SCHOOL_INFO, TownSchool } from '../townsmen/TownSchool'
 const ITERATION_TIME_IN_SECONDS = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
-  ['Pastry', 30 / 8800],
-  ['Pipe', 30 / 8800],
+  ['Pastry', 30 / 8000],
+  ['Pipe', 30 / 9000],
   ['Caviar', 30 / 36000],
   ['GoldJewelry', 30 / 12400],
   ['Perfume', 30 / 12400],
