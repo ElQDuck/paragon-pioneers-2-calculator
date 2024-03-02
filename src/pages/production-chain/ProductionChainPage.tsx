@@ -150,11 +150,9 @@ import { PlaningMillButton } from './buildings/paragons/PlaningMill'
 import { PowderMillButton } from './buildings/paragons/PowderMill'
 import { QuartzQuarryButton } from './buildings/paragons/QuartzQuarry'
 import { SalternButton } from './buildings/paragons/Saltern'
-import { SenateButton } from './buildings/paragons/Senate'
 import { SteelFurnaceButton } from './buildings/paragons/SteelFurnace'
 import { TiltyardButton } from './buildings/paragons/Tiltyard'
 import { TreasureSeekerButton } from './buildings/paragons/TreasureSeeker'
-import { TrumpetMakerButton } from './buildings/paragons/TrumpetMaker'
 import { UniversityButton } from './buildings/paragons/University'
 import { WinepressButton } from './buildings/paragons/Winepress'
 import { WineryButton } from './buildings/paragons/Winery'
@@ -496,8 +494,6 @@ export const ProductionChainPage = () => {
             <FireworksMakerButton updateProductionChanFunction={updateProductionChainMap} />
             <MusketMakerButton updateProductionChanFunction={updateProductionChainMap} />
             <MusketeerSchoolButton updateProductionChanFunction={updateProductionChainMap} />
-            <TrumpetMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <SenateButton updateProductionChanFunction={updateProductionChainMap} />
             <SalternButton updateProductionChanFunction={updateProductionChainMap} />
             <TreasureSeekerButton updateProductionChanFunction={updateProductionChainMap} />
           </Box>
