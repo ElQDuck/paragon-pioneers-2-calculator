@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
-import { useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import LumberjackIcon from '../../../../assets/icons/buildings/pioneers/Lumberjack.png'
 import {
@@ -14,8 +14,10 @@ import {
 } from '../../../../assets/styling/BuildingStyle'
 import { Arrow } from '../../../../common/Arrow'
 import { BuildingButton } from '../../../../common/BuildingButton'
+import { BuildingSummeryContext } from '../../../../common/BuildingSummeryContext'
 import { Building } from '../../../../types/Building'
 import { FOREST_INFO, Forest } from '../../tiles/Forest'
+import { UpdateBuildingSummery } from '../../../../common/UpdateBuildingSummery'
 
 const ITERATION_TIME_IN_SECONDS = 30
 const PRODUCE_PER_ITERATION = 1
@@ -35,6 +37,13 @@ export const LUMBERJACK_INFO: Building = {
 export const Lumberjack = (props: { count: number }) => {
   const consumerRef = useRef(null)
   const providerRef1 = useRef(null)
+
+  const [buildingSummery, setBuildingSummery] = useContext(BuildingSummeryContext)
+  const [oldValue, setOldValue] = useState(0)
+  useEffect(() => {
+    UpdateBuildingSummery("randomName", props.count, [buildingSummery, setBuildingSummery], [oldValue, setOldValue])
+  }, [props.count])
+
   return (
     <Box sx={{ ...BuildingGroup, flexDirection: globalInvertBuildingChainOrder.value ? 'row-reverse' : 'row' }}>
       <Paper
