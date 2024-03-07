@@ -199,6 +199,7 @@ import { StrawberryFarmButton } from './buildings/townsmen/StrawberryFarm'
 import { TanneryButton } from './buildings/townsmen/Tannery'
 import { TownSchoolButton } from './buildings/townsmen/TownSchool'
 import { ArtisticBlacksmithButton } from './buildings/workers/ArtisticBlacksmith'
+import { BrassSmelterTropicalButton } from './buildings/workers/BrassSmelterTropical'
 import { BuffaloButcheryButton } from './buildings/workers/BuffaloButchery'
 import { BuffaloPastureButton } from './buildings/workers/BuffaloPasture'
 import { CacaoPlantationButton } from './buildings/workers/CacaoPlantation'
@@ -559,6 +560,7 @@ export const ProductionChainPage = () => {
             <IndigoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
             <CostumierButton updateProductionChanFunction={updateProductionChainMap} />
             <DancingSchoolButton updateProductionChanFunction={updateProductionChainMap} />
+            <BrassSmelterTropicalButton updateProductionChanFunction={updateProductionChainMap} />
             <LuthierButton updateProductionChanFunction={updateProductionChainMap} />
             <NitrateMakerButton updateProductionChanFunction={updateProductionChainMap} />
             <CottonPlantationButton updateProductionChanFunction={updateProductionChainMap} />
