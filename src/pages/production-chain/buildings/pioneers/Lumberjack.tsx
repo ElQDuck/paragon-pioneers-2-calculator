@@ -1,7 +1,8 @@
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import LumberjackIcon from '../../../../assets/icons/buildings/pioneers/Lumberjack.png'
 import {
@@ -39,9 +40,8 @@ export const Lumberjack = (props: { count: number }) => {
   const providerRef1 = useRef(null)
 
   const [buildingSummery, setBuildingSummery] = useContext(BuildingSummeryContext)
-  const [oldValue, setOldValue] = useState(0)
   useEffect(() => {
-    UpdateBuildingSummery('randomName', props.count, [buildingSummery, setBuildingSummery], [oldValue, setOldValue])
+    UpdateBuildingSummery(uuidv4(), Lumberjack.name, props.count, [buildingSummery, setBuildingSummery])
   }, [props.count])
 
   return (

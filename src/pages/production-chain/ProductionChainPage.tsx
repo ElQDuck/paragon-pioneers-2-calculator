@@ -254,7 +254,9 @@ export const ProductionChainPage = () => {
   )
 
   const [productionChainMap, setProductionChainMap] = useState<Map<string, JSX.Element>>(new Map<string, JSX.Element>())
-  const [buildingSummery, setBuildingSummery] = useState<Map<string, number>>(new Map<string, number>())
+  const [buildingSummery, setBuildingSummery] = useState<Map<string, { buildingName: string; count: number }>>(
+    new Map<string, { buildingName: string; count: number }>()
+  )
 
   const updateProductionChainMap = (name: string, prodChain: JSX.Element) => {
     setProductionChainMap(new Map(productionChainMap.set(name, prodChain)))

@@ -10,7 +10,10 @@ import { createContext } from 'react'
 // }
 
 export const BuildingSummeryContext = createContext<
-  [Map<string, number>, React.Dispatch<React.SetStateAction<Map<string, number>>>]
->([new Map<string, number>(), () => {}])
+  [
+    Map<string, { buildingName: string; count: number }>,
+    React.Dispatch<React.SetStateAction<Map<string, { buildingName: string; count: number }>>>,
+  ]
+>([new Map<string, { buildingName: string; count: number }>(), () => {}])
 
 export const SimpleTestContext = createContext<string>('test')
