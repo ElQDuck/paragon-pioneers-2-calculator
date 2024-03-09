@@ -19,6 +19,7 @@ import { GLASSWORKS_INFO, Glassworks } from './Glassworks'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands/BrassSmelterNorth'
+import { BRASS_SMELTER_TROPICAL_INFO, BrassSmelterTropical } from '../workers/BrassSmelterTropical'
 import { BRASS_SMELTER_INFO, BrassSmelter } from './BrassSmelter'
 
 const ITERATION_TIME_IN_SECONDS = 240
@@ -73,6 +74,12 @@ export const LensGrinder = (props: { count: number }) => {
               <BrassSmelter
                 count={
                   props.count * (LENS_GRINDER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <BrassSmelterTropical
+                count={
+                  props.count *
+                  (LENS_GRINDER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_TROPICAL_INFO.ProducePerMinute)
                 }
               />,
               <BrassSmelterNorth

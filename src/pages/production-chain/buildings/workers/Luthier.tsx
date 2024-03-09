@@ -20,6 +20,7 @@ import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands/BrassSmelterNorth'
 import { BRASS_SMELTER_INFO, BrassSmelter } from '../paragons/BrassSmelter'
+import { BRASS_SMELTER_TROPICAL_INFO, BrassSmelterTropical } from './BrassSmelterTropical'
 
 const ITERATION_TIME_IN_SECONDS = 120
 const PRODUCE_PER_ITERATION = 8
@@ -70,6 +71,12 @@ export const Luthier = (props: { count: number }) => {
         <Box ref={providerRef1}>
           <AlternativeCombinationProvider
             combinationList={[
+              <BrassSmelterTropical
+                count={
+                  props.count *
+                  (LUTHIER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                }
+              />,
               <BrassSmelter
                 count={
                   props.count * (LUTHIER_INFO.ConsumePerMinute.get('Brass')! / BRASS_SMELTER_INFO.ProducePerMinute)
