@@ -543,42 +543,42 @@ export const ProductionChainPage = () => {
             </Box>
           ) : null}
 
-        {/* Workers */}
-        {workersVisible ? (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <PopulationWorkersHouseButton updateProductionChanFunction={updateProductionChainMap} />
-            <CacaoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
-            <ChocolaterieButton updateProductionChanFunction={updateProductionChainMap} />
-            <FineWoodLoggerButton updateProductionChanFunction={updateProductionChainMap} />
-            <CoconutPlantationButton updateProductionChanFunction={updateProductionChainMap} />
-            <SoupKitchenButton updateProductionChanFunction={updateProductionChainMap} />
-            <GemstoneMineButton updateProductionChanFunction={updateProductionChainMap} />
-            <GoldMineTropicalButton updateProductionChanFunction={updateProductionChainMap} />
-            <GoldSmelterTropicalButton updateProductionChanFunction={updateProductionChainMap} />
-            <ArtisticBlacksmithButton updateProductionChanFunction={updateProductionChainMap} />
-            <GlaiveSmithButton updateProductionChanFunction={updateProductionChainMap} />
-            <GlaiveTempleButton updateProductionChanFunction={updateProductionChainMap} />
-            <FlowerHouseButton updateProductionChanFunction={updateProductionChainMap} />
-            <CemeteryButton updateProductionChanFunction={updateProductionChainMap} />
-            <SilkPlantationButton updateProductionChanFunction={updateProductionChainMap} />
-            <SilkTwineMillButton updateProductionChanFunction={updateProductionChainMap} />
-            <NobleTailorButton updateProductionChanFunction={updateProductionChainMap} />
-            <IndigoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
-            <CostumierButton updateProductionChanFunction={updateProductionChainMap} />
-            <DancingSchoolButton updateProductionChanFunction={updateProductionChainMap} />
-            <BrassSmelterTropicalButton updateProductionChanFunction={updateProductionChainMap} />
-            <LuthierButton updateProductionChanFunction={updateProductionChainMap} />
-            <NitrateMakerButton updateProductionChanFunction={updateProductionChainMap} />
-            <CottonPlantationButton updateProductionChanFunction={updateProductionChainMap} />
-            <SpinningMillButton updateProductionChanFunction={updateProductionChainMap} />
-            <RickyardTropicalButton updateProductionChanFunction={updateProductionChainMap} />
-            <BuffaloPastureButton updateProductionChanFunction={updateProductionChainMap} />
-            <HeraldicArmourerButton updateProductionChanFunction={updateProductionChainMap} />
-            <ShieldGuardianTempleButton updateProductionChanFunction={updateProductionChainMap} />
-            <BuffaloButcheryButton updateProductionChanFunction={updateProductionChainMap} />
-            <GoldPannerButton updateProductionChanFunction={updateProductionChainMap} />
-          </Box>
-        ) : null}
+          {/* Workers */}
+          {workersVisible ? (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+              <PopulationWorkersHouseButton updateProductionChanFunction={updateProductionChainMap} />
+              <CacaoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
+              <ChocolaterieButton updateProductionChanFunction={updateProductionChainMap} />
+              <FineWoodLoggerButton updateProductionChanFunction={updateProductionChainMap} />
+              <CoconutPlantationButton updateProductionChanFunction={updateProductionChainMap} />
+              <SoupKitchenButton updateProductionChanFunction={updateProductionChainMap} />
+              <GemstoneMineButton updateProductionChanFunction={updateProductionChainMap} />
+              <GoldMineTropicalButton updateProductionChanFunction={updateProductionChainMap} />
+              <GoldSmelterTropicalButton updateProductionChanFunction={updateProductionChainMap} />
+              <ArtisticBlacksmithButton updateProductionChanFunction={updateProductionChainMap} />
+              <GlaiveSmithButton updateProductionChanFunction={updateProductionChainMap} />
+              <GlaiveTempleButton updateProductionChanFunction={updateProductionChainMap} />
+              <FlowerHouseButton updateProductionChanFunction={updateProductionChainMap} />
+              <CemeteryButton updateProductionChanFunction={updateProductionChainMap} />
+              <SilkPlantationButton updateProductionChanFunction={updateProductionChainMap} />
+              <SilkTwineMillButton updateProductionChanFunction={updateProductionChainMap} />
+              <NobleTailorButton updateProductionChanFunction={updateProductionChainMap} />
+              <IndigoPlantationButton updateProductionChanFunction={updateProductionChainMap} />
+              <CostumierButton updateProductionChanFunction={updateProductionChainMap} />
+              <DancingSchoolButton updateProductionChanFunction={updateProductionChainMap} />
+              <BrassSmelterTropicalButton updateProductionChanFunction={updateProductionChainMap} />
+              <LuthierButton updateProductionChanFunction={updateProductionChainMap} />
+              <NitrateMakerButton updateProductionChanFunction={updateProductionChainMap} />
+              <CottonPlantationButton updateProductionChanFunction={updateProductionChainMap} />
+              <SpinningMillButton updateProductionChanFunction={updateProductionChainMap} />
+              <RickyardTropicalButton updateProductionChanFunction={updateProductionChainMap} />
+              <BuffaloPastureButton updateProductionChanFunction={updateProductionChainMap} />
+              <HeraldicArmourerButton updateProductionChanFunction={updateProductionChainMap} />
+              <ShieldGuardianTempleButton updateProductionChanFunction={updateProductionChainMap} />
+              <BuffaloButcheryButton updateProductionChanFunction={updateProductionChainMap} />
+              <GoldPannerButton updateProductionChanFunction={updateProductionChainMap} />
+            </Box>
+          ) : null}
 
           {/* Northern Islands */}
           {northernIslandsVisible ? (

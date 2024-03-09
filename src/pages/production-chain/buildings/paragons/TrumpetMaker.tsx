@@ -73,7 +73,8 @@ export const TrumpetMaker = (props: { count: number }) => {
               <BrassSmelterTropical
                 count={
                   props.count *
-                  (TRUMPET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! / BRASS_SMELTER_TROPICAL_INFO.ProducePerMinute)
+                  (TRUMPET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! /
+                    BRASS_SMELTER_TROPICAL_INFO.ProducePerMinute)
                 }
               />,
               <BrassSmelterNorth
