@@ -15,6 +15,7 @@ import WorkerIcon from '../../assets/icons/population/worker.png'
 import { ToolbarStyle } from '../../assets/styling/Theme'
 import { BuildingSummeryContext } from '../../common/BuildingSummeryContext'
 import PopulationSelectionButton from '../../common/PopulationSelectionButtons'
+import { BuildingsOverview } from './BuildingsOverview'
 import { SettingsMenu } from './SettingsMenu'
 import { ArcheryRangeButton } from './buildings/colonists/ArcheryRange'
 import { AshHouseButton } from './buildings/colonists/AshHouse'
@@ -347,9 +348,8 @@ export const ProductionChainPage = () => {
         </AppBar>
         <SettingsMenu drawerOpen={menuOpen} setDrawerOpen={setMenuOpen} />
 
-        {/* 
-      <BuildingSummeryContext.Provider value={[updateBuildingSummery, buildingSummery]}>
-         */}
+        <BuildingsOverview buildingSummery={buildingSummery}></BuildingsOverview>
+
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
           {/* Pioneers */}
           {pioneersVisible ? (
