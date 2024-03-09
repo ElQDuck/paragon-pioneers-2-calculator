@@ -9,5 +9,4 @@ export const UpdateBuildingSummery = (
 ) => {
   const [buildingSummery, setBuildingSummery] = context
   setBuildingSummery(new Map(buildingSummery.set(uuid, { buildingName: building, count: value })))
-  console.log(buildingSummery)
 }

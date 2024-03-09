@@ -2,7 +2,6 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { capitalCase } from 'change-case'
 import { useContext, useEffect, useId, useRef } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import LumberjackIcon from '../../../../assets/icons/buildings/pioneers/Lumberjack.png'
 import {
