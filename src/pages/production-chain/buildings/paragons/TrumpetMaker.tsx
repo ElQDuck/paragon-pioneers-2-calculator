@@ -17,6 +17,7 @@ import { Building } from '../../../../types/Building'
 import { globalInvertBuildingChainOrder } from '../../../../App'
 import { AlternativeCombinationProvider } from '../../../../common/AlternativeCombinationProvider'
 import { BRASS_SMELTER_NORTH_INFO, BrassSmelterNorth } from '../northern-islands/BrassSmelterNorth'
+import { BRASS_SMELTER_TROPICAL_INFO, BrassSmelterTropical } from '../workers/BrassSmelterTropical'
 import { BRASS_SMELTER_INFO, BrassSmelter } from './BrassSmelter'
 
 const ITERATION_TIME_IN_SECONDS = 240
@@ -67,6 +68,12 @@ export const TrumpetMaker = (props: { count: number }) => {
                 count={
                   props.count *
                   (TRUMPET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! / BRASS_SMELTER_INFO.ProducePerMinute)
+                }
+              />,
+              <BrassSmelterTropical
+                count={
+                  props.count *
+                  (TRUMPET_MAKER_INFO.ConsumePerMinute.get('BrassIngot')! / BRASS_SMELTER_TROPICAL_INFO.ProducePerMinute)
                 }
               />,
               <BrassSmelterNorth
