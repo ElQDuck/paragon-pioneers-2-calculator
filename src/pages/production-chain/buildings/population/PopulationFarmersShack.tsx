@@ -33,7 +33,7 @@ const ITERATION_TIME_IN_SECONDS = 1
 const ITERATION_TIME_IN_DECIMAL = ITERATION_TIME_IN_SECONDS / 60
 const CONSUME_PER_ITERATION = new Map<string, number>([
   ['Fish', 10 / 3300],
-  ['Tea', 10 / 6300],
+  ['Tea', 10 / 7000],
   ['Water', 1],
   ['Rum', 10 / 18900],
   ['Cheese', 10 / 11300],
